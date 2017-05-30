@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/DarkGreen"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add pet"
+        android:textColor="@color/LightGreen"
+        android:textSize="25dp" />
+
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/LightGreen"></view>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageButton
+            android:id="@+id/imageButtonAddPet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/plus"
+
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="190dp"
+            android:layout_marginTop="60dp"
+            app:srcCompat="@drawable/ic_033_dog" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Add a new pet"
+        android:textColor="@color/LightGreen"
+        android:textSize="25dp"
+        android:textStyle="normal" />
+
+</LinearLayout>

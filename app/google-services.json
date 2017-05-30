@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "744246808665",
+    "project_id": "firebase-animalhusbandry"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744246808665:android:d06cf6d7a4811e76",
+        "android_client_info": {
+          "package_name": "animalhusbandry.android.com.animalhusbandry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744246808665-caoci8tk1cehogc1tqnknjvei7jjv403.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "animalhusbandry.android.com.animalhusbandry",
+            "certificate_hash": "1234567890ABCDEF1234567890ABCDEFAABBCCDD"
+          }
+        },
+        {
+          "client_id": "744246808665-caoci8tk1cehogc1tqnknjvei7jjv403.apps.googleusercontent.com",
+
+          "client_type": 3
+        }
+      ],
+
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZOfkI3Mz1A7hwZTSrKz9-cNPz7Y_J08M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        >
+
+        <ImageView
+            android:id="@+id/ivForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_021_opened_email_envelope"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="25dp"
+            />
+
+        <EditText
+            android:id="@+id/etForgotPasswordEmail"
+            android:layout_toRightOf="@+id/ivForgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textSize="15dp"
+            android:layout_marginLeft="30dp"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

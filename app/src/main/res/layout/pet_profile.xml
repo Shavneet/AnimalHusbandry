@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/DarkGreen">
+
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Create pet profile"
+            android:textColor="@color/LightGreen"
+            android:textSize="15dp"
+
+            />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/heading"
+            android:background="@color/LightGreen"></View>
+
+        <ImageView
+            android:id="@+id/ivBtnAddImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view1"
+            android:background="@drawable/instagramcircle" />
+
+        <EditText
+            android:id="@+id/tvPetName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/view1"
+            android:layout_marginRight="60dp"
+            android:hint="Pet Name"
+            android:textColor="@color/LightGreen" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvPetName"
+            android:background="@color/LightGreen"></View>
+
+        <EditText
+            android:id="@+id/tvBreed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvPetName"
+            android:layout_marginRight="90dp"
+            android:hint="Breed"
+            android:textColor="@color/LightGreen" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="180dp"
+            android:layout_height="1dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvBreed"
+            android:background="@color/LightGreen"></View>
+
+        <EditText
+            android:id="@+id/tvColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvBreed"
+            android:layout_marginRight="100dp"
+            android:hint="Color"
+            android:textColor="@color/LightGreen" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="210dp"
+            android:layout_height="1dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvColor"
+            android:background="@color/LightGreen"></View>
+
+        <EditText
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/view4"
+            android:layout_marginRight="100dp"
+            android:hint="Location"
+            android:textColor="@color/LightGreen" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="240dp"
+            android:layout_height="1dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvLocation"
+            android:background="@color/LightGreen"></View>
+
+        <EditText
+            android:id="@+id/tvBloodline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/view5"
+            android:layout_marginRight="100dp"
+            android:hint="Bloodline"
+            android:textColor="@color/LightGreen" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="270dp"
+            android:layout_height="1dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvBloodline"
+            android:background="@color/LightGreen"></View>
+
+        <EditText
+            android:id="@+id/tvRegistration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/view6"
+            android:hint="Microchip/Registration Number"
+            android:textColor="@color/LightGreen" />
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvRegistration"
+            android:background="@color/LightGreen"></View>
+
+        <EditText
+            android:id="@+id/tvAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view7"
+            android:hint="Age"
+            android:textColor="@color/LightGreen" />
+
+        <TextView
+            android:id="@+id/tvMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvFemale"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@+id/tvAge"
+            android:text="Male"
+            android:textColor="@color/White"
+            android:textSize="20dp" />
+
+        <CheckBox
+            android:id="@+id/checkboxMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view7"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/tvMale"
+            android:shadowColor="@color/White"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/tvFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view7"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/checkboxMale"
+            android:text="Female"
+            android:textColor="@color/White"
+            android:textSize="20dp" />
+
+        <CheckBox
+            android:id="@+id/checkboxFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view7"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/tvFemale"
+            android:shadowColor="@color/White"
+            android:textColor="@color/White" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkboxFemale"
+            android:background="@color/LightGreen"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvVaccination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etAge"
+                android:text="Vaccination Details:"
+                android:textColor="@color/White"
+                android:textSize="15dp" />
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/LightGreen"></View>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayoutVaccination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DHPP"
+                    android:textColor="@color/White"
+                    android:textSize="15dp" />
+
+                <CheckBox
+                    android:id="@+id/checkboxEditDHPP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:shadowColor="@color/White"
+                    android:textColor="@color/White" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutRabies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rabies"
+                    android:textColor="@color/White"
+                    android:textSize="15dp" />
+
+                <CheckBox
+                    android:id="@+id/checkboxEditRabies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:shadowColor="@color/White"
+                    android:textColor="@color/White" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutParvoVirus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parvo virus"
+                    android:textColor="@color/White"
+                    android:textSize="15dp" />
+
+                <CheckBox
+                    android:id="@+id/checkboxEditParvoVirus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:shadowColor="@color/White"
+                    android:textColor="@color/White" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/tvAnyOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Any other :"
+                android:textColor="@color/White"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvAddToFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout1"
+            android:layout_marginLeft="15dp"
+            android:text="Add to favourites"
+            android:textColor="@color/LightGreen"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvLeaveMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvAddToFav"
+            android:layout_marginLeft="15dp"
+            android:text="Leave a message"
+            android:textColor="@color/LightGreen"
+            android:textSize="20dp"
+
+            />
+
+        <TextView
+            android:id="@+id/tvContactOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvLeaveMessage"
+            android:layout_marginLeft="15dp"
+            android:text="Contact owner for dog mating"
+            android:textColor="@color/LightGreen"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+</ScrollView>

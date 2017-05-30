@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mr_ic_audiotrack_light"
+    tools:context="animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragEditPetProfile">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="80dp"
+        android:text="JAZZY B JAZZY B JAZZY B JAZZY B JAZZY B "
+        />
+
+</FrameLayout>
