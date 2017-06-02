@@ -13,8 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -29,6 +32,7 @@ import animalhusbandry.android.com.animalhusbandry.Activities.LoginParams.LoginR
 import animalhusbandry.android.com.animalhusbandry.Activities.LoginParams.LoginResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.RetroFit.RetroUtils;
 import animalhusbandry.android.com.animalhusbandry.Activities.utils.BlurrBuilder;
+import animalhusbandry.android.com.animalhusbandry.Activities.utils.CheckInternetConnection;
 import animalhusbandry.android.com.animalhusbandry.Activities.utils.VectorDrawableUtils;
 import animalhusbandry.android.com.animalhusbandry.R;
 import retrofit2.Call;
@@ -72,10 +76,8 @@ public class Login extends AppCompatActivity {
         tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
         tvCreateAccount = (TextView) findViewById(R.id.tvCreateAccount);
         cardView = (CardView) findViewById(R.id.card_view);
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Options", MODE_PRIVATE);
         editor = pref.edit();
-
         final View content = this.findViewById(android.R.id.content).getRootView();
         if (content.getWidth() > 0) {
             Bitmap image = BlurrBuilder.blur(content);
@@ -89,12 +91,16 @@ public class Login extends AppCompatActivity {
                 }
             });
         cardView.setPreventCornerOverlap(true);
-
+        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
+                .findViewById(android.R.id.content)).getChildAt(0);
+        setupUI(viewGroup);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etEmail.getText().toString().equals("")) {
+                if (!(CheckInternetConnection.checkInternet(Login.this))) {
+                    Toast.makeText(Login.this, "No Internet", Toast.LENGTH_SHORT).show();
+                } else if (etEmail.getText().toString().equals("")) {
                     etEmail.setError("Enter email address");
                     etEmail.requestFocus();
                 } else if (etPassword.getText().toString().equals("")) {
@@ -183,12 +189,14 @@ public class Login extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.iv_bg);
         Glide.with(this).load(R.drawable.giphy).into(imageView);
     }
+
     private void setIcons() {
         Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_021_opened_email_envelope);
         Drawable password = VectorDrawableUtils.getDrawable(this, R.drawable.ic_028_key);
         etEmail.setCompoundDrawablesWithIntrinsicBounds(email, null, null, null);
         etPassword.setCompoundDrawablesWithIntrinsicBounds(password, null, null, null);
     }
+
     private void doLogin(LoginRequest loginRequest) {
         RetroUtils retroUtils = new RetroUtils(this);
         retroUtils.getApiClient().userLogin(loginRequest).enqueue(new Callback<LoginResponse>() {
@@ -235,6 +243,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
     private void doForgotPassword(ForgotPasswordRequest forgotPasswordRequest) {
         RetroUtils retroUtils = new RetroUtils(this);
         retroUtils.getApiClient().userForgotPassword(forgotPasswordRequest).enqueue(new Callback<ForgotPasswordResponse>() {
@@ -253,6 +262,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "You are not authorized to perform this operation", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<ForgotPasswordResponse> call, Throwable t) {
                 progressDialog.cancel();
@@ -260,10 +270,36 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
         etPassword.setText("");
         etEmail.setText("");
+    }
+
+    public void setupUI(View view) {
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard();
+                    return false;
+                }
+
+                private void hideSoftKeyboard() {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }
+            });
+        }
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="50dp"
-        android:background="@color/LightGreen"></View>
+        android:background="@color/White"></View>
 
 
 

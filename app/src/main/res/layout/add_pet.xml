@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Add pet"
-        android:textColor="@color/LightGreen"
+        android:textColor="@color/White"
         android:textSize="25dp" />
 
     <view
@@ -49,7 +49,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text="Add a new pet"
-        android:textColor="@color/LightGreen"
+        android:textColor="@color/White"
         android:textSize="25dp"
         android:textStyle="normal" />
 

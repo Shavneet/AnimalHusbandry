@@ -2,6 +2,7 @@ package animalhusbandry.android.com.animalhusbandry.Activities;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -105,7 +106,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         if (id == R.id.nav_add_pet) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            FragAddNewPet fragAddNewPet= new FragAddNewPet();
+            FragAddNewPet fragAddNewPet = new FragAddNewPet();
             fragmentTransaction.addToBackStack("fragAddNewPet");
             fragmentTransaction.replace(R.id.xmlFragment, fragAddNewPet, "fragAddNewPetTag");
             fragmentTransaction.commit();
@@ -143,7 +144,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 final View dialogView = layoutInflater.inflate(R.layout.alert_dialog_logout, null);
                 builder.setView(dialogView);
                 builder.setCancelable(true);
-                builder.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         progressDialog = ProgressDialog.show(Dashboard.this, "Please wait", "logging out", true);
@@ -186,7 +187,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 Log.e("@@@@@@@@@", response.body().getResponse().getCode() + "");
                 if (response.body().getResponse().getCode().equals("200")) {
                     Toast.makeText(Dashboard.this, "Come back soon ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Dashboard.this, Login.class);
+                    startActivity(intent);
                     finish();
+
 
                 } else if (response.body().getResponse().getCode().equals("404")) {
                     progressDialog.cancel();
@@ -199,7 +203,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                     Toast.makeText(Dashboard.this, "You are not authorized to perform this operation", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<LogoutResponse> call, Throwable t) {
                 progressDialog.cancel();
@@ -211,9 +214,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);}
-            super.onBackPressed();
-            return;}
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        super.onBackPressed();
+        return;
+    }
     /*    } else if (!doubleBackToExitPressedOnce) {
             this.doubleBackToExitPressedOnce = true;
             Toast.makeText(this, "Please click BACK again to exit.", Toast.LENGTH_SHORT).show();

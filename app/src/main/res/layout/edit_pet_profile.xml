@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Create pet profile"
-        android:textColor="@color/LightGreen"
+        android:textColor="@color/White"
         android:textSize="15dp"
 
         />
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/heading"
-        android:background="@color/LightGreen"></View>
+        android:background="@color/White"></View>
 
     <ImageView
         android:id="@+id/ivEditAddImage"
@@ -39,7 +39,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="60dp"
         android:hint="Pet Name"
-        android:textColor="@color/LightGreen"
+        android:textColor="@color/White"
         android:layout_below="@+id/view1" />
 
     <View
@@ -48,7 +48,7 @@
         android:layout_height="1dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/etEditPetName"
-        android:background="@color/LightGreen"></View>
+        android:background="@color/White"></View>
 
     <EditText
         android:id="@+id/etEditBreed"
@@ -58,7 +58,7 @@
         android:layout_below="@+id/etEditPetName"
         android:layout_marginRight="90dp"
         android:hint="Breed"
-        android:textColor="@color/LightGreen" />
+        android:textColor="@color/White" />
 
     <View
         android:id="@+id/view3"
@@ -66,7 +66,7 @@
         android:layout_height="1dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/etEditBreed"
-        android:background="@color/LightGreen"></View>
+        android:background="@color/White"></View>
 
     <EditText
         android:id="@+id/etEditColor"
@@ -76,7 +76,7 @@
         android:layout_below="@+id/etEditBreed"
         android:layout_marginRight="100dp"
         android:hint="Color"
-        android:textColor="@color/LightGreen" />
+        android:textColor="@color/White" />
 
     <View
         android:id="@+id/view4"
@@ -84,7 +84,7 @@
         android:layout_height="1dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/etEditColor"
-        android:background="@color/LightGreen"></View>
+        android:background="@color/White"></View>
 
     <EditText
         android:id="@+id/etEditLocation"
@@ -94,7 +94,7 @@
         android:layout_below="@+id/view4"
         android:layout_marginRight="100dp"
         android:hint="Location"
-        android:textColor="@color/LightGreen" />
+        android:textColor="@color/White" />
 
     <View
         android:id="@+id/view5"
@@ -102,7 +102,7 @@
         android:layout_height="1dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/etEditLocation"
-        android:background="@color/LightGreen"></View>
+        android:background="@color/White"></View>
 
     <EditText
         android:id="@+id/etEditBloodline"
@@ -112,7 +112,7 @@
         android:layout_below="@+id/view5"
         android:layout_marginRight="100dp"
         android:hint="Bloodline"
-        android:textColor="@color/LightGreen" />
+        android:textColor="@color/White" />
 
     <View
         android:id="@+id/view6"
@@ -120,7 +120,7 @@
         android:layout_height="1dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/etEditBloodline"
-        android:background="@color/LightGreen"></View>
+        android:background="@color/White"></View>
 
     <EditText
         android:id="@+id/etEditRegistration"
@@ -129,7 +129,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/view6"
         android:hint="Microchip/Registration Number"
-        android:textColor="@color/LightGreen" />
+        android:textColor="@color/White" />
 
     <View
         android:id="@+id/view7"
@@ -137,7 +137,7 @@
         android:layout_height="1dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/etEditRegistration"
-        android:background="@color/LightGreen"></View>
+        android:background="@color/White"></View>
 
     <EditText
         android:id="@+id/etEditAge"
@@ -145,7 +145,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/view7"
         android:hint="Age"
-        android:textColor="@color/LightGreen"
+        android:textColor="@color/White"
         />
 
     <TextView
@@ -200,7 +200,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/checkboxEditFemale"
-        android:background="@color/LightGreen"
+        android:background="@color/White"
         android:orientation="vertical">
         <TextView
             android:id="@+id/tvEditVaccination"
@@ -215,7 +215,7 @@
             android:id="@+id/view8"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/LightGreen"></View>
+            android:background="@color/White"></View>
 
 
         <LinearLayout
