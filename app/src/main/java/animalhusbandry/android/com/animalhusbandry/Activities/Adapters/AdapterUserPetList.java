@@ -21,6 +21,7 @@ import static animalhusbandry.android.com.animalhusbandry.R.drawable.googleplus;
 
 /**
  * Created by grewalshavneet on 6/7/2017.
+ * Adapter for Pet List
  */
 
 public class AdapterUserPetList extends RecyclerView.Adapter<AdapterUserPetList.ViewHolder> {
