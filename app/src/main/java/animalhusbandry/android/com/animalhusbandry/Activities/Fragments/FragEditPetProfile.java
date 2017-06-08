@@ -1,13 +1,24 @@
 package animalhusbandry.android.com.animalhusbandry.Activities.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
 
+import java.util.ArrayList;
+
+import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfileParams.CreatePetProfileRequest;
 import animalhusbandry.android.com.animalhusbandry.R;
 
 /**
@@ -23,6 +34,22 @@ public class FragEditPetProfile extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final int CAMERA_REQUEST = 1100;
+    private static final int GALERY_REQUEST = 2700;
+    private static final int RESULT_CROP = 2900;
+    EditText etPetName, etBloodline, etRegistration, etAge, etColor, etLocation, etBreed, etAnyOther;
+    Button btnCreateProfile;
+    CheckBox checkboxMale, checkboxFemale, checkboxDHPP, checkboxRabies, checkboxParvoVirus, checkboxNone;
+    String strPetName, strPetBloodline, strPetRegistration, strPetAge, strPetColor, strPetLocation, strPetBreed, strPetAnyOther, strGender;
+    public ProgressDialog ringProgressDialog;
+    public AlertDialog cameraDialog;
+    ImageView ivBtnAddImage;
+    public Uri fileUri;
+    public Bitmap bitmap;
+    public String encodedImage;
+    private static final int REQUEST_READ_PERMISSION = 7860;
+    private static final int REQUEST_CAMERA_PERMISSION = 1888;
+    public Bitmap circularBitmap;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,17 +92,39 @@ public class FragEditPetProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frag_edit_pet_profile, container, false);
+      View fragView=inflater.inflate(R.layout.frag_edit_pet_profile, container, false);
+        ivBtnAddImage = (ImageView)fragView. findViewById(R.id.ivBtnAddImage);
+        etPetName = (EditText)fragView. findViewById(R.id.etPetName);
+        etBloodline = (EditText) fragView.findViewById(R.id.etBloodline);
+        etRegistration = (EditText)fragView. findViewById(R.id.etRegistration);
+        etAge = (EditText)fragView. findViewById(R.id.etAge);
+        etColor = (EditText) fragView.findViewById(R.id.etColor);
+        etLocation = (EditText) fragView.findViewById(R.id.etLocation);
+        etBreed = (EditText)fragView. findViewById(R.id.etBreed);
+        etAnyOther = (EditText)fragView. findViewById(R.id.etAnyOther);
+        checkboxMale = (CheckBox) fragView.findViewById(R.id.checkboxMale);
+        checkboxFemale = (CheckBox) fragView.findViewById(R.id.checkboxFemale);
+        checkboxDHPP = (CheckBox) fragView.findViewById(R.id.checkboxDHPP);
+        checkboxRabies = (CheckBox)fragView. findViewById(R.id.checkboxRabies);
+        checkboxParvoVirus = (CheckBox)fragView. findViewById(R.id.checkboxParvoVirus);
+        btnCreateProfile = (Button)fragView. findViewById(R.id.btnCreateProfile);
+        checkboxNone = (CheckBox) fragView.findViewById(R.id.checkboxNone);
+        Toolbar toolbarTop = (Toolbar)fragView. findViewById(R.id.toolbar1);
+        final ArrayList<CreatePetProfileRequest.PetVaccinationsList> arrrayListVaccination = new ArrayList<CreatePetProfileRequest.PetVaccinationsList>();
+        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationGender = new CreatePetProfileRequest.PetVaccinationsList();
+        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationDHPP = new CreatePetProfileRequest.PetVaccinationsList();
+        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationRabies = new CreatePetProfileRequest.PetVaccinationsList();
+        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationParvo = new CreatePetProfileRequest.PetVaccinationsList();
+        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationAnyOther = new CreatePetProfileRequest.PetVaccinationsList();
 
+        btnCreateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-
+            }
+        });
+        return fragView;
     }
-
-
-
-
-
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

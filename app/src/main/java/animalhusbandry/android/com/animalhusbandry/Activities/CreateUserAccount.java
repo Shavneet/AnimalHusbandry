@@ -7,11 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -58,6 +60,9 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
     }
 
     public void init() {
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        textView.setText("Create your account");
         etFName = (EditText) findViewById(R.id.etFName);
         etLName = (EditText) findViewById(R.id.etLName);
         etContact = (EditText) findViewById(R.id.etContact);
@@ -258,18 +263,18 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
     }
 
     private void setIcons() {
-        Drawable FName = VectorDrawableUtils.getDrawable(this, R.drawable.ic_004_user_3);
-        Drawable password = VectorDrawableUtils.getDrawable(this, R.drawable.ic_028_key);
-        Drawable Confirmpassword = VectorDrawableUtils.getDrawable(this, R.drawable.ic_005_security_1);
-        Drawable LName = VectorDrawableUtils.getDrawable(this, R.drawable.ic_011_user_2);
-        Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_021_opened_email_envelope);
-        Drawable contact = VectorDrawableUtils.getDrawable(this, R.drawable.ic_009_phone_with_numbers_of_the_buttons);
-        etFName.setCompoundDrawablesWithIntrinsicBounds(FName, null, null, null);
-        etPassword.setCompoundDrawablesWithIntrinsicBounds(password, null, null, null);
-        etLName.setCompoundDrawablesWithIntrinsicBounds(LName, null, null, null);
-        etEmail.setCompoundDrawablesWithIntrinsicBounds(email, null, null, null);
-        etContact.setCompoundDrawablesWithIntrinsicBounds(contact, null, null, null);
-        etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(Confirmpassword, null, null, null);
+        Drawable FName = VectorDrawableUtils.getDrawable(this, R.drawable.ic_025_user_1);
+        Drawable password = VectorDrawableUtils.getDrawable(this, R.drawable.ic_017_security_2);
+        Drawable Confirmpassword = VectorDrawableUtils.getDrawable(this, R.drawable.ic_019_security_1);
+        Drawable LName = VectorDrawableUtils.getDrawable(this, R.drawable.ic_024_user_2);
+        Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_023_email);
+        Drawable contact = VectorDrawableUtils.getDrawable(this, R.drawable.ic_021_phone_call);
+        etFName.setCompoundDrawablesWithIntrinsicBounds(null, null, FName, null);
+        etPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, password, null);
+        etLName.setCompoundDrawablesWithIntrinsicBounds(null, null, LName, null);
+        etEmail.setCompoundDrawablesWithIntrinsicBounds(null, null, email, null);
+        etContact.setCompoundDrawablesWithIntrinsicBounds(null, null, contact, null);
+        etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(null, null,Confirmpassword, null);
     }
 
 }

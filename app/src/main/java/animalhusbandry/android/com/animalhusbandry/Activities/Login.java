@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +44,7 @@ import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
     EditText etEmail, etPassword;
-    ImageButton btnLogin;
+    ImageView  btnLogin;
     TextView tvForgotPassword, tvCreateAccount;
     String strEmail, strPassword;
     public SharedPreferences.Editor editor;
@@ -72,13 +71,19 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etLoginPassword);
-        btnLogin = (ImageButton) findViewById(R.id.btnLogin);
+        btnLogin = (ImageView) findViewById(R.id.btnLogin);
         tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
         tvCreateAccount = (TextView) findViewById(R.id.tvCreateAccount);
         cardView = (CardView) findViewById(R.id.card_view);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Options", MODE_PRIVATE);
         editor = pref.edit();
         final View content = this.findViewById(android.R.id.content).getRootView();
+      /*  if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(getResources().getColor(R.color.DarkGreen));
+        }*/
         if (content.getWidth() > 0) {
             Bitmap image = BlurrBuilder.blur(content);
             cardView.setBackground(new BitmapDrawable(Login.this.getResources(), image));
@@ -108,7 +113,7 @@ public class Login extends AppCompatActivity {
                     etPassword.requestFocus();
                 } else {
                     ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...", "Logging in", true);
-                    ringProgressDialog.setCancelable(true);
+                    ringProgressDialog.setCancelable(false);
                     new Thread(new Runnable() {
 
                         @Override
@@ -153,7 +158,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(Login.this, "Please enter email", Toast.LENGTH_SHORT).show();
                         } else if (!(etForgotPasswordEmail.getText().toString().equals(""))) {
                             progressDialog = ProgressDialog.show(Login.this, "Please wait ...", "Sending you a mail", true);
-                            progressDialog.setCancelable(true);
+                            progressDialog.setCancelable(false);
 
                            /* new Thread(new Runnable() {
 
@@ -191,10 +196,10 @@ public class Login extends AppCompatActivity {
     }
 
     private void setIcons() {
-        Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_021_opened_email_envelope);
-        Drawable password = VectorDrawableUtils.getDrawable(this, R.drawable.ic_028_key);
-        etEmail.setCompoundDrawablesWithIntrinsicBounds(email, null, null, null);
-        etPassword.setCompoundDrawablesWithIntrinsicBounds(password, null, null, null);
+        Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_023_email);
+        /*Drawable password = VectorDrawableUtils.getDrawable(this, R.drawable.ic_017_security_2);*/
+        etEmail.setCompoundDrawablesWithIntrinsicBounds(null, null, email, null);
+        /*etPassword.setCompoundDrawablesWithIntrinsicBounds(password, null, null, null);*/
     }
 
     private void doLogin(LoginRequest loginRequest) {
@@ -203,7 +208,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 ringProgressDialog.cancel();
-                if (response.body().getResponse().getCode().equals("200")) {
+                if (response.body() == null) {
+                    Toast.makeText(getBaseContext(), "Server error", Toast.LENGTH_SHORT).show();
+                } else if (response.body().getResponse().getCode().equals("200")) {
                     Toast.makeText(Login.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                     String strUserFullName = response.body().getResponse().getResult().getUserFullName();
                     String strUserEmail = response.body().getResponse().getResult().getEmail();
@@ -290,7 +297,7 @@ public class Login extends AppCompatActivity {
 
                 private void hideSoftKeyboard() {
                     InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    imm.hideSoftInputFromWindow(etEmail.getWindowToken(), 0);
                 }
             });
         }

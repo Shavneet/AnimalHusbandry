@@ -6,5 +6,6 @@
     <color name="LightGreen">#76D7C4</color>
     <color name="White">#FFFF</color>
     <color name="DarkGreen">#0D544D</color>
-
+   <!-- <color name="Orange">#F2955C</color>-->
+    <color name="Orange">#fd8431</color>
 </resources>

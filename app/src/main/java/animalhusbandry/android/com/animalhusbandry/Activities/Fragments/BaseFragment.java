@@ -1,14 +1,19 @@
 package animalhusbandry.android.com.animalhusbandry.Activities.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfile;
 import animalhusbandry.android.com.animalhusbandry.R;
 
 /**
@@ -65,7 +70,19 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_base, container, false);
+        View fragView= inflater.inflate(R.layout.fragment_base, container, false);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        textView.setText("Dashboard");
+        FloatingActionButton floatingActionButton=(FloatingActionButton)fragView.findViewById(R.id.floatingActionButton);
+       floatingActionButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent=new Intent(getContext(), CreatePetProfile.class);
+               startActivity(intent);
+           }
+       });
+        return fragView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

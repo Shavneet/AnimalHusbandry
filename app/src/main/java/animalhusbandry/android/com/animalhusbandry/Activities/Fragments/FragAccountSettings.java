@@ -11,10 +11,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.DeleteUserProfileParams.DeleteUserProfileRequest;
@@ -82,6 +84,9 @@ public class FragAccountSettings extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         final View fragView = inflater.inflate(R.layout.fragment_account_settings, container, false);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        textView.setText("Account settings");
         btnChangePassword = (Button) fragView.findViewById(R.id.btnChangePassword);
         btnDeleteAccount = (Button) fragView.findViewById(R.id.btnDeleteAccount);
         btnEditUserProfile = (Button) fragView.findViewById(R.id.btnEditUserProfile);

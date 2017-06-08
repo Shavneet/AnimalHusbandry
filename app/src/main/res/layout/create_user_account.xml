@@ -24,7 +24,6 @@
             android:id="@+id/containerCardViewElements"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:orientation="vertical">
             <!--  <RelativeLayout
                   android:id="@+id/forImageViewAddUserPhoto"
@@ -48,14 +47,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/forImageViewAddUserPhoto"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="20dp">
                 />
 
                 <EditText
                     android:id="@+id/etFName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:backgroundTint="@color/Orange"
+                    android:textColor="@color/DarkGreen"
                     android:layout_toRightOf="@+id/ivForEditTextFName"
                     android:hint="First name"
                     android:inputType="textPersonName"
@@ -69,16 +69,16 @@
                 android:id="@+id/forEditTextLName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_below="@+id/forEditTextFName"
                 android:layout_marginTop="10dp">
                 />
 
                 <EditText
                     android:id="@+id/etLName"
+                    android:backgroundTint="@color/Orange"
+                    android:textColor="@color/DarkGreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_toRightOf="@+id/ivForEditTextLName"
                     android:hint="Last name"
                     android:drawablePadding="20dp"
@@ -100,9 +100,10 @@
 
                 <EditText
                     android:id="@+id/etEmail"
+                    android:backgroundTint="@color/Orange"
+                    android:textColor="@color/DarkGreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_toRightOf="@+id/ivForEditTextEmail"
                     android:hint="Email"
                     android:drawablePadding="20dp"
@@ -123,9 +124,10 @@
 
                 <EditText
                     android:id="@+id/etContact"
+                    android:backgroundTint="@color/Orange"
+                    android:textColor="@color/DarkGreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:drawablePadding="20dp"
                     android:layout_toRightOf="@+id/ivForEditTextContacts"
                     android:hint="Mobile Number"
@@ -147,8 +149,9 @@
                 <EditText
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
+                    android:backgroundTint="@color/Orange"
+                    android:textColor="@color/DarkGreen"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_toRightOf="@+id/ivForEditTextPassword"
                     android:hint="Password"
                     android:drawablePadding="20dp"
@@ -163,15 +166,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/forEditTextPassword"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="40dp"
                 android:layout_marginTop="10dp">
 
                 <EditText
                     android:id="@+id/etConfirmPassword"
                     android:layout_width="match_parent"
+                    android:backgroundTint="@color/Orange"
+                    android:textColor="@color/DarkGreen"
                     android:layout_height="wrap_content"
                     android:drawablePadding="20dp"
-                    android:layout_marginLeft="25dp"
                     android:layout_toRightOf="@+id/ivForEditTextConfirmPassword"
                     android:hint="Confirm password"
                     android:inputType="textPassword"
@@ -185,10 +189,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/card_view"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:layout_marginTop="-40dp"
+        android:layout_marginTop="-33dp"
         android:elevation="10dp"
 
         >
@@ -197,8 +201,9 @@
             android:id="@+id/btnCreateUserAccount"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:elevation="10dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/_arrow_right" />
+            android:background="@drawable/ic_login_buttton" />
 
 
         <Button

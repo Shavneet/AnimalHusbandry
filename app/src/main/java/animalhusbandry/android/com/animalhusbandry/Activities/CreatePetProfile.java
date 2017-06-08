@@ -70,7 +70,7 @@ public class CreatePetProfile extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_pet_profile);
+        setContentView(R.layout.test_createpetprofile);
         init();
     }
 
@@ -100,33 +100,57 @@ public class CreatePetProfile extends AppCompatActivity {
         btnCreateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etPetName.getText().toString().isEmpty()) {
-                    etPetName.setError("");
+
+                if (ivBtnAddImage.getDrawable() == null) {
+                    Toast.makeText(getApplicationContext(), "Add pet image", Toast.LENGTH_SHORT).show();
+                } else if (etPetName.getText().toString().isEmpty()) {
+                    etPetName.setError("Enter pet name");
+                    etPetName.requestFocus();
+                } else if (etPetName.getText().toString().length() < 3) {
+                    etPetName.setError("Enter minimum 3 characters");
                     etPetName.requestFocus();
                 } else if (etBreed.getText().toString().isEmpty()) {
-                    etBreed.setError("");
+                    etBreed.setError("Enter pet breed");
+                    etBreed.requestFocus();
+                } else if (etColor.getText().toString().length() < 3) {
+                    etColor.setError("Enter minimum 3 characters");
+                    etColor.requestFocus();
+                } else if (etColor.getText().toString().isEmpty()) {
+                    etColor.setError("Enter pet breed");
+                    etColor.requestFocus();
+                } else if (etBreed.getText().toString().length() < 3) {
+                    etBreed.setError("Enter minimum 3 characters");
                     etBreed.requestFocus();
                 } else if (etBloodline.getText().toString().isEmpty()) {
-                    etBloodline.setError("");
+                    etBloodline.setError("Enter bloodline");
                     etBloodline.requestFocus();
-                } else if (etColor.getText().toString().isEmpty()) {
-                    etColor.setError("");
-                    etColor.requestFocus();
+                } else if (etBloodline.getText().toString().length() < 3) {
+                    etBloodline.setError("Enter minimum 3 characters");
+                    etBloodline.requestFocus();
                 } else if (etLocation.getText().toString().isEmpty()) {
-                    etLocation.setError("");
+                    etLocation.setError("Enter location");
+                    etLocation.requestFocus();
+                } else if (etLocation.getText().toString().length() < 3) {
+                    etLocation.setError("Enter minimum 3 characters");
                     etLocation.requestFocus();
                 } else if (etRegistration.getText().toString().isEmpty()) {
-                    etRegistration.setError("");
+                    etRegistration.setError("Enter Registration");
+                    etRegistration.requestFocus();
+                } else if (etRegistration.getText().toString().length() < 3) {
+                    etRegistration.setError("Enter minimum 4 characters");
                     etRegistration.requestFocus();
                 } else if (etAge.getText().toString().isEmpty()) {
-                    etAge.setError("");
+                    etAge.setError("Enter Age");
+                    etAge.requestFocus();
+                } else if (etAge.getText().toString().length() > 2) {
+                    etAge.setError("Entered age can't be possible ");
                     etAge.requestFocus();
                 } else if (!(checkboxFemale.isChecked() || checkboxMale.isChecked())) {
                     Toast.makeText(getApplicationContext(), "Please select gender", Toast.LENGTH_SHORT).show();
                 } else if (checkboxMale.isChecked() && checkboxFemale.isChecked()) {
                     Toast.makeText(getApplicationContext(), "Your pet can't be both male and female!!", Toast.LENGTH_SHORT).show();
                 } else if (!(checkboxRabies.isChecked() || checkboxDHPP.isChecked() || checkboxParvoVirus.isChecked() || checkboxNone.isChecked())) {
-                    Toast.makeText(getApplicationContext(), "Heyy you can also select no one", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vaccination details missing", Toast.LENGTH_SHORT).show();
                 } else if ((checkboxRabies.isChecked() && checkboxDHPP.isChecked() && checkboxParvoVirus.isChecked() && checkboxNone.isChecked())) {
                     Toast.makeText(getApplicationContext(), "No need to select'None'with other options", Toast.LENGTH_SHORT).show();
                 } else {
@@ -214,12 +238,9 @@ public class CreatePetProfile extends AppCompatActivity {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
             } else {
                 popUpmenu();
-                //uploadPicture();
             }
         } else {
             popUpmenu();
-            //uploadPicture();
-
         }
     }
 
@@ -227,21 +248,6 @@ public class CreatePetProfile extends AppCompatActivity {
     public void takePicture() {
         Intent imageIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(imageIntent, CAMERA_REQUEST);
-    /*    try {
-            File dirPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-            File dir_temp = new File(String.valueOf(dirPath));
-            if (!dir_temp.exists())
-                dir_temp.mkdirs();
-
-            File uploadFile = new File(dir_temp, new Date() + ".png");
-            fileUri = Uri.fromFile(uploadFile);
-            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 
     private void selectFromGallery() {
@@ -371,7 +377,6 @@ public class CreatePetProfile extends AppCompatActivity {
         return encImage;
     }
 
-
     private void doCreatePetProfile(CreatePetProfileRequest createPetProfileRequest) {
         RetroUtils retroUtils = new RetroUtils(getApplicationContext());
         retroUtils.getApiClient().createPetProfile(createPetProfileRequest).enqueue(new Callback<CreatePetProfileResponse>() {
@@ -393,7 +398,5 @@ public class CreatePetProfile extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }

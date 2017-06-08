@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -84,7 +86,9 @@ public class FragChangePassword extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        textView.setText("Change password");
         View fragView = inflater.inflate(R.layout.frag_change_password, container, false);
         etOldPassword = (EditText) fragView.findViewById(R.id.etOldPassword);
         etSetPassword = (EditText) fragView.findViewById(R.id.etSetPassword);

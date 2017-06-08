@@ -45,7 +45,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/btnLogin"
                     android:layout_gravity="center"
-
                     android:layout_marginBottom="-35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
@@ -72,20 +71,23 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="10dp"
-                                android:backgroundTint="@color/DarkGreen"
+                                android:backgroundTint="@color/Orange"
                                 android:drawablePadding="30dp"
                                 android:hint="Email"
                                 android:imeOptions="actionNext"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:padding="10dp"
+                                android:textColor="@color/DarkGreen"
                                 android:textSize="20dp" />
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
                             android:id="@+id/password_frame"
                             android:layout_width="match_parent"
+                            card_view:passwordToggleEnabled="true"
                             android:layout_height="wrap_content">
+
                             <EditText
                                 android:id="@+id/etLoginPassword"
                                 android:layout_width="match_parent"
@@ -93,12 +95,15 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="10dp"
+                                android:backgroundTint="@color/Orange"
                                 android:drawablePadding="30dp"
                                 android:hint="Password"
+
                                 android:imeOptions="actionDone"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
                                 android:padding="10dp"
+                                android:textColor="@color/DarkGreen"
                                 android:textSize="20dp" />
                         </android.support.design.widget.TextInputLayout>
 
@@ -115,7 +120,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Forgot password ?"
-                                android:textColor="@color/DarkGreen"
+                                android:textColor="@color/Orange"
                                 android:textSize="12dp"
                                 android:textStyle="bold" />
 
@@ -134,22 +139,22 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"
-                android:elevation="10dp"
                 android:layout_below="@+id/card_view"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
+                android:elevation="10dp"
 
                 >
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/btnLogin"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_above="@+id/tvCreateAccount"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="15dp"
-                    android:background="@drawable/_arrow_right"
+                    android:background="@drawable/ic_login_buttton"
                     android:elevation="10dp"
                     android:padding="25dp"
                     android:translationZ="10dp" />
@@ -174,12 +179,11 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:elevation="5dp"
                 android:padding="5dp"
                 android:text="New here? Create your account"
-                android:textColor="@color/White"
+                android:textColor="@color/Orange"
                 android:textSize="15dp"
                 android:textStyle="bold" />
             </RelativeLayout>
