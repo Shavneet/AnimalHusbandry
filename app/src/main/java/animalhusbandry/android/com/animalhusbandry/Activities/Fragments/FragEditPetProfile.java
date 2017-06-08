@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfileParams.CreatePetProfileRequest;
+import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.R;
 
 /**
@@ -142,7 +144,14 @@ public class FragEditPetProfile extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }*/
     }
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(getActivity()!=null){
+            Dashboard activity= (Dashboard) getActivity();
+            activity.setToolbarTitle("Edit pet profile");
+        }
+    }
     @Override
     public void onDetach() {
         super.onDetach();

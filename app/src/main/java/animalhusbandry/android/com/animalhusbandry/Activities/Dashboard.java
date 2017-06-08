@@ -28,6 +28,7 @@ import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragAcco
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragAddNewPet;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragEditPetProfile;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragEditUserProfile;
+import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragHealthTips;
 import animalhusbandry.android.com.animalhusbandry.Activities.LogoutParams.LogoutRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.LogoutParams.LogoutResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.RetroFit.RetroUtils;
@@ -134,7 +135,12 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 fragmentTransaction.commit();
 
             } else if (id == R.id.nav_tips) {
-
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragHealthTips fragHealthTips = new FragHealthTips();
+                fragmentTransaction.replace(R.id.xmlFragment, fragHealthTips, "fragHealthTipsTag");
+                fragmentTransaction.addToBackStack("fragHealthTips");
+                fragmentTransaction.commit();
 
             } else if (id == R.id.nav_logout) {
 
@@ -258,5 +264,9 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public void setToolbarTitle(String title){
+        toolbar.setTitle(title);
     }
 }

@@ -4,15 +4,9 @@ buildscript {
     repositories {
         jcenter()
     }
-<<<<<<< HEAD
     /*dependencies {
         classpath 'com.android.tools.build:gradle:2.3.1'
     *//*    classpath 'com.google.gms:google-services:1.5.0-beta2'*//*
-=======
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
-    /*    classpath 'com.google.gms:google-services:1.5.0-beta2'*/
->>>>>>> efdb03b235a1bcfe8b3f5a00cd7d4afc3c149116
         classpath 'com.google.gms:google-services:3.0.0'
 
 

@@ -15,20 +15,20 @@
             android:id="@+id/ivForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_021_opened_email_envelope"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="25dp"
-            />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_023_email" />
 
         <EditText
             android:id="@+id/etForgotPasswordEmail"
-            android:layout_toRightOf="@+id/ivForgotPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:textSize="15dp"
             android:layout_marginLeft="30dp"
-            />
+            android:textColor="@color/DarkGreen"
+            android:backgroundTint="@color/Orange"
+            android:layout_toRightOf="@+id/ivForgotPassword"
+            android:hint="Email"
+            android:textSize="17dp" />
 
     </RelativeLayout>
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e6f0fa"
     android:orientation="vertical"
     tools:context="animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragAddNewPet">
 
@@ -11,6 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_Ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnAddNewPet"

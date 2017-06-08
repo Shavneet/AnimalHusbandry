@@ -306,7 +306,7 @@ public class CreatePetProfile extends AppCompatActivity {
                 try {
                     CropImage.activity(fileUri).setAspectRatio(1, 1).setFixAspectRatio(true).start(CreatePetProfile.this);
                     FileOutputStream out = new FileOutputStream(dest);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
                     out.flush();
                     out.close();
                     encodedImage = encodeImage(bitmap);
@@ -323,7 +323,7 @@ public class CreatePetProfile extends AppCompatActivity {
 
                 try {
                     final Uri imageUri = data.getData();
-                    CropImage.activity(imageUri).setAspectRatio(1, 1).setFixAspectRatio(true).start(CreatePetProfile.this);
+                    CropImage.activity(imageUri).setAspectRatio(3,4).setFixAspectRatio(true).start(CreatePetProfile.this);
               /*      CropImage.activity(imageUri).start(this);
                     CropImage.activity().start(CreatePetProfile.this);*/
                     bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
@@ -344,6 +344,8 @@ public class CreatePetProfile extends AppCompatActivity {
                 Uri resultUri = result.getUri();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(CreatePetProfile.this.getContentResolver(), resultUri);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 65, byteArrayOutputStream);
                     ivBtnAddImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -371,7 +373,7 @@ public class CreatePetProfile extends AppCompatActivity {
 
     private String encodeImage(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bm.compress(Bitmap.CompressFormat.JPEG, 70, baos);
         byte[] b = baos.toByteArray();
         String encImage = Base64.encodeToString(b, Base64.DEFAULT);
         return encImage;

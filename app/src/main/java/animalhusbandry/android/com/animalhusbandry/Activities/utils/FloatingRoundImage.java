@@ -88,9 +88,9 @@ public class FloatingRoundImage extends FloatingActionButton {
         } else {
             BitmapDrawable bitmapDrawable = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                bitmapDrawable = ((BitmapDrawable) getResources().getDrawable(R.drawable._arrow_right, null));
+                bitmapDrawable = ((BitmapDrawable) getResources().getDrawable(R.drawable.ic_login_buttton, null));
             } else {
-                bitmapDrawable = ((BitmapDrawable) getResources().getDrawable(R.drawable._google_plus));
+                bitmapDrawable = ((BitmapDrawable) getResources().getDrawable(R.drawable.googleplus));
             }
             if (bitmapDrawable != null) {
                 bitmap = bitmapDrawable.getBitmap();

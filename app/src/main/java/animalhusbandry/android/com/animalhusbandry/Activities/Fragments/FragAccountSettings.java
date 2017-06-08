@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.DeleteUserProfileParams.DeleteUserProfileRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.DeleteUserProfileParams.DeleteUserProfileResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.Login;
@@ -77,6 +79,15 @@ public class FragAccountSettings extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(getActivity()!=null){
+            Dashboard activity= (Dashboard) getActivity();
+            activity.setToolbarTitle("Account settings");
         }
     }
 

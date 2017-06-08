@@ -9,9 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Do you really want to logout"
+
+        android:layout_marginLeft="10dp"
+        android:text="Do you really want to logout:"
         android:textColor="#285"
-        android:textSize="25dp"
+        android:textSize="18dp"
 
 
         />

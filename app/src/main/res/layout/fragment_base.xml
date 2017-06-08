@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#76D7C4"
     tools:context="animalhusbandry.android.com.animalhusbandry.Activities.Fragments.BaseFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -23,6 +22,14 @@
         app:rippleColor="@android:color/darker_gray" />
 
     />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="No pets found of other users"
+    android:layout_centerHorizontal="true"
+    android:textColor="@color/DarkGreen"
+    android:textSize="15dp"
 
+    />
 
 </RelativeLayout>

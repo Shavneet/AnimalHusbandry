@@ -1,33 +1,29 @@
 package animalhusbandry.android.com.animalhusbandry.Activities.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfile;
 import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BaseFragment.OnFragmentInteractionListener} interface
+ * {@link FragHealthTips.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BaseFragment#newInstance} factory method to
+ * Use the {@link FragHealthTips#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BaseFragment extends Fragment implements FragmentManager.OnBackStackChangedListener {
-    public boolean doubleBackToExitPressedOnce = false;
+public class FragHealthTips extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -37,7 +33,7 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
 
     private OnFragmentInteractionListener mListener;
 
-    public BaseFragment() {
+    public FragHealthTips() {
         // Required empty public constructor
     }
 
@@ -47,11 +43,11 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BaseFragment.
+     * @return A new instance of fragment FragHealthTips.
      */
     // TODO: Rename and change types and number of parameters
-    public static BaseFragment newInstance(String param1, String param2) {
-        BaseFragment fragment = new BaseFragment();
+    public static FragHealthTips newInstance(String param1, String param2) {
+        FragHealthTips fragment = new FragHealthTips();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,30 +63,13 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if(getActivity()!=null){
-            Dashboard activity= (Dashboard) getActivity();
-            activity.setToolbarTitle("Dashboard");
-        }
-    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragView= inflater.inflate(R.layout.fragment_base, container, false);
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
-        textView.setText("Dashboard");
-        FloatingActionButton floatingActionButton=(FloatingActionButton)fragView.findViewById(R.id.floatingActionButton);
-       floatingActionButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent=new Intent(getContext(), CreatePetProfile.class);
-               startActivity(intent);
-           }
-       });
+        View fragView = inflater.inflate(R.layout.frag_health_tips, container, false);
+        TextView textView=(TextView)fragView.findViewById(R.id.textViewHealthTips);
         return fragView;
     }
 
@@ -104,7 +83,7 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-      /*  if (context instanceof OnFragmentInteractionListener) {
+       /* if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
@@ -117,12 +96,14 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
         super.onDetach();
         mListener = null;
     }
-
     @Override
-    public void onBackStackChanged() {
-
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(getActivity()!=null){
+            Dashboard activity= (Dashboard) getActivity();
+            activity.setToolbarTitle("Health tips");
+        }
     }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -137,6 +118,4 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
-
 }

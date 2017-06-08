@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.ChangePasswordParams.ChangePasswordRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.ChangePasswordParams.ChangePasswordResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.RetroFit.RetroUtils;
@@ -82,7 +84,14 @@ public class FragChangePassword extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(getActivity()!=null){
+            Dashboard activity= (Dashboard) getActivity();
+            activity.setToolbarTitle("Change password");
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

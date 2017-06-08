@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.GetUserDetailsParams.GetUserDetailsRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.GetUserDetailsParams.GetUserDetailsResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.UpdateUserDetailsParams.UpdateUserDetailsRequest;
@@ -138,9 +140,9 @@ public class FragEditUserProfile extends Fragment {
     }
 
     private void setIconsEditUserDetails() {
-        Drawable FName = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_004_user_3);
-        Drawable LNmae = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_011_user_2);
-        Drawable contact = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_009_phone_with_numbers_of_the_buttons);
+        Drawable FName = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_025_user_1);
+        Drawable LNmae = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_024_user_2);
+        Drawable contact = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_021_phone_call);
         etFName.setCompoundDrawablesWithIntrinsicBounds(null, null, FName, null);
         etLName.setCompoundDrawablesWithIntrinsicBounds(null, null, LNmae, null);
         etContact.setCompoundDrawablesWithIntrinsicBounds(null, null, contact, null);
@@ -199,7 +201,14 @@ public class FragEditUserProfile extends Fragment {
             }
         });
     }
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(getActivity()!=null){
+            Dashboard activity= (Dashboard) getActivity();
+            activity.setToolbarTitle("Edit your profile");
+        }
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -7,13 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -60,9 +58,7 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
     }
 
     public void init() {
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
-        textView.setText("Create your account");
+
         etFName = (EditText) findViewById(R.id.etFName);
         etLName = (EditText) findViewById(R.id.etLName);
         etContact = (EditText) findViewById(R.id.etContact);
@@ -73,6 +69,9 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
         btnCreateUserAccount = (Button) findViewById(R.id.btnCreateUserAccount);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Options", MODE_PRIVATE);
         editor = pref.edit();
+       /* Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        textView.setText("Create your account");*/
         btnCreateUserAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
