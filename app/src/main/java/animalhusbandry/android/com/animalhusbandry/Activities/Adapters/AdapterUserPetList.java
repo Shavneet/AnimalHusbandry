@@ -10,10 +10,14 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import animalhusbandry.android.com.animalhusbandry.Activities.GetPetProfilesOfUserParams.GetPetProfilesOfUserResponse;
 import animalhusbandry.android.com.animalhusbandry.R;
+
+import static animalhusbandry.android.com.animalhusbandry.R.drawable.googleplus;
 
 /**
  * Created by grewalshavneet on 6/7/2017.
@@ -22,13 +26,12 @@ import animalhusbandry.android.com.animalhusbandry.R;
 public class AdapterUserPetList extends RecyclerView.Adapter<AdapterUserPetList.ViewHolder> {
 
     private Context context;
-    private TextView t;
     private ArrayList<GetPetProfilesOfUserResponse.Result> userPetArrayList;
     private AdapterView.OnItemClickListener clickListener;
 
     public AdapterUserPetList(FragmentActivity activity, ArrayList<GetPetProfilesOfUserResponse.Result> userPetArrayList) {
         this.context = context;
-        this.userPetArrayList=userPetArrayList;
+        this.userPetArrayList = userPetArrayList;
     }
 
     @Override
@@ -39,11 +42,12 @@ public class AdapterUserPetList extends RecyclerView.Adapter<AdapterUserPetList.
     }
 
     @Override
-   public void onBindViewHolder(AdapterUserPetList.ViewHolder holder, int position) {
-        /*holder.petName.setText();
-        holder.data.setText(movies.get(position).getReleaseDate());
-        holder.movieDescription.setText(movies.get(position).getOverview());
-        holder.rating.setText(movies.get(position).getVoteAverage().toString());*/
+    public void onBindViewHolder(AdapterUserPetList.ViewHolder holder, int position) {
+        holder.petName.setText(userPetArrayList.get(position).getName());
+        holder.petBreed.setText(userPetArrayList.get(position).getBreed());
+        holder.petLocation.setText(userPetArrayList.get(position).getLocation());
+        Picasso.with(context).load(userPetArrayList.get(position).getImageUrl()).error(googleplus).fit().into(holder.petImage);
+
 
     }
 
@@ -57,12 +61,13 @@ public class AdapterUserPetList extends RecyclerView.Adapter<AdapterUserPetList.
         private TextView petBreed;
         private TextView petLocation;
         private ImageView petImage;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            /*petName = (TextView) itemView.findViewById(R.id.petName);
+            petName = (TextView) itemView.findViewById(R.id.petName);
             petBreed = (TextView) itemView.findViewById(R.id.petBreed);
             petLocation = (TextView) itemView.findViewById(R.id.petLocation);
-            petImage = (ImageView) itemView.findViewById(R.id.petImage);*/
+            petImage = (ImageView) itemView.findViewById(R.id.petImage);
         }
     }
 }
