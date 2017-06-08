@@ -22,6 +22,7 @@ import animalhusbandry.android.com.animalhusbandry.R;
 public class AdapterUserPetList extends RecyclerView.Adapter<AdapterUserPetList.ViewHolder> {
 
     private Context context;
+    private TextView t;
     private ArrayList<GetPetProfilesOfUserResponse.Result> userPetArrayList;
     private AdapterView.OnItemClickListener clickListener;
 
