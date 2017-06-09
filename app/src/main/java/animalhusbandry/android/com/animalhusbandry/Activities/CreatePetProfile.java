@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,14 +32,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
 import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfileParams.CreatePetProfileRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfileParams.CreatePetProfileResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.RetroFit.RetroUtils;
-import animalhusbandry.android.com.animalhusbandry.Activities.utils.ImageConverter;
 import animalhusbandry.android.com.animalhusbandry.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -188,7 +185,7 @@ public class CreatePetProfile extends AppCompatActivity {
                         itemVaccinationAnyOther.setName("");
                     }
                     ringProgressDialog = ProgressDialog.show(CreatePetProfile.this, "Please wait ...", "Creating pet profile", true);
-                    ringProgressDialog.setCancelable(true);
+                    ringProgressDialog.setCancelable(false);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -309,35 +306,38 @@ public class CreatePetProfile extends AppCompatActivity {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
                     out.flush();
                     out.close();
-                    encodedImage = encodeImage(bitmap);
-                    Log.e("%%ENCODEDCAPTUREIMAGE##", encodedImage + "");
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 Toast.makeText(getBaseContext(), "ImageSaved", Toast.LENGTH_SHORT).show();
             }
-            ivBtnAddImage.setImageBitmap(bitmap);
+
         } else if (requestCode == GALERY_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap bm = null;
+            Bitmap bm;
             if (data != null) {
 
                 try {
                     final Uri imageUri = data.getData();
-                    CropImage.activity(imageUri).setAspectRatio(3,4).setFixAspectRatio(true).start(CreatePetProfile.this);
-              /*      CropImage.activity(imageUri).start(this);
-                    CropImage.activity().start(CreatePetProfile.this);*/
+                    CropImage.activity(imageUri).setAspectRatio(3, 4).setFixAspectRatio(true).start(CreatePetProfile.this);
+
+
                     bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
-                    circularBitmap = ImageConverter.getRoundedCornerBitmap(bm, 90);
-                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+
+
+                  /*  final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                     Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    selectedImage = getResizedBitmap(selectedImage, 100);
-                    encodedImage = encodeImage(selectedImage);
+                    selectedImage = ImageConverter.getRoundedCornerBitmap(bm, 90);
+                    selectedImage.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    selectedImage = getResizedBitmap(selectedImage, 100);*/
+                    getResizedBitmap(bm, 65);
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            ivBtnAddImage.setImageBitmap(circularBitmap);
+
         } else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == Activity.RESULT_OK) {
@@ -346,6 +346,8 @@ public class CreatePetProfile extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(CreatePetProfile.this.getContentResolver(), resultUri);
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 65, byteArrayOutputStream);
+                    encodedImage = encodeImage(bitmap);
+                    Log.e("%%ENCODEDCAPTUREIMAGE##", encodedImage + "");
                     ivBtnAddImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -375,7 +377,7 @@ public class CreatePetProfile extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 70, baos);
         byte[] b = baos.toByteArray();
-        String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+        String encImage = Base64.encodeToString(b, Base64.NO_WRAP);
         return encImage;
     }
 

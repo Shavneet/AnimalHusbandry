@@ -11,46 +11,47 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import animalhusbandry.android.com.animalhusbandry.Activities.GetPetProfilesOfUserParams.GetPetProfilesOfUserResponse;
+import animalhusbandry.android.com.animalhusbandry.Activities.GetAllPetProfilesParams.GetAllPetProfilesResponse;
 import animalhusbandry.android.com.animalhusbandry.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static animalhusbandry.android.com.animalhusbandry.R.drawable.ic_1496341871_instagram;
 
 /**
- * Created by grewalshavneet on 6/7/2017.
- * Adapter for Pet List
+ * Created by grewalshavneet on 6/9/2017.
  */
 
-public class AdapterUserPetList extends RecyclerView.Adapter<AdapterUserPetList.ViewHolder> {
+public class AdapterGetAllPetProfiles extends RecyclerView.Adapter<AdapterGetAllPetProfiles.ViewHolder> {
 
     private Activity activity;
-    private ArrayList<GetPetProfilesOfUserResponse.Result> userPetArrayList;
+    private ArrayList<GetAllPetProfilesResponse.Result> allPetProfilesArrayList;
 
-    public AdapterUserPetList(Activity activity, ArrayList<GetPetProfilesOfUserResponse.Result> userPetArrayList) {
+
+    public AdapterGetAllPetProfiles(Activity activity, ArrayList<GetAllPetProfilesResponse.Result> allPetProfilesArrayList) {
         this.activity = activity;
-        this.userPetArrayList = userPetArrayList;
+        this.allPetProfilesArrayList = allPetProfilesArrayList;
     }
 
     @Override
-    public AdapterUserPetList.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterGetAllPetProfiles.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pet_list_user_card_view, parent, false);
         return new ViewHolder(view);
-
     }
 
     @Override
-    public void onBindViewHolder(AdapterUserPetList.ViewHolder holder, int position) {
-        holder.petName.setText(userPetArrayList.get(position).getName());
-        holder.petBreed.setText(userPetArrayList.get(position).getBreed());
-        holder.petLocation.setText(userPetArrayList.get(position).getLocation());
-        Picasso.with(activity.getBaseContext()).load(userPetArrayList.get(position).getImageUrl()).error(ic_1496341871_instagram).fit().into(holder.petImage);
+    public void onBindViewHolder(AdapterGetAllPetProfiles.ViewHolder holder, int position) {
+        holder.petName.setText(allPetProfilesArrayList.get(position).getName());
+        holder.petBreed.setText(allPetProfilesArrayList.get(position).getBreed());
+        holder.petLocation.setText(allPetProfilesArrayList.get(position).getLocation());
+        Picasso.with(activity.getBaseContext()).load(allPetProfilesArrayList.get(position).getImageUrl()).error(ic_1496341871_instagram).fit().into(holder.petImage);
     }
+
 
     @Override
     public int getItemCount() {
-        return userPetArrayList.size();
+        return allPetProfilesArrayList.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView petName;
         private TextView petBreed;
@@ -66,4 +67,3 @@ public class AdapterUserPetList extends RecyclerView.Adapter<AdapterUserPetList.
         }
     }
 }
-

@@ -119,7 +119,7 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
-                                Thread.sleep(10000);
+                                Thread.sleep(50000);
                             } catch (Exception e) {
                             }
                             ringProgressDialog.dismiss();
@@ -159,18 +159,6 @@ public class Login extends AppCompatActivity {
                         } else if (!(etForgotPasswordEmail.getText().toString().equals(""))) {
                             progressDialog = ProgressDialog.show(Login.this, "Please wait ...", "Sending you a mail", true);
                             progressDialog.setCancelable(false);
-
-                           /* new Thread(new Runnable() {
-
-                              @Override
-                                public void run() {
-                                    try {
-                                        Thread.sleep(10000);
-                                    } catch (Exception e) {
-                                    }
-                                    progressDialog.dismiss();
-                                }
-                            }).start();*/
                             String strForgotPasswordEmail = etForgotPasswordEmail.getText().toString();
                             ForgotPasswordRequest forgotPasswordRequest = new ForgotPasswordRequest();
                             forgotPasswordRequest.setEmail(strForgotPasswordEmail);
@@ -186,8 +174,6 @@ public class Login extends AppCompatActivity {
                 });
                 builder.create();
                 builder.show();
-                /*  Intent intent1=new Intent(Login.this,ForgotPassword.class);
-              startActivity(intent1  );*/
             }
         });
         setIcons();

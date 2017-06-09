@@ -5,7 +5,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="animalhusbandry.android.com.animalhusbandry.Activities.Fragments.BaseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_View"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_Ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
@@ -22,14 +35,6 @@
         app:rippleColor="@android:color/darker_gray" />
 
     />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="No pets found of other users"
-    android:layout_centerHorizontal="true"
-    android:textColor="@color/DarkGreen"
-    android:textSize="15dp"
 
-    />
 
 </RelativeLayout>

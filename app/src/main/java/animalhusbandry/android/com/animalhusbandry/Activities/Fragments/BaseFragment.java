@@ -7,16 +7,27 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import animalhusbandry.android.com.animalhusbandry.Activities.Adapters.AdapterGetAllPetProfiles;
 import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfile;
 import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
+import animalhusbandry.android.com.animalhusbandry.Activities.GetAllPetProfilesParams.GetAllPetProfilesRequest;
+import animalhusbandry.android.com.animalhusbandry.Activities.GetAllPetProfilesParams.GetAllPetProfilesResponse;
+import animalhusbandry.android.com.animalhusbandry.Activities.RetroFit.RetroUtils;
+import animalhusbandry.android.com.animalhusbandry.Activities.utils.EndlessRecyclerViewScrollListenerImplementation;
 import animalhusbandry.android.com.animalhusbandry.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,16 +37,21 @@ import animalhusbandry.android.com.animalhusbandry.R;
  * Use the {@link BaseFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BaseFragment extends Fragment implements FragmentManager.OnBackStackChangedListener {
+public class BaseFragment extends Fragment implements EndlessRecyclerViewScrollListenerImplementation.OnScrollPageChangeListener {
     public boolean doubleBackToExitPressedOnce = false;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private ArrayList<GetAllPetProfilesResponse.Result> allPetProfilesArrayList = new ArrayList<>();
+    public RecyclerView recyclerView;
+    public ProgressBar progressBar;
+    private static final int FIRST_PAGE = 0;
+    private OnFragmentInteractionListener mListener;
+    private EndlessRecyclerViewScrollListenerImplementation endlessScrollListener;
+    private LinearLayoutManager layoutManager;
+    private String strUserId;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
 
     public BaseFragment() {
         // Required empty public constructor
@@ -67,31 +83,73 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getActivity()!=null){
-            Dashboard activity= (Dashboard) getActivity();
+        if (getActivity() != null) {
+            Dashboard activity = (Dashboard) getActivity();
             activity.setToolbarTitle("Dashboard");
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragView= inflater.inflate(R.layout.fragment_base, container, false);
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
-        textView.setText("Dashboard");
-        FloatingActionButton floatingActionButton=(FloatingActionButton)fragView.findViewById(R.id.floatingActionButton);
-       floatingActionButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent=new Intent(getContext(), CreatePetProfile.class);
-               startActivity(intent);
-           }
-       });
+        View fragView = inflater.inflate(R.layout.fragment_base, container, false);
+        progressBar = (ProgressBar) fragView.findViewById(R.id.progressBar_Ui);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView = (RecyclerView) fragView.findViewById(R.id.recycler_View);
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        FloatingActionButton floatingActionButton = (FloatingActionButton) fragView.findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CreatePetProfile.class);
+                startActivity(intent);
+            }
+        });
+        loadAllPetProfiles(FIRST_PAGE);
         return fragView;
+    }
+
+    public void initPaging() {
+        if (endlessScrollListener == null)
+            endlessScrollListener = new EndlessRecyclerViewScrollListenerImplementation(layoutManager, this);
+        else
+            endlessScrollListener.setmLayoutManager(layoutManager);
+        recyclerView.addOnScrollListener(endlessScrollListener);
+    }
+
+    private void loadAllPetProfiles(int pageNumber) {
+        GetAllPetProfilesRequest getAllPetProfilesRequest = new GetAllPetProfilesRequest();
+        getAllPetProfilesRequest.setPage(pageNumber);
+        getAllPetProfilesRequest.setSize(10);
+        doGetAllPetProfiles(getAllPetProfilesRequest);
+        initPaging();
+    }
+
+    private void doGetAllPetProfiles(GetAllPetProfilesRequest getAllPetProfilesRequest) {
+        RetroUtils retroUtils = new RetroUtils(getContext());
+        retroUtils.getApiClient().getAllPetProfiles(getAllPetProfilesRequest).enqueue(new Callback<GetAllPetProfilesResponse>() {
+            @Override
+            public void onResponse(Call<GetAllPetProfilesResponse> call, Response<GetAllPetProfilesResponse> response) {
+                progressBar.setVisibility(View.GONE);
+                allPetProfilesArrayList.addAll(Arrays.asList(response.body().getResponse().getResult()));
+                AdapterGetAllPetProfiles adapter = new AdapterGetAllPetProfiles(getActivity(), allPetProfilesArrayList);
+                recyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<GetAllPetProfilesResponse> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -118,9 +176,10 @@ public class BaseFragment extends Fragment implements FragmentManager.OnBackStac
         mListener = null;
     }
 
-    @Override
-    public void onBackStackChanged() {
 
+    @Override
+    public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+        loadAllPetProfiles(page);
     }
 
     /**

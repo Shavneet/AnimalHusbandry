@@ -12,6 +12,8 @@ import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.GetUserD
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.GetUserDetailsParams.GetUserDetailsResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.UpdateUserDetailsParams.UpdateUserDetailsRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.UpdateUserDetailsParams.UpdateUserDetailsResponse;
+import animalhusbandry.android.com.animalhusbandry.Activities.GetAllPetProfilesParams.GetAllPetProfilesRequest;
+import animalhusbandry.android.com.animalhusbandry.Activities.GetAllPetProfilesParams.GetAllPetProfilesResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.GetPetProfilesOfUserParams.GetPetProfilesOfUserRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.GetPetProfilesOfUserParams.GetPetProfilesOfUserResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.LoginParams.LoginRequest;
@@ -63,5 +65,8 @@ public interface ApiEndpointInterface {
     Call<CreatePetProfileResponse> createPetProfile(@Body CreatePetProfileRequest payload);
 
     @POST("dogHusbandryApp/ws/user/getAllPetProfilesByUserId")
-    Call<GetPetProfilesOfUserResponse> getPetProfilesOfUser(@Body GetPetProfilesOfUserRequest payload);
+    Call<GetPetProfilesOfUserResponse> getPetProfilesOfUserId(@Body GetPetProfilesOfUserRequest payload);
+
+    @POST("dogHusbandryApp/ws/user/getAllPetProfiles")
+    Call<GetAllPetProfilesResponse> getAllPetProfiles(@Body GetAllPetProfilesRequest payload);
 }
