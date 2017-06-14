@@ -22,7 +22,6 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.ChangePasswordParams.ChangePasswordRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.ChangePasswordParams.ChangePasswordResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.RetroFit.RetroUtils;
@@ -87,10 +86,10 @@ public class FragChangePassword extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getActivity()!=null){
+       /* if(getActivity()!=null){
             Dashboard activity= (Dashboard) getActivity();
             activity.setToolbarTitle("Change password");
-        }
+        }*/
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

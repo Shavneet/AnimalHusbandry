@@ -182,9 +182,10 @@ public class FragAccountSettings extends Fragment {
                     Toast.makeText(getContext(), "Account deleted sucessfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getActivity(), Login.class);
                     startActivity(intent);
+                } else if (response.body().getResponse().getCode().equals("401")) {
+                    Toast.makeText(getContext(), "Session expired, try again", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<DeleteUserProfileResponse> call, Throwable t) {
                 Toast.makeText(getContext(), "Something went wrong try again later ", Toast.LENGTH_SHORT).show();

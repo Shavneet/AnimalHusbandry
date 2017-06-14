@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.GetUserDetailsParams.GetUserDetailsRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.GetUserDetailsParams.GetUserDetailsResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.Fragments.UpdateUserDetailsParams.UpdateUserDetailsRequest;
@@ -169,6 +168,9 @@ public class FragEditUserProfile extends Fragment {
                     fragmentTranscation.addToBackStack("baseFragmentFromEditUser");
                     fragmentTranscation.commit();
                 }
+                else if (response.body().getResponse().getCode().equals("401")) {
+                    Toast.makeText(getContext(), "Session expired, try again", Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
             public void onFailure(Call<UpdateUserDetailsResponse> call, Throwable t) {
@@ -204,10 +206,10 @@ public class FragEditUserProfile extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getActivity()!=null){
+       /* if(getActivity()!=null){
             Dashboard activity= (Dashboard) getActivity();
             activity.setToolbarTitle("Edit your profile");
-        }
+        }*/
     }
 
     // TODO: Rename method, update argument and hook method into UI event

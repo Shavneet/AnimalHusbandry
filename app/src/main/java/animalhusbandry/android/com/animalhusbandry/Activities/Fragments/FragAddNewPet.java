@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -56,6 +57,7 @@ public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScroll
     private EndlessRecyclerViewScrollListenerImplementation endlessScrollListener;
     private LinearLayoutManager layoutManager;
     private String strUserId;
+    public CardView cardView;
 
     public FragAddNewPet() {
         // Required empty public constructor
@@ -122,7 +124,7 @@ public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScroll
 
     public void initPaging() {
         if (endlessScrollListener == null)
-            endlessScrollListener = new EndlessRecyclerViewScrollListenerImplementation(layoutManager,this);
+            endlessScrollListener = new EndlessRecyclerViewScrollListenerImplementation(layoutManager, this);
         else
             endlessScrollListener.setmLayoutManager(layoutManager);
         recyclerView.addOnScrollListener(endlessScrollListener);
@@ -146,15 +148,20 @@ public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScroll
             public void onResponse(Call<GetPetProfilesOfUserResponse> call, Response<GetPetProfilesOfUserResponse> response) {
                 Log.e("!!!!!!!!", response.body().getResponse().getCode() + "");
                 progressBar.setVisibility(View.GONE);
-                userPetArrayList.addAll(Arrays.asList(response.body().getResponse().getResult()));
-                AdapterUserPetList adapter = new AdapterUserPetList(getActivity(), userPetArrayList);
-                recyclerView.setAdapter(adapter);
+                if (response.body().getResponse().getCode().equals("200")) {
+                    userPetArrayList.addAll(Arrays.asList(response.body().getResponse().getResult()));
+                    AdapterUserPetList adapter = new AdapterUserPetList(getActivity(), userPetArrayList);
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(adapter);
+                } else if (response.body().getResponse().getCode().equals("401")) {
+                    Toast.makeText(getContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<GetPetProfilesOfUserResponse> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(getContext(), "Service failure", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Service failure.Try again", Toast.LENGTH_SHORT).show();
             }
         });
     }

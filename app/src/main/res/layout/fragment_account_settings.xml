@@ -21,7 +21,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_background"
             android:elevation="6dp"
-            android:text="Edit you profile details"
+            android:text="Edit your profile details"
             android:textColor="@color/DarkGreen" />
 
         <Button

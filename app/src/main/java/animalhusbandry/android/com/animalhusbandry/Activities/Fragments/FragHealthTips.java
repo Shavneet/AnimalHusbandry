@@ -5,12 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.R;
 
 /**
@@ -69,7 +69,10 @@ public class FragHealthTips extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View fragView = inflater.inflate(R.layout.frag_health_tips, container, false);
-        TextView textView=(TextView)fragView.findViewById(R.id.textViewHealthTips);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        textView.setText("Health tips");
+        TextView textView1=(TextView)fragView.findViewById(R.id.textViewHealthTips);
         return fragView;
     }
 
@@ -99,10 +102,10 @@ public class FragHealthTips extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getActivity()!=null){
+      /*  if(getActivity()!=null){
             Dashboard activity= (Dashboard) getActivity();
             activity.setToolbarTitle("Health tips");
-        }
+        }*/
     }
     /**
      * This interface must be implemented by activities that contain this

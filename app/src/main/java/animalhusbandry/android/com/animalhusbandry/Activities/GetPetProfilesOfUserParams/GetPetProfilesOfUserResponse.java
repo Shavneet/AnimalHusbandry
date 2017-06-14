@@ -1,16 +1,21 @@
 package animalhusbandry.android.com.animalhusbandry.Activities.GetPetProfilesOfUserParams;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import lombok.Data;
 
 /**
  * Created by grewalshavneet on 6/7/2017.
  */
 @Data
-public class GetPetProfilesOfUserResponse {
+public class GetPetProfilesOfUserResponse implements Serializable{
     private Response response;
+    private ArrayList<GetPetProfilesOfUserResponse.Result> userPetArrayList;
+
 
     @Data
-    public class Response {
+    public class Response implements Serializable{
         private Result[] result;
 
         private String status;
@@ -19,7 +24,7 @@ public class GetPetProfilesOfUserResponse {
     }
 
     @Data
-    public class Result {
+    public class Result implements Serializable {
         private String breed;
 
         private String petId;
@@ -48,8 +53,7 @@ public class GetPetProfilesOfUserResponse {
     }
 
     @Data
-    public class PetVaccinationsList {
-        private String id;
+    public class PetVaccinationsList implements Serializable{
 
         private String name;
 

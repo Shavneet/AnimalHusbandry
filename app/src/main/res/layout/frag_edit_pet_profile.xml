@@ -26,7 +26,7 @@
             android:gravity="center">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivBtnAddImage"
+                android:id="@+id/ivCircularImageView"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_below="@+id/view1"
@@ -40,7 +40,7 @@
                 android:id="@+id/relativelayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ivBtnAddImage"
+                android:layout_below="@+id/ivCircularImageView"
                 android:layout_marginTop="-70dp"
                 android:descendantFocusability="beforeDescendants"
                 android:focusable="true">
@@ -49,7 +49,7 @@
                     android:id="@+id/card_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ivBtnAddImage"
+                    android:layout_below="@+id/ivCircularImageView"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:backgroundTint="@color/White"

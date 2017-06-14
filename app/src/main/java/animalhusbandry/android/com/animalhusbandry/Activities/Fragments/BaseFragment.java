@@ -9,17 +9,18 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import animalhusbandry.android.com.animalhusbandry.Activities.Adapters.AdapterGetAllPetProfiles;
 import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfile;
-import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
 import animalhusbandry.android.com.animalhusbandry.Activities.GetAllPetProfilesParams.GetAllPetProfilesRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.GetAllPetProfilesParams.GetAllPetProfilesResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.RetroFit.RetroUtils;
@@ -87,16 +88,19 @@ public class BaseFragment extends Fragment implements EndlessRecyclerViewScrollL
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (getActivity() != null) {
+      /*  if (getActivity() != null) {
             Dashboard activity = (Dashboard) getActivity();
             activity.setToolbarTitle("Dashboard");
-        }
+        }*/
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        textView.setText("Dashboard");
         View fragView = inflater.inflate(R.layout.fragment_base, container, false);
         progressBar = (ProgressBar) fragView.findViewById(R.id.progressBar_Ui);
         progressBar.setVisibility(View.VISIBLE);
@@ -162,12 +166,7 @@ public class BaseFragment extends Fragment implements EndlessRecyclerViewScrollL
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-      /*  if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
+
     }
 
     @Override

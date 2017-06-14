@@ -16,11 +16,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import animalhusbandry.android.com.animalhusbandry.Activities.CreatePetProfileParams.CreatePetProfileRequest;
-import animalhusbandry.android.com.animalhusbandry.Activities.Dashboard;
+import animalhusbandry.android.com.animalhusbandry.Activities.GetPetProfilesOfUserParams.PetVaccinationsList;
 import animalhusbandry.android.com.animalhusbandry.R;
 
 /**
@@ -95,7 +95,10 @@ public class FragEditPetProfile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
       View fragView=inflater.inflate(R.layout.frag_edit_pet_profile, container, false);
-        ivBtnAddImage = (ImageView)fragView. findViewById(R.id.ivBtnAddImage);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        textView.setText("Edit pet profile");
+        ivBtnAddImage = (ImageView)fragView. findViewById(R.id.ivCircularImageView);
         etPetName = (EditText)fragView. findViewById(R.id.etPetName);
         etBloodline = (EditText) fragView.findViewById(R.id.etBloodline);
         etRegistration = (EditText)fragView. findViewById(R.id.etRegistration);
@@ -112,12 +115,8 @@ public class FragEditPetProfile extends Fragment {
         btnCreateProfile = (Button)fragView. findViewById(R.id.btnCreateProfile);
         checkboxNone = (CheckBox) fragView.findViewById(R.id.checkboxNone);
         Toolbar toolbarTop = (Toolbar)fragView. findViewById(R.id.toolbar1);
-        final ArrayList<CreatePetProfileRequest.PetVaccinationsList> arrrayListVaccination = new ArrayList<CreatePetProfileRequest.PetVaccinationsList>();
-        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationGender = new CreatePetProfileRequest.PetVaccinationsList();
-        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationDHPP = new CreatePetProfileRequest.PetVaccinationsList();
-        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationRabies = new CreatePetProfileRequest.PetVaccinationsList();
-        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationParvo = new CreatePetProfileRequest.PetVaccinationsList();
-        final CreatePetProfileRequest.PetVaccinationsList itemVaccinationAnyOther = new CreatePetProfileRequest.PetVaccinationsList();
+        final ArrayList<PetVaccinationsList> arrrayListVaccination = new ArrayList<PetVaccinationsList>();
+
 
         btnCreateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,10 +146,10 @@ public class FragEditPetProfile extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getActivity()!=null){
+        /*if(getActivity()!=null){
             Dashboard activity= (Dashboard) getActivity();
             activity.setToolbarTitle("Edit pet profile");
-        }
+        }*/
     }
     @Override
     public void onDetach() {
