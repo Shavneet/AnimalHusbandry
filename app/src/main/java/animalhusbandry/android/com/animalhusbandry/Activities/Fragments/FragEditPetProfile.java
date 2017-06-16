@@ -106,7 +106,7 @@ public class FragEditPetProfile extends Fragment {
         etColor = (EditText) fragView.findViewById(R.id.etColor);
         etLocation = (EditText) fragView.findViewById(R.id.etLocation);
         etBreed = (EditText)fragView. findViewById(R.id.etBreed);
-        etAnyOther = (EditText)fragView. findViewById(R.id.etAnyOther);
+        etAnyOther = (EditText)fragView. findViewById(R.id.etAnyOtherEditable);
         checkboxMale = (CheckBox) fragView.findViewById(R.id.checkboxMale);
         checkboxFemale = (CheckBox) fragView.findViewById(R.id.checkboxFemale);
         checkboxDHPP = (CheckBox) fragView.findViewById(R.id.checkboxDHPP);

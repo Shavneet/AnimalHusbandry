@@ -22,6 +22,8 @@ import animalhusbandry.android.com.animalhusbandry.Activities.LogoutParams.Logou
 import animalhusbandry.android.com.animalhusbandry.Activities.LogoutParams.LogoutResponse;
 import animalhusbandry.android.com.animalhusbandry.Activities.SignUpParams.SignUpRequest;
 import animalhusbandry.android.com.animalhusbandry.Activities.SignUpParams.SignUpResponse;
+import animalhusbandry.android.com.animalhusbandry.Activities.UpdatePetProfileParam.UpdatePetProfileResponse;
+import animalhusbandry.android.com.animalhusbandry.Activities.UpdatePetProfileParam.UpdatePetProfilesRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -69,4 +71,6 @@ public interface ApiEndpointInterface {
 
     @POST("dogHusbandryApp/ws/user/getAllPetProfiles")
     Call<GetAllPetProfilesResponse> getAllPetProfiles(@Body GetAllPetProfilesRequest payload);
+    @POST("dogHusbandryApp/ws/user/updatePetProfile")
+    Call<UpdatePetProfileResponse>updatePetProfile(@Body UpdatePetProfilesRequest payload);
 }

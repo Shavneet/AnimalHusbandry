@@ -9,5 +9,6 @@
     <color name="DarkOrange">#F2955C</color>
     <color name="Orange">#fd8431</color>
     <color name="FlameOrange">#E25822</color>
+    <color name="transparent">#11000000</color>
 
 </resources>

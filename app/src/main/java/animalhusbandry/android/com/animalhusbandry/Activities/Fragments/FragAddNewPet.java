@@ -151,7 +151,7 @@ public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScroll
                 if (response.body().getResponse().getCode().equals("200")) {
                     userPetArrayList.addAll(Arrays.asList(response.body().getResponse().getResult()));
                     AdapterUserPetList adapter = new AdapterUserPetList(getActivity(), userPetArrayList);
-                    adapter.notifyDataSetChanged();
+                  /*  adapter.notifyDataSetChanged();*/
                     recyclerView.setAdapter(adapter);
                 } else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getContext(), "You are not authorized", Toast.LENGTH_SHORT).show();

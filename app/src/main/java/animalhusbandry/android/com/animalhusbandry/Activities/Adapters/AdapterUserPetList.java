@@ -76,18 +76,7 @@ public class AdapterUserPetList extends RecyclerView.Adapter<AdapterUserPetList.
                     int adapterPosition = getAdapterPosition();
                     GetPetProfilesOfUserResponse.Result result = userPetArrayList.get(adapterPosition);
                     Intent intent = new Intent(activity.getBaseContext(), ShowUserPetProfileActivity.class);
-    /*                intent.putExtra("petIdOfUser", result.getPetId());
-                    intent.putExtra("petNameOfUser", result.getName());
-                    intent.putExtra("petBreedOfUser", result.getBreed());
-                    intent.putExtra("petColorOfUser", result.getColor());
-                    intent.putExtra("petAgeOfUser", result.getAge());
-                    intent.putExtra("petBloodlineOfUser", result.getBloodLine());
-                    intent.putExtra("petGenderOfUser", result.getGender());
-                    intent.putExtra("petLocationOfUser", result.getLocation());
-                    intent.putExtra("petImageUrlOfUser", result.getImageUrl());
-                    intent.putExtra("petMicrochipNumberOfUser", result.getMicrochipNumber());
-                    intent.putExtra("petOwnerMobileNumberOfUser", result.getOwnerMobileNumber());*/
-                /*    intent.putExtra("petVaccinationsListOfUser", result.getPetVaccinationsList());*/
+
                     Bundle bundle = new Bundle();
                     /*bundle.putSerializable("petVaccinationsListOfUser", result.getPetVaccinationsList());*/
                     bundle.putSerializable("petVaccinationsListOfUser", result);

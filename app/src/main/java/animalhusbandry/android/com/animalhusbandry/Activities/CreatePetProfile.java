@@ -51,18 +51,18 @@ import retrofit2.Response;
 public class CreatePetProfile extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1100;
     private static final int GALERY_REQUEST = 2700;
-    EditText etPetName, etBloodline, etRegistration, etAge, etColor, etLocation, etBreed, etAnyOther;
+    EditText etPetName, etBloodline, etRegistration, etAge, etColor, etLocation, etBreed, etAnyOther,etOwnerMobileNumber;
     Button btnCreateProfile;
     CheckBox checkboxMale, checkboxFemale, checkboxDHPP, checkboxRabies, checkboxParvoVirus, checkboxNone;
-    String strPetName, strPetBloodline, strPetRegistration, strPetAge, strPetColor, strPetLocation, strPetBreed, strPetAnyOther, strGender;
+    String strPetName, strOwnerMobileNumber,strPetBloodline, strPetRegistration, strPetAge, strPetColor, strPetLocation, strPetBreed, strPetAnyOther, strGender;
     public ProgressDialog ringProgressDialog;
     public AlertDialog cameraDialog;
-    ImageView ivBtnAddImage;
+    ImageView ivAddImage;
     public Bitmap bitmap;
     public String encodedImage;
     private static final int REQUEST_READ_PERMISSION = 7860;
     private static final int REQUEST_CAMERA_PERMISSION = 1888;
-    public Bitmap circularBitmap;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +71,7 @@ public class CreatePetProfile extends AppCompatActivity {
     }
 
     public void init() {
-        ivBtnAddImage = (ImageView) findViewById(R.id.ivCircularImageView);
+        ivAddImage = (ImageView) findViewById(R.id.ivCircularImageView);
         etPetName = (EditText) findViewById(R.id.etPetName);
         etBloodline = (EditText) findViewById(R.id.etBloodline);
         etRegistration = (EditText) findViewById(R.id.etRegistration);
@@ -79,7 +79,8 @@ public class CreatePetProfile extends AppCompatActivity {
         etColor = (EditText) findViewById(R.id.etColor);
         etLocation = (EditText) findViewById(R.id.etLocation);
         etBreed = (EditText) findViewById(R.id.etBreed);
-        etAnyOther = (EditText) findViewById(R.id.etAnyOther);
+        etAnyOther = (EditText) findViewById(R.id.etAnyOtherEditable);
+        etOwnerMobileNumber=(EditText)findViewById(R.id.etOwnerMobileNumber);
         checkboxMale = (CheckBox) findViewById(R.id.checkboxMale);
         checkboxFemale = (CheckBox) findViewById(R.id.checkboxFemale);
         checkboxDHPP = (CheckBox) findViewById(R.id.checkboxDHPP);
@@ -90,14 +91,13 @@ public class CreatePetProfile extends AppCompatActivity {
 
 
         final ArrayList<PetVaccinationsList> arrrayListVaccination = new ArrayList<PetVaccinationsList>();
-        final PetVaccinationsList object = new PetVaccinationsList();
 
 
         btnCreateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (ivBtnAddImage.getDrawable() == null) {
+                if (ivAddImage.getDrawable() == null) {
                     Toast.makeText(getApplicationContext(), "Add pet image", Toast.LENGTH_SHORT).show();
                 } else if (etPetName.getText().toString().isEmpty()) {
                     etPetName.setError("Enter pet name");
@@ -135,6 +135,12 @@ public class CreatePetProfile extends AppCompatActivity {
                 } else if (etRegistration.getText().toString().length() < 3) {
                     etRegistration.setError("Enter minimum 4 characters");
                     etRegistration.requestFocus();
+                }  else if (etOwnerMobileNumber.getText().toString().isEmpty()) {
+                    etOwnerMobileNumber.setError("Enter Mobile number");
+                    etOwnerMobileNumber.requestFocus();
+                } else if (etOwnerMobileNumber.getText().toString().length() < 10) {
+                    etOwnerMobileNumber.setError("Enter minimum 10 digits");
+                    etOwnerMobileNumber.requestFocus();
                 } else if (etAge.getText().toString().isEmpty()) {
                     etAge.setError("Enter Age");
                     etAge.requestFocus();
@@ -157,52 +163,38 @@ public class CreatePetProfile extends AppCompatActivity {
                     strPetColor = etColor.getText().toString();
                     strPetLocation = etLocation.getText().toString();
                     strPetBreed = etBreed.getText().toString();
+                    strOwnerMobileNumber=etOwnerMobileNumber.getText().toString();
                     strPetAnyOther = etAnyOther.getText().toString();
                     if (checkboxMale.isChecked()) {
                         strGender = "Male";
                     } else {
                         strGender = "Female";
                     }
-                    if (checkboxDHPP.isChecked() && !(checkboxRabies.isChecked()) && !(checkboxParvoVirus.isChecked()) && !
-                            (checkboxNone.isChecked())) {
+                    if (checkboxDHPP.isChecked()) {
+                        PetVaccinationsList object = new PetVaccinationsList();
+                        object.setName("DHPP");
+                        arrrayListVaccination.add(object);
 
-                        object.setName("DHPP"+"  "+strPetAnyOther);
+                    }
+                    if (checkboxRabies.isChecked()) {
 
+                        PetVaccinationsList object = new PetVaccinationsList();
+                        object.setName("Rabies");
                         arrrayListVaccination.add(object);
                     }
-                    else if (checkboxRabies.isChecked() && !(checkboxDHPP.isChecked()) && !(checkboxParvoVirus.isChecked()) && !
-                            (checkboxNone.isChecked())) {
-
-                        object.setName("Rabies"+"  "+strPetAnyOther);
+                    if (checkboxParvoVirus.isChecked()) {
+                        PetVaccinationsList object = new PetVaccinationsList();
+                        object.setName("Parvo virus");
                         arrrayListVaccination.add(object);
-                    } else if (checkboxParvoVirus.isChecked() && !(checkboxDHPP.isChecked()) && !(checkboxRabies.isChecked()) && !
-                            (checkboxNone.isChecked())) {
-                        object.setName("Parvo virus"+"  "+strPetAnyOther);
-
+                    }
+                    if (checkboxNone.isChecked()) {
+                        PetVaccinationsList object = new PetVaccinationsList();
+                        object.setName("None");
                         arrrayListVaccination.add(object);
-                    } else if (checkboxNone.isChecked() && !(checkboxDHPP.isChecked()) && !(checkboxRabies.isChecked()) && !
-                            (checkboxParvoVirus.isChecked())) {
-                        object.setName("None"+"  "+strPetAnyOther);
-
-                        arrrayListVaccination.add(object);
-                    } else if (checkboxDHPP.isChecked() && checkboxRabies.isChecked() && !(checkboxParvoVirus.isChecked()) && !
-                            (checkboxNone.isChecked())) {
-                        object.setName("DHPP"+"  " + "Rabies "+"  "+strPetAnyOther);
-                        arrrayListVaccination.add(object);
-                    } else if (!(checkboxRabies.isChecked()) && (checkboxDHPP.isChecked()) && (checkboxParvoVirus.isChecked()) && !
-                            (checkboxNone.isChecked())) {
-                        object.setName("DHPP"+"  " + "Parvo virus"+"  "+strPetAnyOther);
-
-                        arrrayListVaccination.add(object);
-                    } else if (checkboxParvoVirus.isChecked() && !(checkboxDHPP.isChecked()) && (checkboxRabies.isChecked()) && !
-                            (checkboxNone.isChecked())) {
-
-                        object.setName("Rabies"+"  " + "Parvo virus"+"  "+strPetAnyOther);
-
-                        arrrayListVaccination.add(object);
-                    } else if (checkboxParvoVirus.isChecked() && (checkboxDHPP.isChecked()) && (checkboxRabies.isChecked()) && !
-                            (checkboxNone.isChecked())) {
-                        object.setName("DHPP"+"  " + "Rabies"+"  " + "Parvo virus"+"  "+strPetAnyOther);
+                    }
+                    if (!(strPetAnyOther.isEmpty())) {
+                        PetVaccinationsList object = new PetVaccinationsList();
+                        object.setName(strPetAnyOther);
                         arrrayListVaccination.add(object);
                     }
                     ringProgressDialog = ProgressDialog.show(CreatePetProfile.this, "Please wait ...", "Creating pet profile", true);
@@ -232,7 +224,7 @@ public class CreatePetProfile extends AppCompatActivity {
                     createPetProfileRequest.setImage(encodedImage);
                     Log.e("%%SETIMAGE$$", encodedImage + "");
                     createPetProfileRequest.setMicrochipNumber(strPetRegistration);
-                    createPetProfileRequest.setOwnerMobileNumber("1212112");
+                    createPetProfileRequest.setOwnerMobileNumber(strOwnerMobileNumber);
                     createPetProfileRequest.setGender(strGender);
                     createPetProfileRequest.setPetVaccinationsList(arrrayListVaccination);
                     doCreatePetProfile(createPetProfileRequest);
@@ -240,7 +232,7 @@ public class CreatePetProfile extends AppCompatActivity {
                 }
             }
         });
-        ivBtnAddImage.setOnClickListener(new View.OnClickListener() {
+        ivAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requestPermission();
@@ -371,7 +363,7 @@ public class CreatePetProfile extends AppCompatActivity {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 65, byteArrayOutputStream);
                     encodedImage = encodeImage(bitmap);
                     Log.e("%%ENCODEDCAPTUREIMAGE##", encodedImage + "");
-                    ivBtnAddImage.setImageBitmap(bitmap);
+                    ivAddImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -412,8 +404,6 @@ public class CreatePetProfile extends AppCompatActivity {
                 ringProgressDialog.dismiss();
                 Log.e("###PetProfile###", response.body().getResponse().getCode() + "");
                 if (response.body().getResponse().getCode().equals("200")) {
-
-
                     Toast.makeText(getApplicationContext(), "Pet profile created sucessfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CreatePetProfile.this, Dashboard.class);
                     startActivity(intent);
