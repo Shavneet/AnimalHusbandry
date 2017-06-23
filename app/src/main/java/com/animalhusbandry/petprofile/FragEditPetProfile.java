@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,13 +16,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.animalhusbandry.R;
-import com.animalhusbandry.model.PetVaccinationsList;
-
-import java.util.ArrayList;
+import com.animalhusbandry.dashboard.BaseFragment;
+import com.animalhusbandry.utils.setToolbar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +32,7 @@ import java.util.ArrayList;
  * Use the {@link FragEditPetProfile#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragEditPetProfile extends Fragment {
+public class FragEditPetProfile extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -94,28 +95,32 @@ public class FragEditPetProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-      View fragView=inflater.inflate(R.layout.frag_edit_pet_profile, container, false);
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
-        textView.setText("Edit pet profile");
-        ivBtnAddImage = (ImageView)fragView. findViewById(R.id.ivCircularImageView);
-        etPetName = (EditText)fragView. findViewById(R.id.etPetName);
+        View fragView = inflater.inflate(R.layout.frag_edit_pet_profile, container, false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setToolbar.setToolbar( activity, "DashBoard", false);
+        }
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        ImageButton backBtn = (ImageButton) toolbar.findViewById(R.id.backBtn);
+        backBtn.setEnabled(true);
+        textView.setEnabled(true);
+        toolbar.setEnabled(true);
+        ivBtnAddImage = (ImageView) fragView.findViewById(R.id.ivCircularImageView);
+        etPetName = (EditText) fragView.findViewById(R.id.etPetName);
         etBloodline = (EditText) fragView.findViewById(R.id.etBloodline);
-        etRegistration = (EditText)fragView. findViewById(R.id.etRegistration);
-        etAge = (EditText)fragView. findViewById(R.id.etAge);
+        etRegistration = (EditText) fragView.findViewById(R.id.etRegistration);
+        etAge = (EditText) fragView.findViewById(R.id.etAge);
         etColor = (EditText) fragView.findViewById(R.id.etColor);
         etLocation = (EditText) fragView.findViewById(R.id.etLocation);
-        etBreed = (EditText)fragView. findViewById(R.id.etBreed);
-        etAnyOther = (EditText)fragView. findViewById(R.id.etAnyOtherEditable);
+        etBreed = (EditText) fragView.findViewById(R.id.etBreed);
+        etAnyOther = (EditText) fragView.findViewById(R.id.etAnyOther);
         checkboxMale = (CheckBox) fragView.findViewById(R.id.checkboxMale);
         checkboxFemale = (CheckBox) fragView.findViewById(R.id.checkboxFemale);
         checkboxDHPP = (CheckBox) fragView.findViewById(R.id.checkboxDHPP);
-        checkboxRabies = (CheckBox)fragView. findViewById(R.id.checkboxRabies);
-        checkboxParvoVirus = (CheckBox)fragView. findViewById(R.id.checkboxParvoVirus);
-        btnCreateProfile = (Button)fragView. findViewById(R.id.btnCreateProfile);
+        checkboxRabies = (CheckBox) fragView.findViewById(R.id.checkboxRabies);
+        checkboxParvoVirus = (CheckBox) fragView.findViewById(R.id.checkboxParvoVirus);
+        btnCreateProfile = (Button) fragView.findViewById(R.id.btnCreateProfile);
         checkboxNone = (CheckBox) fragView.findViewById(R.id.checkboxNone);
-        Toolbar toolbarTop = (Toolbar)fragView. findViewById(R.id.toolbar1);
-        final ArrayList<PetVaccinationsList> arrrayListVaccination = new ArrayList<PetVaccinationsList>();
 
 
         btnCreateProfile.setOnClickListener(new View.OnClickListener() {
@@ -143,14 +148,16 @@ public class FragEditPetProfile extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }*/
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         /*if(getActivity()!=null){
-            Dashboard activity= (Dashboard) getActivity();
+            DashboardActivity activity= (DashboardActivity) getActivity();
             activity.setToolbarTitle("Edit pet profile");
         }*/
     }
+
     @Override
     public void onDetach() {
         super.onDetach();

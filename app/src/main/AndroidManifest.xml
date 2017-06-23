@@ -31,10 +31,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".dashboard.Dashboard"
+            android:name=".dashboard.DashboardActivity"
             android:configChanges="keyboardHidden" />
         <activity
-            android:name=".login.Login"
+            android:name=".login.LoginActivity"
             android:configChanges="keyboardHidden" />
         <activity
             android:name=".signup.CreateUserAccount"
@@ -42,11 +42,13 @@
         <activity
             android:name=".petprofile.CreatePetProfile"
             android:configChanges="keyboardHidden" />
-        <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
         <!-- <activity android:name=".Activities.SplashScreen"></activity> -->
-        <activity android:name=".userprofile.ShowUserPetProfileActivity"></activity>
+        <activity android:name=".petprofile.UpdatePetProfileActivity" />
+        <activity android:name=".petprofile.ShowFullPetProfile" />
+        <activity android:name=".petprofile.ShowFavouritePetProfileActivity" />
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".search.ShowFullPetProfileAfterSearchActivity"></activity>
     </application>
 
 </manifest>

@@ -4,19 +4,30 @@
 
     <group android:checkableBehavior="single">
 
+
+        <item
+            android:id="@+id/nav_get_all_pet_profile"
+            android:icon="@drawable/ic_012_pet_house"
+            android:title="All pet profiles"></item>
         <item
             android:id="@+id/nav_add_pet"
             android:icon="@drawable/ic_list_black_24dp"
-            android:title="Your pet List"></item>
-
+            android:title="Your pets"></item>
         <item
-            android:id="@+id/nav_edit_pet_profile"
-            android:icon="@drawable/ic_edit_black_24dp"
-            android:title="Edit pet profiles"></item>
+            android:id="@+id/nav_favourite_pet"
+            android:icon="@drawable/ic_favorite"
+            android:title="Your Favourite pets"></item>
+        <item
+            android:id="@+id/nav_getAll_Message_ByUser_Id"
+            android:icon="@drawable/ic_message"
+            android:title="Messages"></item>
+
         <item
             android:id="@+id/nav_tips"
             android:icon="@drawable/ic_enhanced_encryption_black_24dp"
             android:title="Health tips"></item>
+
+
         <item
             android:id="@+id/nav_account_settings"
             android:icon="@drawable/ic_settings_black_24dp"
@@ -25,7 +36,17 @@
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="Logout"></item>
-
     </group>
-
+    <item android:title="Feedback">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
 </menu>

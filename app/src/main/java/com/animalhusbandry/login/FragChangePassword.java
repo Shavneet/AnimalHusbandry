@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,9 +22,11 @@ import android.widget.Toast;
 
 import com.animalhusbandry.R;
 import com.animalhusbandry.dashboard.BaseFragment;
+import com.animalhusbandry.dashboard.DashBoardFragment;
 import com.animalhusbandry.model.ChangePasswordRequest;
 import com.animalhusbandry.model.ChangePasswordResponse;
 import com.animalhusbandry.retrofit.RetroUtils;
+import com.animalhusbandry.utils.setToolbar;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,7 +45,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Use the {@link FragChangePassword#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragChangePassword extends Fragment {
+public class FragChangePassword extends BaseFragment {
     EditText etOldPassword, etSetPassword;
     ImageButton btnSubmitPassword;
     public ProgressDialog ringProgressDialog;
@@ -88,18 +91,22 @@ public class FragChangePassword extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       /* if(getActivity()!=null){
-            Dashboard activity= (Dashboard) getActivity();
-            activity.setToolbarTitle("Change password");
-        }*/
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
-        textView.setText("Change password");
+
         View fragView = inflater.inflate(R.layout.frag_change_password, container, false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setToolbar.setToolbar( activity, "Change password", false);
+        }
+        Toolbar  toolbar = (Toolbar)activity. findViewById(R.id.toolbar);
+        TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
+        backBtn.setEnabled(true);
+        textView.setEnabled(true);
+        toolbar.setEnabled(true);
         etOldPassword = (EditText) fragView.findViewById(R.id.etOldPassword);
         etSetPassword = (EditText) fragView.findViewById(R.id.etSetPassword);
         btnSubmitPassword = (ImageButton) fragView.findViewById(R.id.btnSubmitPassword);
@@ -160,7 +167,7 @@ public class FragChangePassword extends Fragment {
                     Toast.makeText(getContext(), "Password changed sucessfully", Toast.LENGTH_SHORT).show();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    BaseFragment baseFragment = new BaseFragment();
+                    DashBoardFragment baseFragment = new DashBoardFragment();
                     fragmentTransaction.replace(R.id.xmlFragment, baseFragment, "basefragmenttag");
                     fragmentTransaction.addToBackStack("baseFragmentFromChangePassword");
                     fragmentTransaction.commit();

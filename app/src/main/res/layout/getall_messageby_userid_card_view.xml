@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/cardview_shadow_end_color"
+
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view_pet_profile_ui"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:fadingEdgeLength="@dimen/activity_horizontal_margin"
+        card_view:cardBackgroundColor="@color/FlameOrange"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="10dp"
+        card_view:contentPadding="10dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Pet name:"
+                        android:textColor="@color/White" />
+
+
+                    <TextView
+                        android:id="@+id/petName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="fsdfdfsdfsdfdf"
+                        android:textColor="@color/White" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/Orange">
+                </View>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Comment:"
+                        android:textColor="@color/White" />
+
+                    <TextView
+                        android:id="@+id/comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="fsdfdfsdfsdfdf"
+                        android:textColor="@color/White"></TextView>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/Orange"></View>
+                </LinearLayout>
+
+           <!--     <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">-->
+
+            <!--        <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Location:"
+                        android:textColor="@color/White" />
+
+                    <TextView
+                        android:id="@+id/petLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="fsdfdfsdfsdfdf"
+                        android:textColor="@color/White"></TextView>
+                </LinearLayout>-->
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

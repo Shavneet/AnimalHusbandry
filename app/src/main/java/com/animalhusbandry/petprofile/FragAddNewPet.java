@@ -4,27 +4,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.animalhusbandry.R;
-import com.animalhusbandry.adapters.AdapterUserPetList;
-import com.animalhusbandry.dashboard.Dashboard;
-import com.animalhusbandry.model.GetPetProfilesOfUserRequest;
-import com.animalhusbandry.model.GetPetProfilesOfUserResponse;
+import com.animalhusbandry.adapters.AdapterUserPetProfiles;
+import com.animalhusbandry.dashboard.BaseFragment;
+import com.animalhusbandry.model.getpetprofilesofusermodel.GetPetProfilesOfUserRequest;
+import com.animalhusbandry.model.getpetprofilesofusermodel.GetPetProfilesOfUserResponse;
 import com.animalhusbandry.retrofit.RetroUtils;
 import com.animalhusbandry.utils.EndlessRecyclerViewScrollListenerImplementation;
+import com.animalhusbandry.utils.setToolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +38,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.animalhusbandry.R.id.nav_add_pet;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +48,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Use the {@link FragAddNewPet#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScrollListenerImplementation.OnScrollPageChangeListener {
+public class FragAddNewPet extends BaseFragment implements EndlessRecyclerViewScrollListenerImplementation.OnScrollPageChangeListener {
 
     private String mParam1;
     private String mParam2;
@@ -57,7 +62,7 @@ public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScroll
     private EndlessRecyclerViewScrollListenerImplementation endlessScrollListener;
     private LinearLayoutManager layoutManager;
     private String strUserId;
-    public CardView cardView;
+
 
     public FragAddNewPet() {
         // Required empty public constructor
@@ -93,16 +98,29 @@ public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScroll
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (getActivity() != null) {
-            Dashboard activity = (Dashboard) getActivity();
-            activity.setToolbarTitle("Add pet profile");
-        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.navigationView.setCheckedItem(nav_add_pet);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View fragView = inflater.inflate(R.layout.frag_add_new_pet, container, false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setToolbar.setToolbar( activity, "Your pets", false);
+        }
+        Toolbar  toolbar = (Toolbar)activity. findViewById(R.id.toolbar);
+        TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
+        backBtn.setEnabled(true);
+        textView.setEnabled(true);
+        toolbar.setEnabled(true);
         progressBar = (ProgressBar) fragView.findViewById(R.id.progressBar_Ui);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView = (RecyclerView) fragView.findViewById(R.id.recycler_View);
@@ -136,11 +154,11 @@ public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScroll
         getPetProfilesOfUserRequest.setUserId(strUserId);
         getPetProfilesOfUserRequest.setPage(pageNo);
         getPetProfilesOfUserRequest.setSize(5);
-        callRetrofitService(getPetProfilesOfUserRequest);
+        doGetAllPetProfilesOfUser(getPetProfilesOfUserRequest);
         initPaging();
     }
 
-    private void callRetrofitService(GetPetProfilesOfUserRequest getPetProfilesOfUserRequest) {
+    private void doGetAllPetProfilesOfUser(GetPetProfilesOfUserRequest getPetProfilesOfUserRequest) {
         Log.e("!!!!calll", "");
         RetroUtils retroUtils = new RetroUtils(getContext());
         retroUtils.getApiClient().getPetProfilesOfUserId(getPetProfilesOfUserRequest).enqueue(new Callback<GetPetProfilesOfUserResponse>() {
@@ -150,7 +168,7 @@ public class FragAddNewPet extends Fragment implements EndlessRecyclerViewScroll
                 progressBar.setVisibility(View.GONE);
                 if (response.body().getResponse().getCode().equals("200")) {
                     userPetArrayList.addAll(Arrays.asList(response.body().getResponse().getResult()));
-                    AdapterUserPetList adapter = new AdapterUserPetList(getActivity(), userPetArrayList);
+                    AdapterUserPetProfiles adapter = new AdapterUserPetProfiles(getActivity(), userPetArrayList);
                   /*  adapter.notifyDataSetChanged();*/
                     recyclerView.setAdapter(adapter);
                 } else if (response.body().getResponse().getCode().equals("401")) {

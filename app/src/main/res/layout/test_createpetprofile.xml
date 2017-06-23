@@ -20,14 +20,20 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+            <ImageButton
+                android:id="@+id/backBtnLeftCorner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_back" />
+
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20dp"
                 android:text="Create pet profile"
-                android:textColor="@color/White" />
+                android:textColor="@color/White"
+                android:textSize="20dp" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 

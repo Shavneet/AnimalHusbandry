@@ -2,6 +2,7 @@ package com.animalhusbandry.dashboard;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,9 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.animalhusbandry.R;
+import com.animalhusbandry.utils.setToolbar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,7 +24,7 @@ import com.animalhusbandry.R;
  * Use the {@link FragHealthTips#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragHealthTips extends Fragment {
+public class FragHealthTips extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -68,10 +71,16 @@ public class FragHealthTips extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setToolbar.setToolbar(activity, "Health tips", false);
+        }
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
+        backBtn.setEnabled(true);
+        textView.setEnabled(true);
+        toolbar.setEnabled(true);
         View fragView = inflater.inflate(R.layout.frag_health_tips, container, false);
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
-        textView.setText("Health tips");
         TextView textView1=(TextView)fragView.findViewById(R.id.textViewHealthTips);
         return fragView;
     }
@@ -95,6 +104,11 @@ public class FragHealthTips extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -103,7 +117,7 @@ public class FragHealthTips extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
       /*  if(getActivity()!=null){
-            Dashboard activity= (Dashboard) getActivity();
+            DashboardActivity activity= (DashboardActivity) getActivity();
             activity.setToolbarTitle("Health tips");
         }*/
     }

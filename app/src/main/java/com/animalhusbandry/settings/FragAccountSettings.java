@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,21 +18,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.animalhusbandry.R;
-import com.animalhusbandry.dashboard.Dashboard;
+import com.animalhusbandry.dashboard.BaseFragment;
 import com.animalhusbandry.login.FragChangePassword;
-import com.animalhusbandry.login.Login;
+import com.animalhusbandry.login.LoginActivity;
 import com.animalhusbandry.model.DeleteUserProfileRequest;
 import com.animalhusbandry.model.DeleteUserProfileResponse;
 import com.animalhusbandry.retrofit.RetroUtils;
 import com.animalhusbandry.userprofile.FragEditUserProfile;
+import com.animalhusbandry.utils.setToolbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.animalhusbandry.R.id.nav_account_settings;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +46,7 @@ import retrofit2.Response;
  * Use the {@link FragAccountSettings#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragAccountSettings extends Fragment {
+public class FragAccountSettings extends BaseFragment {
 
     public Button btnChangePassword, btnDeleteAccount, btnEditUserProfile;
     public ProgressDialog ringProgressDialog;
@@ -88,19 +93,28 @@ public class FragAccountSettings extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getActivity()!=null){
-            Dashboard activity= (Dashboard) getActivity();
-            activity.setToolbarTitle("Account settings");
-        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.navigationView.setCheckedItem(nav_account_settings);
     }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         final View fragView = inflater.inflate(R.layout.fragment_account_settings, container, false);
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
-        textView.setText("Account settings");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setToolbar.setToolbar( activity, "Account settings", false);
+        }
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
+        backBtn.setEnabled(true);
+        textView.setEnabled(true);
+        toolbar.setEnabled(true);
         btnChangePassword = (Button) fragView.findViewById(R.id.btnChangePassword);
         btnDeleteAccount = (Button) fragView.findViewById(R.id.btnDeleteAccount);
         btnEditUserProfile = (Button) fragView.findViewById(R.id.btnEditUserProfile);
@@ -183,7 +197,7 @@ public class FragAccountSettings extends Fragment {
                 ringProgressDialog.dismiss();
                 if (response.body().getResponse().getCode().equals("200")) {
                     Toast.makeText(getContext(), "Account deleted sucessfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), Login.class);
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
                 } else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getContext(), "Session expired, try again", Toast.LENGTH_SHORT).show();

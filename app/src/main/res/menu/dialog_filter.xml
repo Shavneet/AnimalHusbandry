@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item  android:id="@+id/byName"
+        android:title="Name"/>
+    <item  android:id="@+id/byBreed"
+        android:title="Breed"/>
+    <item  android:id="@+id/byLocation"
+        android:title="Location"/>
+</menu>

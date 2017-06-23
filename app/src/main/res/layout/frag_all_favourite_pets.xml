@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6f0fa"
+    android:orientation="vertical"
+    tools:context="com.animalhusbandry.dashboard.DashboardActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_View"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_Ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true" />
+
+  <!--  <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnAddNewPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="30dp"
+        android:elevation="20dp"
+        android:scaleType="center"
+        app:backgroundTint="@color/Orange"
+        app:fabSize="auto"
+        app:rippleColor="@android:color/darker_gray"
+        app:srcCompat="@drawable/ic_circle_plus_add" />-->
+
+    />
+
+</RelativeLayout>

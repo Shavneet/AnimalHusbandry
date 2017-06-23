@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,17 +18,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.animalhusbandry.R;
 import com.animalhusbandry.dashboard.BaseFragment;
+import com.animalhusbandry.dashboard.DashBoardFragment;
 import com.animalhusbandry.model.GetUserDetailsRequest;
 import com.animalhusbandry.model.GetUserDetailsResponse;
-import com.animalhusbandry.model.UpdateUserDetailsRequest;
-import com.animalhusbandry.model.UpdateUserDetailsResponse;
+import com.animalhusbandry.model.updateuserdetailsmodel.UpdateUserDetailsRequest;
+import com.animalhusbandry.model.updateuserdetailsmodel.UpdateUserDetailsResponse;
 import com.animalhusbandry.retrofit.RetroUtils;
 import com.animalhusbandry.utils.VectorDrawableUtils;
+import com.animalhusbandry.utils.setToolbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +47,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Use the {@link FragEditUserProfile#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragEditUserProfile extends Fragment {
+public class FragEditUserProfile extends BaseFragment {
     EditText etFName, etLName, etContact;
     Button btnSubmitChanges;
     public ProgressDialog ringProgressDialog;
@@ -92,9 +96,15 @@ public class FragEditUserProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
-        textView.setText("Edit your profile");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setToolbar.setToolbar( activity, "Edit your profile", false);
+        }
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
+        backBtn.setEnabled(true);
+        textView.setEnabled(true);
+        toolbar.setEnabled(true);
         View fragView = inflater.inflate(R.layout.frag_edit_user_profile, container, false);
         etFName = (EditText) fragView.findViewById(R.id.etFName);
         etLName = (EditText) fragView.findViewById(R.id.etLName);
@@ -165,7 +175,7 @@ public class FragEditUserProfile extends Fragment {
                     Toast.makeText(getContext(), "Details updated sucessfully", Toast.LENGTH_SHORT).show();
                     FragmentManager fragmentmanager = getFragmentManager();
                     FragmentTransaction fragmentTranscation = fragmentmanager.beginTransaction();
-                    BaseFragment baseFragment = new BaseFragment();
+                    DashBoardFragment baseFragment = new DashBoardFragment();
                     fragmentTranscation.replace(R.id.xmlFragment, baseFragment, "gf");
                     fragmentTranscation.addToBackStack("baseFragmentFromEditUser");
                     fragmentTranscation.commit();
@@ -209,7 +219,7 @@ public class FragEditUserProfile extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
        /* if(getActivity()!=null){
-            Dashboard activity= (Dashboard) getActivity();
+            DashboardActivity activity= (DashboardActivity) getActivity();
             activity.setToolbarTitle("Edit your profile");
         }*/
     }

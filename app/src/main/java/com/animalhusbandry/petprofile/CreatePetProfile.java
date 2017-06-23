@@ -22,15 +22,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.animalhusbandry.R;
-import com.animalhusbandry.dashboard.Dashboard;
-import com.animalhusbandry.model.CreatePetProfileRequest;
-import com.animalhusbandry.model.CreatePetProfileResponse;
-import com.animalhusbandry.model.PetVaccinationsList;
+import com.animalhusbandry.dashboard.DashboardActivity;
+import com.animalhusbandry.model.createpetprofilemodel.CreatePetProfileRequest;
+import com.animalhusbandry.model.createpetprofilemodel.CreatePetProfileResponse;
+import com.animalhusbandry.model.createpetprofilemodel.PetVaccinationsList;
 import com.animalhusbandry.retrofit.RetroUtils;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -52,15 +53,16 @@ import retrofit2.Response;
 public class CreatePetProfile extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1100;
     private static final int GALERY_REQUEST = 2700;
-    EditText etPetName, etBloodline, etRegistration, etAge, etColor, etLocation, etBreed, etAnyOther,etOwnerMobileNumber;
+    EditText etPetName, etBloodline, etRegistration, etAge, etColor, etLocation, etBreed, etAnyOther, etOwnerMobileNumber;
     Button btnCreateProfile;
     CheckBox checkboxMale, checkboxFemale, checkboxDHPP, checkboxRabies, checkboxParvoVirus, checkboxNone;
-    String strPetName, strOwnerMobileNumber,strPetBloodline, strPetRegistration, strPetAge, strPetColor, strPetLocation, strPetBreed, strPetAnyOther, strGender;
+    String strPetName, strOwnerMobileNumber, strPetBloodline, strPetRegistration, strPetAge, strPetColor, strPetLocation, strPetBreed, strPetAnyOther, strGender;
     public ProgressDialog ringProgressDialog;
     public AlertDialog cameraDialog;
     ImageView ivAddImage;
     public Bitmap bitmap;
     public String encodedImage;
+    public SharedPreferences.Editor editor;
     private static final int REQUEST_READ_PERMISSION = 7860;
     private static final int REQUEST_CAMERA_PERMISSION = 1888;
 
@@ -71,7 +73,9 @@ public class CreatePetProfile extends AppCompatActivity {
         init();
     }
 
+
     public void init() {
+        ImageButton backBtn = (ImageButton) findViewById(R.id.backBtnLeftCorner);
         ivAddImage = (ImageView) findViewById(R.id.ivCircularImageView);
         etPetName = (EditText) findViewById(R.id.etPetName);
         etBloodline = (EditText) findViewById(R.id.etBloodline);
@@ -80,8 +84,8 @@ public class CreatePetProfile extends AppCompatActivity {
         etColor = (EditText) findViewById(R.id.etColor);
         etLocation = (EditText) findViewById(R.id.etLocation);
         etBreed = (EditText) findViewById(R.id.etBreed);
-        etAnyOther = (EditText) findViewById(R.id.etAnyOtherEditable);
-        etOwnerMobileNumber=(EditText)findViewById(R.id.etOwnerMobileNumber);
+        etAnyOther = (EditText) findViewById(R.id.etAnyOther);
+        etOwnerMobileNumber = (EditText) findViewById(R.id.etOwnerMobileNumber);
         checkboxMale = (CheckBox) findViewById(R.id.checkboxMale);
         checkboxFemale = (CheckBox) findViewById(R.id.checkboxFemale);
         checkboxDHPP = (CheckBox) findViewById(R.id.checkboxDHPP);
@@ -89,11 +93,15 @@ public class CreatePetProfile extends AppCompatActivity {
         checkboxParvoVirus = (CheckBox) findViewById(R.id.checkboxParvoVirus);
         btnCreateProfile = (Button) findViewById(R.id.btnCreateProfile);
         checkboxNone = (CheckBox) findViewById(R.id.checkboxNone);
-
-
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Options", MODE_PRIVATE);
+        editor = pref.edit();
         final ArrayList<PetVaccinationsList> arrrayListVaccination = new ArrayList<PetVaccinationsList>();
-
-
         btnCreateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +144,7 @@ public class CreatePetProfile extends AppCompatActivity {
                 } else if (etRegistration.getText().toString().length() < 3) {
                     etRegistration.setError("Enter minimum 4 characters");
                     etRegistration.requestFocus();
-                }  else if (etOwnerMobileNumber.getText().toString().isEmpty()) {
+                } else if (etOwnerMobileNumber.getText().toString().isEmpty()) {
                     etOwnerMobileNumber.setError("Enter Mobile number");
                     etOwnerMobileNumber.requestFocus();
                 } else if (etOwnerMobileNumber.getText().toString().length() < 10) {
@@ -164,7 +172,7 @@ public class CreatePetProfile extends AppCompatActivity {
                     strPetColor = etColor.getText().toString();
                     strPetLocation = etLocation.getText().toString();
                     strPetBreed = etBreed.getText().toString();
-                    strOwnerMobileNumber=etOwnerMobileNumber.getText().toString();
+                    strOwnerMobileNumber = etOwnerMobileNumber.getText().toString();
                     strPetAnyOther = etAnyOther.getText().toString();
                     if (checkboxMale.isChecked()) {
                         strGender = "Male";
@@ -229,7 +237,7 @@ public class CreatePetProfile extends AppCompatActivity {
                     createPetProfileRequest.setGender(strGender);
                     createPetProfileRequest.setPetVaccinationsList(arrrayListVaccination);
                     doCreatePetProfile(createPetProfileRequest);
-                    Log.e("VACCINATION  1111", arrrayListVaccination.get(0) + "");
+                    Log.e("VACCINATION ", arrrayListVaccination.get(0) + "");
                 }
             }
         });
@@ -406,7 +414,7 @@ public class CreatePetProfile extends AppCompatActivity {
                 Log.e("###PetProfile###", response.body().getResponse().getCode() + "");
                 if (response.body().getResponse().getCode().equals("200")) {
                     Toast.makeText(getApplicationContext(), "Pet profile created sucessfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CreatePetProfile.this, Dashboard.class);
+                    Intent intent = new Intent(CreatePetProfile.this, DashboardActivity.class);
                     startActivity(intent);
                 } else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getApplicationContext(), "You are not authorized to perform this operation", Toast.LENGTH_SHORT).show();

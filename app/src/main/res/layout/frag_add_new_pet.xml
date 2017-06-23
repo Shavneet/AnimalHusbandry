@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#e6f0fa"
     android:orientation="vertical"
-    tools:context="animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragAddNewPet">
+    tools:context="com.animalhusbandry.dashboard.DashboardActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_View"

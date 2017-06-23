@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.animalhusbandry.R;
-import com.animalhusbandry.login.Login;
+import com.animalhusbandry.login.LoginActivity;
 import com.animalhusbandry.model.SignUpRequest;
 import com.animalhusbandry.model.SignUpResponse;
 import com.animalhusbandry.retrofit.RetroUtils;
@@ -71,7 +71,7 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Options", MODE_PRIVATE);
         editor = pref.edit();
        /* Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_dashboard);
+        TextView textView=(TextView)toolbar.findViewById(R.id.toolbar_title);
         textView.setText("Create your account");*/
         btnCreateUserAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,7 +195,7 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
                     ringProgressDialog.cancel();
                     Log.e("%%%%%%%%%%%%", response.body().getResponse().getResult().getPhone() + "");
                     Toast.makeText(CreateUserAccount.this, "Account created Successfully.You can login now", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CreateUserAccount.this, Login.class);
+                    Intent intent = new Intent(CreateUserAccount.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 } else if (response.body().getResponse().getCode().equals("409")) {
