@@ -73,7 +73,6 @@ public class UpdatePetProfileActivity extends AppCompatActivity {
     public AlertDialog cameraDialog;
     public Toolbar toolbar;
     public ImageView ivCircularImageView;
-
     public UpdatePetProfileActivity() throws IOException {
     }
 

@@ -44,7 +44,9 @@ public void setData(SearchPetUsingFiltersResponse.Result[] searchPetUsingFilters
         }
 
 public void addData(SearchPetUsingFiltersResponse.Result[] searchPetUsingFiltersArrayList) {
+
         this.searchPetUsingFiltersArrayList.addAll(Arrays.asList(searchPetUsingFiltersArrayList));
+
         }
 
 @Override

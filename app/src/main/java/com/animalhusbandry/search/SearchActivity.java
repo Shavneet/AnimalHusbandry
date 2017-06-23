@@ -97,7 +97,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
 
@@ -121,7 +121,6 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.byName:
-
                 return true;
             case R.id.byBreed:
 
@@ -169,6 +168,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                     } else {
                         adapter.addData(response.body().getResponse().getResult());
                     }
+                    endlessScrollListener.resetState();
                     adapter.notifyDataSetChanged();
                 } else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
@@ -195,6 +195,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
         retroUtils.getApiClient().SEARCH_PET_USING_FILTERS_RESPONSE_CALL(searchPetUsingFiltersRequest).enqueue(new Callback<SearchPetUsingFiltersResponse>() {
             @Override
             public void onResponse(Call<SearchPetUsingFiltersResponse> call, Response<SearchPetUsingFiltersResponse> response) {
+
                 progressBar.setVisibility(View.GONE);
                 if (response == null || response.body() == null) {
                     Toast.makeText(getBaseContext(), "Server Error", Toast.LENGTH_SHORT).show();
@@ -206,7 +207,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                         adapter.setData(response.body().getResponse().getResult());
                     } else {
                         adapter.addData(response.body().getResponse().getResult());
-                    }
+                    }endlessScrollListener.resetState();
                     adapter.notifyDataSetChanged();
                 } else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
@@ -245,7 +246,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                         adapter.setData(response.body().getResponse().getResult());
                     } else {
                         adapter.addData(response.body().getResponse().getResult());
-                    }
+                    }endlessScrollListener.resetState();
                     adapter.notifyDataSetChanged();
                 } else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
@@ -282,11 +283,9 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                     searchByName(FIRST_PAGE);
 
                 } else if (radioButtonBreed.isChecked()) {
-
                     searchByBreed(FIRST_PAGE);
 
                 } else if (radioButtonLocation.isChecked()) {
-
                     searchByLocation(FIRST_PAGE);
 
                 }
