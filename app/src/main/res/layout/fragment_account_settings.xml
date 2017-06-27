@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+android:background="@color/DarkGreen"
     android:orientation="vertical"
-    tools:context="animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragAccountSettings">
+    tools:context="com.animalhusbandry.dashboard.DashboardActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_background"
-            android:elevation="6dp"
+            android:elevation="15dp"
             android:text="Edit your profile details"
             android:textColor="@color/DarkGreen" />
 
@@ -28,9 +28,9 @@
             android:id="@+id/btnChangePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/edit_text_background"
-            android:elevation="6dp"
+            android:elevation="26dp"
             android:text="Change password"
             android:textColor="@color/DarkGreen"
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_background"
-            android:elevation="6dp"
+            android:elevation="15dp"
             android:text="Delete your account"
             android:textColor="@color/DarkGreen" />
     </LinearLayout>

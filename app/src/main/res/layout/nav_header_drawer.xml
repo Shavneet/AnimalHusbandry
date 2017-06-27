@@ -2,17 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
+    android:layout_gravity=""
     android:background="@color/DarkGreen"
-    android:gravity="bottom"
+    android:gravity="center"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_marginTop="0dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="40dp"
+
 
         >
 
@@ -30,9 +29,9 @@ android:layout_marginTop="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:text="jksbjsbfbjbfsbbfjsdbfj"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@+id/imageView"
+            android:text="jksbjsbfbjbfsbbfjsdbfj"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/Orange" />
 
@@ -43,9 +42,9 @@ android:layout_marginTop="0dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvDrawerUserName"
             android:layout_marginLeft="30dp"
-            android:text="jksbjsbfbjbfsbbfjsdbfj"
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@+id/imageView"
+            android:text="jksbjsbfbjbfsbbfjsdbfj"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/Orange" />
     </RelativeLayout>

@@ -46,7 +46,6 @@ public class ShowFullPetProfile extends AppCompatActivity {
         setContentView(R.layout.activity_show_full_pet_profile);
         init();
     }
-
     private void init() {
         Bundle bundle = new Bundle();
         bundle = getIntent().getExtras();
@@ -122,33 +121,41 @@ public class ShowFullPetProfile extends AppCompatActivity {
         ivFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = getSharedPreferences("Option", MODE_PRIVATE);
-                SharedPreferences sharedPreferencesLogin = getSharedPreferences("Options", MODE_PRIVATE);
-                strUserId = sharedPreferencesLogin.getString("strUserId", "");
-                strPetId = sharedPreferences.getString("PetId", "");
-                Log.e("ADDPETUSERID", strPetId + "");
-                Log.e("##%@%#%@", strUserId + "");
-                AddFavouritePetRequest addFavouritePetRequest = new AddFavouritePetRequest();
-                addFavouritePetRequest.setPetId(strPetId);
-                addFavouritePetRequest.setUserId(strUserId);
-                doAddFavouritePet(addFavouritePetRequest);
+                if (ivFavourite.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.ic_favorite).getConstantState())) {
+                    ivFavourite.setTag(R.drawable.ic_favourite_red);
+                    ivFavourite.setBackgroundResource(R.drawable.ic_favourite_red);
+                    SharedPreferences sharedPreferences = getSharedPreferences("Option", MODE_PRIVATE);
+                    SharedPreferences sharedPreferencesLogin = getSharedPreferences("Options", MODE_PRIVATE);
+                    strUserId = sharedPreferencesLogin.getString("strUserId", "");
+                    strPetId = sharedPreferences.getString("PetId", "");
+                    Log.e("ADDPETUSERID", strPetId + "");
+                    Log.e("##%@%#%@", strUserId + "");
+                    AddFavouritePetRequest addFavouritePetRequest = new AddFavouritePetRequest();
+                    addFavouritePetRequest.setPetId(strPetId);
+                    addFavouritePetRequest.setUserId(strUserId);
+                    doAddFavouritePet(addFavouritePetRequest);
+                } else {
+                    Toast.makeText(ShowFullPetProfile.this, "Already added to favourites", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
         ivBtnAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 strComment = leavecomment.getText().toString();
 
-                callServiceMethod();
-
-
+                if (!(leavecomment.getText().toString().equals(""))){
+                    callServiceMethod();
+                }
+                else
+                {
+                   leavecomment.setError("Write a message please");
+                }
             }
         });
     }
 
     private void callServiceMethod() {
-
         SharedPreferences sharedPreferences = getSharedPreferences("Option", MODE_PRIVATE);
         SharedPreferences sharedPreferencesLogin = getSharedPreferences("Options", MODE_PRIVATE);
         strUserId = sharedPreferencesLogin.getString("strUserId", "");
@@ -158,8 +165,6 @@ public class ShowFullPetProfile extends AppCompatActivity {
         addMessageRequest.setUserId(strUserId);
         addMessageRequest.setPetId(strPetId);
         doAddMessage(addMessageRequest);
-
-
     }
 
     private void doAddMessage(AddMessageRequest addMessageRequest) {
@@ -181,9 +186,7 @@ public class ShowFullPetProfile extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Service failure.Try again", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
     private void doAddFavouritePet(AddFavouritePetRequest addFavouritePetRequest) {
         RetroUtils retroUtils = new RetroUtils(getBaseContext());
         retroUtils.getApiClient().ADD_FAVOURITE_PET_RESPONSE_CALL(addFavouritePetRequest).enqueue(new Callback<AddFavouritePetResponse>() {
@@ -192,28 +195,24 @@ public class ShowFullPetProfile extends AppCompatActivity {
                 if (response == null || response.body() == null) {
                     Toast.makeText(getBaseContext(), "Server Error", Toast.LENGTH_SHORT).show();
                 } else if (response.body().getResponse().getCode().equals("200")) {
-                    Toast.makeText(ShowFullPetProfile.this, "Added Favourite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShowFullPetProfile.this, "Added to favourites", Toast.LENGTH_SHORT).show();
                 } else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(ShowFullPetProfile.this, "You are not authorized to perform this operation", Toast.LENGTH_SHORT).show();
                 } else if (response.body().getResponse().getCode().equals("400")) {
                     Toast.makeText(ShowFullPetProfile.this, "Invalid Request Parameter", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<AddFavouritePetResponse> call, Throwable t) {
                 Toast.makeText(getBaseContext(), "Service failure.Try again", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
-
         public DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
-
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
@@ -226,7 +225,6 @@ public class ShowFullPetProfile extends AppCompatActivity {
             }
             return mIcon11;
         }
-
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }

@@ -27,11 +27,11 @@ public class ChangePasswordResponse {
             this.status = status;
         }
 
-        public String getCode() {
+        public Integer getCode() {
             return code;
         }
 
-        public void setCode(String code) {
+        public void setCode(Integer code) {
             this.code = code;
         }
 
@@ -47,6 +47,6 @@ public class ChangePasswordResponse {
 
         private String status;
 
-        private String code;
+        private Integer code;
     }
 }

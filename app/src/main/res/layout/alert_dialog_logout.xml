@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-
-        android:layout_marginLeft="10dp"
-        android:text="Do you really want to logout:"
-        android:textColor="#285"
+        android:layout_marginLeft="20dp"
+        android:padding="10dp"
+        android:text="Do you really want to logout ?"
+        android:textColor="@color/DarkGreen"
         android:textSize="18dp"
 
 

@@ -48,6 +48,7 @@ public class DashBoardFragment extends BaseFragment implements EndlessRecyclerVi
     private static final String ARG_PARAM2 = "param2";
     public RecyclerView recyclerView;
     public ProgressBar progressBar;
+
     private OnFragmentInteractionListener mListener;
     private static final int FIRST_PAGE = 0;
     private EndlessRecyclerViewScrollListenerImplementation endlessScrollListener;

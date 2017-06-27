@@ -18,10 +18,10 @@
         <RelativeLayout
             android:id="@+id/relativelayout1"
             android:layout_width="wrap_content"
-            android:layout_marginTop="80dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/view1"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
             android:gravity="center">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -181,6 +181,7 @@
                                     android:padding="8dp"
                                     android:textColor="@color/DarkGreen"
                                     android:textSize="20dp" />
+
                                 <EditText
                                     android:id="@+id/etAge"
                                     android:layout_width="match_parent"
@@ -360,9 +361,6 @@
                                     </LinearLayout>
 
 
-
-
-
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -385,14 +383,16 @@
                                         android:id="@+id/etAnyOther"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginBottom="15dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
                                         android:layout_marginTop="5dp"
                                         android:layout_weight="2"
-                                        android:layout_marginRight="5dp"
-                                        android:layout_marginLeft="5dp"
+                                        android:background="@drawable/edit_text_rectengal_background"
                                         android:inputType="textPersonName"
                                         android:maxLines="1"
-                                        android:backgroundTint="@color/White"
                                         android:padding="8dp"
+                                        android:textAlignment="gravity"
                                         android:textColor="@color/DarkGreen"
                                         android:textSize="20dp" />
                                 </LinearLayout>
@@ -416,9 +416,9 @@
             android:layout_marginRight="45dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/edit_text_background"
+            android:elevation="6dp"
             android:shadowColor="#FFFF"
             android:shadowDx="10"
-            android:elevation="6dp"
             android:shadowDy="10"
             android:text="Create profile"
             android:textColor="@color/DarkGreen" />

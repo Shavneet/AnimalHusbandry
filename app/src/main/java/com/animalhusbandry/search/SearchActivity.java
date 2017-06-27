@@ -1,22 +1,22 @@
 package com.animalhusbandry.search;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.animalhusbandry.R;
@@ -28,7 +28,6 @@ import com.animalhusbandry.utils.EndlessRecyclerViewScrollListenerImplementation
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
@@ -38,12 +37,11 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
 public class SearchActivity extends AppCompatActivity implements EndlessRecyclerViewScrollListenerImplementation.OnScrollPageChangeListener {
-    private MenuInflater menuInflater;
     private String strSearchText, strUserId;
     private EditText etSearch;
+    private TextView etNoDataFound;
     private RetroUtils retroUtils;
     private SharedPreferences sharedPreferences;
-    private ArrayList<SearchPetUsingFiltersResponse.Result> searchPetUsingFiltersArrayList = new ArrayList<>();
     public RecyclerView recyclerView;
     public ProgressBar progressBar;
     private LinearLayoutManager layoutManager;
@@ -53,7 +51,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
     private Toolbar toolbar;
     private RadioGroup radioGroup;
     private RadioButton radioButton, radioButtonName, radioButtonBreed, radioButtonLocation;
-    private Button btnDisplay;
+    RelativeLayout container;
     private Subscription subscription1 = new Subscription() {
         @Override
         public void unsubscribe() {
@@ -76,12 +74,12 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
     private void init() {
         toolbar = (Toolbar) findViewById(R.id.toolbar_Search);
         setSupportActionBar(toolbar);
+        etNoDataFound = (TextView) findViewById(R.id.etNoDataFound);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar_Ui);
         etSearch = (EditText) toolbar.findViewById(R.id.etsearch);
         ImageButton backBtn = (ImageButton) toolbar.findViewById(R.id.backBtn);
         retroUtils = new RetroUtils(this);
         sharedPreferences = SearchActivity.this.getSharedPreferences("Options", MODE_PRIVATE);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar_Ui);
-        progressBar.setVisibility(View.VISIBLE);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
         layoutManager = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -90,9 +88,11 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
         radioButtonLocation = (RadioButton) findViewById(R.id.radioButtonLocation);
         radioButtonBreed = (RadioButton) findViewById(R.id.radioButtonBreed);
         radioButtonName = (RadioButton) findViewById(R.id.radioButtonName);
+        container = (RelativeLayout) findViewById(R.id.ContainerMain);
         radioButtonName.setClickable(true);
         radioButtonBreed.setClickable(true);
         radioButtonLocation.setClickable(true);
+
         strUserId = sharedPreferences.getString("strUserId", "");
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,24 +100,37 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                 finish();
             }
         });
-
         recyclerView.setAdapter(adapter);
         subscription1 = RxTextView.textChangeEvents(etSearch)//
-                .debounce(200, TimeUnit.MILLISECONDS)// default Scheduler is Computation
+                .debounce(1000, TimeUnit.MILLISECONDS)// default Scheduler is Computation
                 .observeOn(AndroidSchedulers.mainThread())//
                 .subscribe(_getSearchObserver());
 
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if (checkedId == R.id.radioButtonName) {
+                    etSearch.getText().clear();
+
+                } else if (checkedId == R.id.radioButtonBreed) {
+                    etSearch.getText().clear();
+                } else if (checkedId == R.id.radioButtonLocation) {
+                    etSearch.getText().clear();
+                }
+            }
+        });
+        radioButtonName.setChecked(true);
     }
 
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.dialog_filter, menu);//Menu Resource, Menu
         return true;
-    }
+    }*/
 
-    @Override
+/*    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.byName:
@@ -132,7 +145,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     private void initPaging() {
 
@@ -144,7 +157,9 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
     }
 
     private void searchByName(String pageNumber) {
+        progressBar.setVisibility(View.VISIBLE);
         SearchPetUsingFiltersRequest searchPetUsingFiltersRequest = new SearchPetUsingFiltersRequest();
+        strSearchText = etSearch.getText().toString();
         searchPetUsingFiltersRequest.setUserId(strUserId);
         searchPetUsingFiltersRequest.setName(strSearchText);
         searchPetUsingFiltersRequest.setLocation("");
@@ -152,26 +167,40 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
         searchPetUsingFiltersRequest.setPage(pageNumber);
         searchPetUsingFiltersRequest.setSize("10");
         initPaging();
-
         retroUtils.getApiClient().SEARCH_PET_USING_FILTERS_RESPONSE_CALL(searchPetUsingFiltersRequest).enqueue(new Callback<SearchPetUsingFiltersResponse>() {
             @Override
             public void onResponse(Call<SearchPetUsingFiltersResponse> call, Response<SearchPetUsingFiltersResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response == null || response.body() == null) {
                     Toast.makeText(getBaseContext(), "Server Error", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getResponse().getResult().equals("")) {
-                    Toast.makeText(getBaseContext(), "No pet found of searched name", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (response.body().getResponse().getCode().equals("200")) {
+                        SearchPetUsingFiltersResponse.Result[] searchPetUsingFiltersArrayList = response.body().getResponse().getResult();
+                        if (endlessScrollListener.getCurrentPage()==0 && searchPetUsingFiltersArrayList.length <= 0) {
+                            if (etNoDataFound.getVisibility() == View.GONE) {
+                                recyclerView.setVisibility(View.GONE);
+                                etNoDataFound.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            if (etNoDataFound.getVisibility() == View.VISIBLE) {
+                                etNoDataFound.setVisibility(View.GONE);
+                            }
+                            if (endlessScrollListener.getCurrentPage() == 0) {
+                           /* adapter.setData(response.body().getResponse().getResult());*/
+                                recyclerView.setVisibility(View.VISIBLE);
+                                adapter.setData(searchPetUsingFiltersArrayList);
+                            } else {
+                                recyclerView.setVisibility(View.VISIBLE);
+                                adapter.addData(searchPetUsingFiltersArrayList);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
 
-                } else if (response.body().getResponse().getCode().equals("200")) {
-                    if (endlessScrollListener.getCurrentPage() == 0) {
-                        adapter.setData(response.body().getResponse().getResult());
                     } else {
-                        adapter.addData(response.body().getResponse().getResult());
+                        if (response.body().getResponse().getCode().equals("401")) {
+                            Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    endlessScrollListener.resetState();
-                    adapter.notifyDataSetChanged();
-                } else if (response.body().getResponse().getCode().equals("401")) {
-                    Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -183,6 +212,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
     }
 
     private void searchByBreed(String pageNumber) {
+        progressBar.setVisibility(View.VISIBLE);
         SearchPetUsingFiltersRequest searchPetUsingFiltersRequest = new SearchPetUsingFiltersRequest();
         strSearchText = etSearch.getText().toString();
         searchPetUsingFiltersRequest.setUserId(strUserId);
@@ -195,22 +225,36 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
         retroUtils.getApiClient().SEARCH_PET_USING_FILTERS_RESPONSE_CALL(searchPetUsingFiltersRequest).enqueue(new Callback<SearchPetUsingFiltersResponse>() {
             @Override
             public void onResponse(Call<SearchPetUsingFiltersResponse> call, Response<SearchPetUsingFiltersResponse> response) {
-
                 progressBar.setVisibility(View.GONE);
                 if (response == null || response.body() == null) {
                     Toast.makeText(getBaseContext(), "Server Error", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getResponse().getResult().equals("")) {
-                    Toast.makeText(getBaseContext(), "No pet found of searched breed", Toast.LENGTH_SHORT).show();
-
-                } else if (response.body().getResponse().getCode().equals("200")) {
-                    if (endlessScrollListener.getCurrentPage() == 0) {
-                        adapter.setData(response.body().getResponse().getResult());
+                } else {
+                    if (response.body().getResponse().getCode().equals("200")) {
+                        SearchPetUsingFiltersResponse.Result[] searchPetUsingFiltersArrayList = response.body().getResponse().getResult();
+                        if (endlessScrollListener.getCurrentPage()==0 && searchPetUsingFiltersArrayList.length <= 0) {
+                            if (etNoDataFound.getVisibility() == View.GONE) {
+                                recyclerView.setVisibility(View.GONE);
+                                etNoDataFound.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            if (etNoDataFound.getVisibility() == View.VISIBLE) {
+                                etNoDataFound.setVisibility(View.GONE);
+                            }
+                            if (endlessScrollListener.getCurrentPage() == 0) {
+                           /* adapter.setData(response.body().getResponse().getResult());*/
+                                recyclerView.setVisibility(View.VISIBLE);
+                                adapter.setData(searchPetUsingFiltersArrayList);
+                            } else {
+                                recyclerView.setVisibility(View.VISIBLE);
+                                adapter.addData(searchPetUsingFiltersArrayList);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
                     } else {
-                        adapter.addData(response.body().getResponse().getResult());
-                    }endlessScrollListener.resetState();
-                    adapter.notifyDataSetChanged();
-                } else if (response.body().getResponse().getCode().equals("401")) {
-                    Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
+                        if (response.body().getResponse().getCode().equals("401")) {
+                            Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             }
 
@@ -222,6 +266,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
     }
 
     private void searchByLocation(String pageNumber) {
+        progressBar.setVisibility(View.VISIBLE);
         SearchPetUsingFiltersRequest searchPetUsingFiltersRequest = new SearchPetUsingFiltersRequest();
         String strSearchText = etSearch.getText().toString();
         searchPetUsingFiltersRequest.setUserId(strUserId);
@@ -231,25 +276,41 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
         searchPetUsingFiltersRequest.setPage(pageNumber);
         searchPetUsingFiltersRequest.setSize("10");
         initPaging();
-
         retroUtils.getApiClient().SEARCH_PET_USING_FILTERS_RESPONSE_CALL(searchPetUsingFiltersRequest).enqueue(new Callback<SearchPetUsingFiltersResponse>() {
+            @SuppressLint("LongLogTag")
             @Override
             public void onResponse(Call<SearchPetUsingFiltersResponse> call, Response<SearchPetUsingFiltersResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response == null || response.body() == null) {
                     Toast.makeText(getBaseContext(), "Server Error", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getResponse().getResult().equals("")) {
-                    Toast.makeText(getBaseContext(), "No pet found in searched location", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (response.body().getResponse().getCode().equals("200")) {
+                        SearchPetUsingFiltersResponse.Result[] searchPetUsingFiltersArrayList = response.body().getResponse().getResult();
+                        if (endlessScrollListener.getCurrentPage()==0 && searchPetUsingFiltersArrayList.length <= 0) {
+                            if (etNoDataFound.getVisibility() == View.GONE) {
+                                recyclerView.setVisibility(View.GONE);
+                                etNoDataFound.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            if (etNoDataFound.getVisibility() == View.VISIBLE) {
+                                etNoDataFound.setVisibility(View.GONE);
+                            }
+                            if (endlessScrollListener.getCurrentPage() == 0) {
+                           /* adapter.setData(response.body().getResponse().getResult());*/
+                                recyclerView.setVisibility(View.VISIBLE);
+                                adapter.setData(searchPetUsingFiltersArrayList);
+                            } else {
+                                recyclerView.setVisibility(View.VISIBLE);
+                                adapter.addData(searchPetUsingFiltersArrayList);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
 
-                } else if (response.body().getResponse().getCode().equals("200")) {
-                    if (endlessScrollListener.getCurrentPage() == 0) {
-                        adapter.setData(response.body().getResponse().getResult());
                     } else {
-                        adapter.addData(response.body().getResponse().getResult());
-                    }endlessScrollListener.resetState();
-                    adapter.notifyDataSetChanged();
-                } else if (response.body().getResponse().getCode().equals("401")) {
-                    Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
+                        if (response.body().getResponse().getCode().equals("401")) {
+                            Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             }
 
@@ -273,23 +334,27 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
 
             @Override
             public void onError(Throwable e) {
-                Log.d("", "on error");
+                Toast.makeText(getBaseContext(), "on error", Toast.LENGTH_SHORT).show();
+
+                Log.e("", "on error");
             }
 
             @Override
             public void onNext(TextViewTextChangeEvent onTextChangeEvent) {
-                strSearchText = etSearch.getText().toString();
-                if (radioButtonName.isChecked()) {
+                if (radioButtonName.isChecked() && (!(etSearch.getText().toString().equals("")))) {
+                    if ((endlessScrollListener != null)) {
+                        endlessScrollListener.resetState();
+                    }
                     searchByName(FIRST_PAGE);
-
-                } else if (radioButtonBreed.isChecked()) {
+                } else if (radioButtonBreed.isChecked() && (!(etSearch.getText().toString().equals("")))) {
+                    if (endlessScrollListener != null)
+                        endlessScrollListener.resetState();
                     searchByBreed(FIRST_PAGE);
-
-                } else if (radioButtonLocation.isChecked()) {
+                } else if (radioButtonLocation.isChecked() && (!(etSearch.getText().toString().equals("")))) {
+                    if (endlessScrollListener != null)
+                        endlessScrollListener.resetState();
                     searchByLocation(FIRST_PAGE);
-
                 }
-
             }
         };
     }

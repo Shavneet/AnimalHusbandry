@@ -163,7 +163,7 @@ public class FragChangePassword extends BaseFragment {
         retroUtils.getApiClient().changeUserPassword(changePasswordRequest).enqueue(new Callback<ChangePasswordResponse>() {
             @Override
             public void onResponse(Call<ChangePasswordResponse> call, Response<ChangePasswordResponse> response) {
-                if (response.body().getResponse().getCode().equals("200")) {
+                if (response.body().getResponse().getCode()==200) {
                     Toast.makeText(getContext(), "Password changed sucessfully", Toast.LENGTH_SHORT).show();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -171,9 +171,9 @@ public class FragChangePassword extends BaseFragment {
                     fragmentTransaction.replace(R.id.xmlFragment, baseFragment, "basefragmenttag");
                     fragmentTransaction.addToBackStack("baseFragmentFromChangePassword");
                     fragmentTransaction.commit();
-                } else if (response.body().getResponse().getCode().equals("603")) {
+                } else if (response.body().getResponse().getCode()==603) {
                     Toast.makeText(getContext(), "Old password doesn't matched", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getResponse().getCode().equals("401")) {
+                } else if (response.body().getResponse().getCode()==401) {
                     Toast.makeText(getContext(), "Your session has been expired. Please login again", Toast.LENGTH_SHORT).show();
                 }
             }
