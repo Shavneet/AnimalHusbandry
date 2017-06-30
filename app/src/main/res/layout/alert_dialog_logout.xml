@@ -12,8 +12,8 @@
         android:layout_marginLeft="20dp"
         android:padding="10dp"
         android:text="Do you really want to logout ?"
-        android:textColor="@color/DarkGreen"
-        android:textSize="18dp"
+        android:textColor="@color/SecondaryText"
+        android:textSize="18sp"
 
 
         />

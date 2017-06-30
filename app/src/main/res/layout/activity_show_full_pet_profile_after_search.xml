@@ -62,12 +62,7 @@
                         android:background="@drawable/card_edit_text_background"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="3dp"
-                            android:background="@drawable/card_view_border"
-                            android:orientation="vertical">
+
 
 
                             <LinearLayout
@@ -78,8 +73,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivFavourite"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_gravity="right"
                                     android:layout_marginRight="10dp"
                                     android:layout_marginTop="10dp"
@@ -89,112 +84,242 @@
 
                                 </ImageView>
 
-                                <TextView
-                                    android:id="@+id/etPetName"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@+id/view1"
                                     android:layout_marginTop="65dp"
+                                    android:layout_weight="3"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:hint="Pet Name"
-                                    android:inputType="textPersonName"
-                                    android:maxLines="1"
-                                    android:padding="8dp"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:orientation="horizontal"
+                                    android:padding="8dp">
 
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:text="Pet name:"
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="20dp" />
 
-                                <TextView
-                                    android:id="@+id/etBreed"
+                                    <TextView
+                                        android:id="@+id/etPetName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:layout_marginLeft="20dp"
+                                        android:inputType="textPersonName"
+                                        android:maxLines="1"
+                                        android:textColor="@color/PrimaryText"
+                                        android:textSize="20dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_below="@+id/etPetName"
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:maxLines="1"
+                                    android:orientation="horizontal"
                                     android:padding="8dp"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:weightSum="3">
 
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:text="Breed:"
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="20dp" />
 
-                                <TextView
-                                    android:id="@+id/etColor"
+                                    <TextView
+                                        android:id="@+id/etBreed"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_below="@+id/etPetName"
+                                        android:layout_marginLeft="20dp"
+                                        android:maxLines="1"
+                                        android:textColor="@color/PrimaryText"
+                                        android:textSize="20dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_below="@+id/etBreed"
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:maxLines="1"
+                                    android:orientation="horizontal"
                                     android:padding="8dp"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:weightSum="3">
 
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:text="Color:"
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="20dp" />
 
-                                <TextView
-                                    android:id="@+id/etLocation"
+                                    <TextView
+                                        android:id="@+id/etColor"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_below="@+id/etPetName"
+                                        android:layout_marginLeft="20dp"
+                                        android:maxLines="1"
+                                        android:textColor="@color/PrimaryText"
+                                        android:textSize="20dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_below="@+id/view4"
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:maxLines="1"
+                                    android:orientation="horizontal"
                                     android:padding="8dp"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:weightSum="3">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:text="Age:"
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:id="@+id/etAge"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_below="@+id/etPetName"
+                                        android:layout_marginLeft="20dp"
+                                        android:maxLines="1"
+                                        android:textColor="@color/PrimaryText"
+                                        android:textSize="20dp" />
+                                </LinearLayout>
 
 
-                                <TextView
-                                    android:id="@+id/etBloodline"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:maxLines="1"
+                                    android:orientation="horizontal"
                                     android:padding="8dp"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:weightSum="3">
 
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:text="Bloodline:"
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="20dp" />
 
-                                <TextView
-                                    android:id="@+id/etRegistration"
+                                    <TextView
+                                        android:id="@+id/etBloodline"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_below="@+id/etPetName"
+                                        android:layout_marginLeft="20dp"
+                                        android:maxLines="1"
+                                        android:textColor="@color/PrimaryText"
+                                        android:textSize="20dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_below="@+id/view6"
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:maxLines="1"
+                                    android:orientation="horizontal"
                                     android:padding="8dp"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:weightSum="3">
 
-                                <TextView
-                                    android:id="@+id/etOwnerMobileNumber"
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:text="Location:"
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:id="@+id/etLocation"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_below="@+id/etPetName"
+                                        android:layout_marginLeft="20dp"
+                                        android:maxLines="1"
+                                        android:textColor="@color/PrimaryText"
+                                        android:textSize="20dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:maxLength="11"
+                                    android:orientation="horizontal"
                                     android:padding="8dp"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:weightSum="3">
 
-                                <TextView
-                                    android:id="@+id/etAge"
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:text="Ownner contact:"
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:id="@+id/etOwnerMobileNumber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_below="@+id/etPetName"
+                                        android:layout_marginLeft="20dp"
+                                        android:maxLines="1"
+                                        android:textColor="@color/PrimaryText"
+                                        android:textSize="20dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
                                     android:layout_marginTop="10dp"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:maxLength="11"
+                                    android:orientation="horizontal"
                                     android:padding="8dp"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:weightSum="3">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/view1"
+                                        android:text="Registration number:"
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:id="@+id/etRegistration"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_below="@+id/etPetName"
+                                        android:layout_marginLeft="20dp"
+                                        android:maxLines="1"
+                                        android:textColor="@color/PrimaryText"
+                                        android:textSize="20dp" />
+                                </LinearLayout>
+
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -212,7 +337,7 @@
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight="1"
                                         android:text="Male"
-                                        android:textColor="@color/DarkGreen"
+                                        android:textColor="@color/SecondaryText"
                                         android:textSize="15dp" />
 
                                     <CheckBox
@@ -222,7 +347,7 @@
                                         android:layout_marginLeft="40dp"
                                         android:layout_weight="1"
                                         android:shadowColor="@color/White"
-                                        android:textColor="@color/DarkGreen" />
+                                        android:textColor="@color/PrimaryText" />
 
                                     <TextView
                                         android:id="@+id/tvFemale"
@@ -231,7 +356,7 @@
                                         android:layout_marginLeft="5dp"
                                         android:layout_weight="1"
                                         android:text="Female"
-                                        android:textColor="@color/DarkGreen"
+                                        android:textColor="@color/SecondaryText"
                                         android:textSize="15dp" />
 
                                     <CheckBox
@@ -241,7 +366,7 @@
                                         android:layout_marginLeft="0dp"
                                         android:layout_weight="1"
                                         android:shadowColor="@color/White"
-                                        android:textColor="@color/DarkGreen" />
+                                        android:textColor="@color/PrimaryText" />
                                 </LinearLayout>
 
 
@@ -261,7 +386,7 @@
                                         android:layout_marginLeft="15dp"
                                         android:layout_marginTop="10dp"
                                         android:text="Vaccination :"
-                                        android:textColor="@color/DarkGreen"
+                                        android:textColor="@color/SecondaryText"
                                         android:textSize="15dp" />
 
                                     <View
@@ -270,7 +395,7 @@
                                         android:layout_height="1dp"
                                         android:layout_alignParentRight="true"
                                         android:layout_marginLeft="15dp"
-                                        android:background="@color/DarkGreen"></View>
+                                        android:background="@color/colorPrimaryDark"></View>
 
                                     <LinearLayout
                                         android:id="@+id/linearLayoutVaccination"
@@ -285,7 +410,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:text="DHPP"
-                                            android:textColor="@color/DarkGreen"
+                                            android:textColor="@color/SecondaryText"
                                             android:textSize="15dp" />
 
                                         <CheckBox
@@ -294,15 +419,16 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="34dp"
                                             android:layout_weight="1"
+                                            android:focusable="false"
                                             android:shadowColor="@color/White"
-                                            android:textColor="@color/DarkGreen" />
+                                            android:textColor="@color/PrimaryText" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:text="Rabies"
-                                            android:textColor="@color/DarkGreen"
+                                            android:textColor="@color/SecondaryText"
                                             android:textSize="15dp" />
 
                                         <CheckBox
@@ -312,7 +438,7 @@
                                             android:layout_marginLeft="2dp"
                                             android:layout_weight="1"
                                             android:shadowColor="@color/White"
-                                            android:textColor="@color/DarkGreen" />
+                                            android:textColor="@color/PrimaryText" />
                                     </LinearLayout>
                                     >
 
@@ -330,7 +456,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:text="Parvo virus"
-                                            android:textColor="@color/DarkGreen"
+                                            android:textColor="@color/SecondaryText"
                                             android:textSize="15dp" />
 
                                         <CheckBox
@@ -339,14 +465,14 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:shadowColor="@color/White"
-                                            android:textColor="@color/DarkGreen" />
+                                            android:textColor="@color/PrimaryText" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:text=" None  "
-                                            android:textColor="@color/DarkGreen"
+                                            android:textColor="@color/SecondaryText"
                                             android:textSize="15dp" />
 
                                         <CheckBox
@@ -355,7 +481,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:shadowColor="@color/White"
-                                            android:textColor="@color/DarkGreen" />
+                                            android:textColor="@color/PrimaryText" />
                                     </LinearLayout>
 
                                     <TextView
@@ -365,7 +491,8 @@
                                         android:layout_marginTop="10dp"
                                         android:layout_weight="1"
                                         android:text="Any other :"
-                                        android:textColor="@color/DarkGreen" />
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="15dp" />
 
                                     <View
                                         android:id="@+id/view13"
@@ -374,21 +501,22 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight=".5"
-                                        android:background="@color/DarkGreen"></View>
+                                        android:background="@color/colorPrimaryDark"></View>
 
                                     <TextView
                                         android:id="@+id/etAnyOther"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:layout_marginRight="5dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
                                         android:layout_marginTop="5dp"
                                         android:layout_weight="2"
-                                        android:backgroundTint="@color/White"
+                                        android:background="@drawable/edit_text_rectengal_background"
                                         android:maxLines="1"
                                         android:padding="8dp"
-                                        android:textColor="@color/DarkGreen"
-                                        android:textSize="20dp" />
+                                        android:textColor="@color/SecondaryText"
+                                        android:textSize="10dp" />
                                 </LinearLayout>
                             </LinearLayout>
 
@@ -398,6 +526,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:background="@drawable/card_view_border_orange"
 
                                 android:orientation="vertical">
@@ -408,8 +537,8 @@
                                     android:layout_marginLeft="20dp"
                                     android:layout_marginTop="10dp"
                                     android:text="Leave a message: "
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="15dp" />
 
                                 <EditText
                                     android:id="@+id/leave_comment"
@@ -419,13 +548,15 @@
                                     android:layout_margin="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:background="@drawable/edit_text_rectengal_background"
-                                    android:backgroundTint="@color/DarkGreen"
+                                    android:backgroundTint="@color/Orange"
                                     android:clickable="true"
                                     android:inputType="textMultiLine"
-                                    android:maxLines="4"
-                                    android:minLines="2"
-                                    android:textColor="@color/DarkGreen"
-                                    android:textSize="20dp" />
+                                    android:maxLines="2"
+                                    android:minLines="1"
+                                    android:padding="10dp"
+                                    android:textAlignment="gravity"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="15dp" />
 
                                 <TextView
                                     android:id="@+id/ivBtnAddComment"
@@ -435,18 +566,14 @@
                                     android:layout_marginBottom="10dp"
                                     android:layout_marginRight="10dp"
                                     android:layout_marginTop="10dp"
-                                    android:background="@drawable/card_view_border_orange"
+                                    android:background="@drawable/card_view_border_dark_primary"
                                     android:padding="6dp"
                                     android:text="Send message"
-                                    android:textSize="20dp"
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="10dp"
 
                                     />
                             </LinearLayout>
-
-
-                        </LinearLayout>
-
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </RelativeLayout>

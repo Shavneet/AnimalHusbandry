@@ -7,6 +7,18 @@
     android:orientation="vertical"
     tools:context="com.animalhusbandry.dashboard.DashboardActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:id="@+id/etNoDataFound"
+        android:visibility="gone"
+        android:text="Uhh hooo!!! No data found.Please add profiles "
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="10dp"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_View"
         android:layout_width="match_parent"

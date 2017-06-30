@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/Orange"
-    android:fitsSystemWindows="true"
+    android:gravity="center"
     app:contentInsetLeft="0dp"
     app:contentInsetStart="0dp"
-    android:minHeight="?attr/actionBarSize"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <RelativeLayout
@@ -19,16 +18,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:foregroundGravity="center"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/ic_back" />
+        <ImageButton
+            android:id="@+id/btnToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:foregroundGravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_menu" />
 
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:text="cvcvxcvcv"
-            android:textColor="@color/DarkGreen"
+
+            android:textColor="@color/White"
             android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/ivSearch"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/ic_search"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            />
     </RelativeLayout>
+
+
 </android.support.v7.widget.Toolbar>

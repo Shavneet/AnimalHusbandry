@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@color/DarkGreen"
+    android:background="@color/DarkGreen"
     android:orientation="vertical"
     tools:context="com.animalhusbandry.dashboard.DashboardActivity">
 
@@ -10,8 +10,8 @@ android:background="@color/DarkGreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="150dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="150dp"
         android:orientation="vertical">
 
         <Button
@@ -19,8 +19,8 @@ android:background="@color/DarkGreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:elevation="6dp"
             android:background="@drawable/edit_text_background"
-            android:elevation="15dp"
             android:text="Edit your profile details"
             android:textColor="@color/DarkGreen" />
 
@@ -29,22 +29,23 @@ android:background="@color/DarkGreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:elevation="6dp"
             android:background="@drawable/edit_text_background"
-            android:elevation="26dp"
             android:text="Change password"
-            android:textColor="@color/DarkGreen"
-
-            />
+            android:textColor="@color/DarkGreen" />
 
         <Button
             android:id="@+id/btnDeleteAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:elevation="6dp"
             android:background="@drawable/edit_text_background"
-            android:elevation="15dp"
-            android:text="Delete your account"
-            android:textColor="@color/DarkGreen" />
+            android:text="Change password"
+            android:textColor="@color/DarkGreen"
+            android:layout_marginBottom="10dp"
+            />
+
     </LinearLayout>
 
 </LinearLayout>

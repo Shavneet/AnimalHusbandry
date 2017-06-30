@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.animalhusbandry.R;
@@ -50,6 +51,7 @@ public class FragGetAllMessageByUserId extends BaseFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView etNoDataFound;
     private ArrayList<GetAllMessageByUserIdResponse.Result> getAllMessageByUserIdArrayList = new ArrayList<>();
     public RecyclerView recyclerView;
     public ProgressBar progressBar;
@@ -99,6 +101,7 @@ public class FragGetAllMessageByUserId extends BaseFragment {
         }
         progressBar = (ProgressBar) fragView.findViewById(R.id.progressBar_Ui);
         progressBar.setVisibility(View.VISIBLE);
+        etNoDataFound = (TextView) fragView.findViewById(R.id.etNoDataFound);
         recyclerView = (RecyclerView) fragView.findViewById(R.id.recycler_View);
         layoutManager = new LinearLayoutManager(activity.getBaseContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -127,11 +130,21 @@ public class FragGetAllMessageByUserId extends BaseFragment {
                 if (response == null || response.body() == null) {
                     Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
                 } else if (response.body().getResponse().getCode().equals("200")) {
+                    if ( response.body().getResponse().getResult().length <= 0) {
+                        if (etNoDataFound.getVisibility() == View.GONE) {
+                            recyclerView.setVisibility(View.GONE);
+                            etNoDataFound.setVisibility(View.VISIBLE);
+                        }}
+                    else {
+                        if (etNoDataFound.getVisibility() == View.VISIBLE) {
+                            etNoDataFound.setVisibility(View.GONE);
+                        }
                     getAllMessageByUserIdArrayList.addAll(Arrays.asList(response.body().getResponse().getResult()));
                     AdapterGetAllMessageByUserId adapter = new AdapterGetAllMessageByUserId(getActivity(), getAllMessageByUserIdArrayList);
                   /*  adapter.notifyDataSetChanged();*/
-                    recyclerView.setAdapter(adapter);
-                } else if (response.body().getResponse().getCode().equals("401")) {
+                        recyclerView.setVisibility(View.VISIBLE);
+                        recyclerView.setAdapter(adapter);
+                }} else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
                 }
             }

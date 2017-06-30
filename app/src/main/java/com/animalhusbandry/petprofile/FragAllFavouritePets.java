@@ -35,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.animalhusbandry.R.id.nav_get_all_pet_profile;
+import static com.animalhusbandry.R.id.nav_favourite_pet;
 
 
 /**
@@ -62,7 +62,7 @@ public class FragAllFavouritePets extends BaseFragment {
     private OnFragmentInteractionListener mListener;
     private View fragView;
     private String strUserId;
-
+    private TextView etNoDataFound;
     public FragAllFavouritePets() {
         // Required empty public constructor
     }
@@ -103,7 +103,7 @@ public class FragAllFavouritePets extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        activity.navigationView.setCheckedItem(nav_get_all_pet_profile);
+        activity.navigationView.setCheckedItem(nav_favourite_pet);
 
     }
 
@@ -121,6 +121,7 @@ public class FragAllFavouritePets extends BaseFragment {
         backBtn.setEnabled(true);
         textView.setEnabled(true);
         toolbar.setEnabled(true);
+        etNoDataFound = (TextView) fragView.findViewById(R.id.etNoDataFound);
         progressBar = (ProgressBar) fragView.findViewById(R.id.progressBar_Ui);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView = (RecyclerView) fragView.findViewById(R.id.recycler_View);
@@ -150,11 +151,21 @@ public class FragAllFavouritePets extends BaseFragment {
                 if (response == null || response.body() == null) {
                     Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
                 } else if (response.body().getResponse().getCode().equals("200")) {
+                    if ( response.body().getResponse().getResult().length <= 0) {
+                        if (etNoDataFound.getVisibility() == View.GONE) {
+                            recyclerView.setVisibility(View.GONE);
+                            etNoDataFound.setVisibility(View.VISIBLE);
+                        }}
+                    else {
+                        if (etNoDataFound.getVisibility() == View.VISIBLE) {
+                            etNoDataFound.setVisibility(View.GONE);
+                        }
                     userFavouritePetArrayList.addAll(Arrays.asList(response.body().getResponse().getResult()));
                     AdapterGetAllFavouritePetByUserId adapter = new AdapterGetAllFavouritePetByUserId(getActivity(), userFavouritePetArrayList);
                   /*  adapter.notifyDataSetChanged();*/
+                        recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(adapter);
-                } else if (response.body().getResponse().getCode().equals("401")) {
+                }} else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
                 }
 

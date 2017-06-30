@@ -57,6 +57,7 @@ public class FragAddNewPet extends BaseFragment implements EndlessRecyclerViewSc
     private ArrayList<GetPetProfilesOfUserResponse.Result> userPetArrayList = new ArrayList<>();
     public RecyclerView recyclerView;
     public ProgressBar progressBar;
+    private TextView etNoDataFound;
     private static final int FIRST_PAGE = 0;
     private OnFragmentInteractionListener mListener;
     private EndlessRecyclerViewScrollListenerImplementation endlessScrollListener;
@@ -121,6 +122,7 @@ public class FragAddNewPet extends BaseFragment implements EndlessRecyclerViewSc
         backBtn.setEnabled(true);
         textView.setEnabled(true);
         toolbar.setEnabled(true);
+        etNoDataFound = (TextView) fragView.findViewById(R.id.etNoDataFound);
         progressBar = (ProgressBar) fragView.findViewById(R.id.progressBar_Ui);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView = (RecyclerView) fragView.findViewById(R.id.recycler_View);
@@ -167,11 +169,22 @@ public class FragAddNewPet extends BaseFragment implements EndlessRecyclerViewSc
                 Log.e("!!!!!!!!", response.body().getResponse().getCode() + "");
                 progressBar.setVisibility(View.GONE);
                 if (response.body().getResponse().getCode().equals("200")) {
+                    if (endlessScrollListener.getCurrentPage() == 0 && response.body().getResponse().getResult().length <= 0) {
+                        if (etNoDataFound.getVisibility() == View.GONE) {
+                            recyclerView.setVisibility(View.GONE);
+                            etNoDataFound.setVisibility(View.VISIBLE);
+                        }}
+                    else {
+                        if (etNoDataFound.getVisibility() == View.VISIBLE) {
+                            etNoDataFound.setVisibility(View.GONE);
+                        }
+
                     userPetArrayList.addAll(Arrays.asList(response.body().getResponse().getResult()));
                     AdapterUserPetProfiles adapter = new AdapterUserPetProfiles(getActivity(), userPetArrayList);
                   /*  adapter.notifyDataSetChanged();*/
+                        recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(adapter);
-                } else if (response.body().getResponse().getCode().equals("401")) {
+                }} else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
                 }
             }

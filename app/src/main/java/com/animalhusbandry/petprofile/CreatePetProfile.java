@@ -23,7 +23,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -42,6 +41,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,7 +59,7 @@ public class CreatePetProfile extends AppCompatActivity {
     String strPetName, strOwnerMobileNumber, strPetBloodline, strPetRegistration, strPetAge, strPetColor, strPetLocation, strPetBreed, strPetAnyOther, strGender;
     public ProgressDialog ringProgressDialog;
     public AlertDialog cameraDialog;
-    ImageView ivAddImage;
+    CircleImageView ivAddImage;
     public Bitmap bitmap;
     public String encodedImage;
     public SharedPreferences.Editor editor;
@@ -76,7 +76,7 @@ public class CreatePetProfile extends AppCompatActivity {
 
     public void init() {
         ImageButton backBtn = (ImageButton) findViewById(R.id.backBtnLeftCorner);
-        ivAddImage = (ImageView) findViewById(R.id.ivCircularImageView);
+        ivAddImage = (CircleImageView) findViewById(R.id.ivCircularImageView);
         etPetName = (EditText) findViewById(R.id.etPetName);
         etBloodline = (EditText) findViewById(R.id.etBloodline);
         etRegistration = (EditText) findViewById(R.id.etRegistration);
@@ -343,9 +343,7 @@ public class CreatePetProfile extends AppCompatActivity {
 
                 try {
                     final Uri imageUri = data.getData();
-                    CropImage.activity(imageUri).setAspectRatio(3, 4).setFixAspectRatio(true).start(CreatePetProfile.this);
-
-
+                    CropImage.activity(imageUri).setAspectRatio(1, 1).setFixAspectRatio(true).start(CreatePetProfile.this);
                     bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), imageUri);
 
 
@@ -367,6 +365,7 @@ public class CreatePetProfile extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 Uri resultUri = result.getUri();
                 try {
+
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(CreatePetProfile.this.getContentResolver(), resultUri);
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 65, byteArrayOutputStream);
@@ -427,4 +426,7 @@ public class CreatePetProfile extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

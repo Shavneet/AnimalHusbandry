@@ -600,16 +600,34 @@ public class UpdatePetProfileActivity extends AppCompatActivity {
         etGender.setText(strGender);
         etLocation.setText(strLocation);
         etRegistration.setText(strLocation);
+        /*checkboxDHPP = (CheckBox) findViewById(R.id.checkboxDHPP);
+        checkboxDHPP.setClickable(false);
+        checkboxFemale = (CheckBox) findViewById(R.id.checkboxFemale);
+        checkboxFemale.setClickable(false);
+        checkboxMale = (CheckBox) findViewById(R.id.checkboxMale);
+        checkboxMale.setClickable(false);
+        checkboxNone = (CheckBox) findViewById(R.id.checkboxNone);
+        checkboxNone.setClickable(false);
+        checkboxParvoVirus = (CheckBox) findViewById(R.id.checkboxParvoVirus);
+        checkboxParvoVirus.setClickable(false);
+        checkboxRabies = (CheckBox) findViewById(R.id.checkboxRabies);
+        checkboxRabies.setClickable(false);*/
         etOwnerMobileNumber.setText(strOwnerMobileNumber);
         for (int i = 0; i < userPetVaccinationArrayList.length; i++) {
             Log.e("@@@@@@@@", userPetVaccinationArrayList[i] + "");
             if (userPetVaccinationArrayList[i].getName().equals("None")) {
                 etDHPP.setText("None");
-                etRabies.setText("None");
+              /*  etRabies.setText("None");
                 etParvovirus.setText("None");
-                etNone.setText("None");
-            } else {
+                etNone.setText("None");*/
 
+              etRabies.setVisibility(View.GONE);
+                etParvovirus.setVisibility(View.GONE);
+                etNone.setVisibility(View.GONE);
+            } else {
+                etRabies.setVisibility(View.VISIBLE);
+                etParvovirus.setVisibility(View.VISIBLE);
+                etNone.setVisibility(View.VISIBLE);
                 if (userPetVaccinationArrayList[i].getName().equals("DHPP")) {
                     etDHPP.setText(userPetVaccinationArrayList[i].getName());
                 } else if (userPetVaccinationArrayList[i].getName().equals("Rabies")) {

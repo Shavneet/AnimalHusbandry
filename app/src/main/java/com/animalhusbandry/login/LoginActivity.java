@@ -17,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -46,14 +47,15 @@ import retrofit2.Response;
  */
 
 public class LoginActivity extends AppCompatActivity {
-    public EditText etEmail, etPassword;
-    public  ImageView  btnLogin;
-    public  TextView tvForgotPassword, tvCreateAccount;
-    public  String strEmail, strPassword;
-    public SharedPreferences.Editor editor;
-    public ProgressDialog ringProgressDialog;
-    public ProgressDialog progressDialog;
-    public CardView cardView;
+ private EditText etEmail, etPassword;
+ private ImageView btnLogin;
+ private TextView tvForgotPassword, tvCreateAccount;
+ private String strEmail, strPassword;
+ private SharedPreferences.Editor editor;
+ private ProgressDialog ringProgressDialog;
+ private ProgressDialog progressDialog;
+ private CardView cardView;
+
     /*   public LoginActivity(Context context) {
            this.context = context;
        }*/
@@ -71,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etLoginPassword);
         btnLogin = (ImageView) findViewById(R.id.btnLogin);
@@ -98,8 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         cardView.setPreventCornerOverlap(true);
-        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
-                .findViewById(android.R.id.content)).getChildAt(0);
+        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         setupUI(viewGroup);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -211,8 +213,8 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("strUserId", strUserId);
                     editor.putString("strDeviceToken", strDeviceToken);
                     editor.commit();
-                    SessionManager session=new SessionManager(getBaseContext());
-                    session.createLoginSession(strEmail,strPassword,strSessionId);
+                    SessionManager session = new SessionManager(getBaseContext());
+                    session.createLoginSession(strEmail, strPassword, strSessionId);
                     Log.e("!!!!!!!!!!", strUserFullName + "");
                     Log.e("!!!!!!!!!!", strSessionId + "");
                     Log.e("!!!Device ", strDeviceToken + "");

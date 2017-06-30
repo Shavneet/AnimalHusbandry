@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/Orange"
-                    android:textColor="@color/DarkGreen"
+                    android:textColor="@color/PrimaryText"
                     android:layout_toRightOf="@+id/ivForEditTextFName"
                     android:hint="First name"
                     android:inputType="textPersonName"
@@ -85,11 +85,7 @@
                     android:inputType="textPersonName"
                     android:maxLines="1"
                     android:padding="10dp" />
-
-
             </RelativeLayout>
-
-
             <RelativeLayout
                 android:id="@+id/forEditTextEmail"
                 android:layout_width="wrap_content"
@@ -97,30 +93,24 @@
                 android:layout_below="@+id/forEditTextLName"
                 android:layout_marginTop="10dp">
                 />
-
                 <EditText
                     android:id="@+id/etEmail"
                     android:backgroundTint="@color/Orange"
                     android:textColor="@color/DarkGreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/ivForEditTextEmail"
                     android:hint="Email"
                     android:drawablePadding="20dp"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:padding="10dp" />
-
-
             </RelativeLayout>
-
             <RelativeLayout
                 android:id="@+id/forEditTextContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/forEdittextEmail"
                 android:layout_marginTop="10dp">
-
 
                 <EditText
                     android:id="@+id/etContact"
@@ -152,7 +142,6 @@
                     android:backgroundTint="@color/Orange"
                     android:textColor="@color/DarkGreen"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/ivForEditTextPassword"
                     android:hint="Password"
                     android:drawablePadding="20dp"
                     android:inputType="textPassword"
@@ -176,7 +165,6 @@
                     android:textColor="@color/DarkGreen"
                     android:layout_height="wrap_content"
                     android:drawablePadding="20dp"
-                    android:layout_toRightOf="@+id/ivForEditTextConfirmPassword"
                     android:hint="Confirm password"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -194,9 +182,7 @@
         android:layout_marginRight="35dp"
         android:layout_marginTop="-33dp"
         android:elevation="10dp"
-
         >
-
         <Button
             android:id="@+id/btnCreateUserAccount"
             android:layout_width="60dp"
@@ -204,8 +190,6 @@
             android:elevation="10dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/ic_login_buttton" />
-
-
         <Button
             android:id="@+id/googleSignInButton"
             android:layout_width="60dp"

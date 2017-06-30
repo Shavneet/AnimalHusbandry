@@ -10,7 +10,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,7 @@ public class DashBoardFragment extends BaseFragment implements EndlessRecyclerVi
     private static final String ARG_PARAM2 = "param2";
     public RecyclerView recyclerView;
     public ProgressBar progressBar;
-
+    private TextView etNoDataFound;
     private OnFragmentInteractionListener mListener;
     private static final int FIRST_PAGE = 0;
     private EndlessRecyclerViewScrollListenerImplementation endlessScrollListener;
@@ -105,17 +104,19 @@ public class DashBoardFragment extends BaseFragment implements EndlessRecyclerVi
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setToolbar.setToolbar(activity, "All pet profiles", false);
         }
-        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
-        ImageView ivSearch=(ImageView)toolbar.findViewById(R.id.ivSearch);
+        //Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        ImageView ivSearch = (ImageView) activity.toolbar.findViewById(R.id.ivSearch);
         ivSearch.setVisibility(View.VISIBLE);
-        TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        ImageButton backBtn = (ImageButton) toolbar.findViewById(R.id.backBtn);
+       // TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        ImageButton backBtn = (ImageButton) activity.toolbar.findViewById(R.id.backBtn);
         backBtn.setEnabled(true);
-        textView.setEnabled(true);
-        toolbar.setEnabled(true);
+        activity.toolbar.setTitle("All Pet Profiles");
+        //textView.setEnabled(true);
+        activity.toolbar.setEnabled(true);
         progressBar = (ProgressBar) fragView.findViewById(R.id.progressBar_Ui);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView = (RecyclerView) fragView.findViewById(R.id.recycler_View);
+        etNoDataFound = (TextView) fragView.findViewById(R.id.etNoDataFound);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         FloatingActionButton floatingActionButton = (FloatingActionButton) fragView.findViewById(R.id.floatingActionButton);
@@ -127,14 +128,14 @@ public class DashBoardFragment extends BaseFragment implements EndlessRecyclerVi
             }
         });
 
-    ivSearch.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-       Intent intent=new Intent(activity,SearchActivity.class);
-            startActivity(intent);
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, SearchActivity.class);
+                startActivity(intent);
 
-        }
-    });
+            }
+        });
         return fragView;
     }
 
@@ -174,13 +175,25 @@ public class DashBoardFragment extends BaseFragment implements EndlessRecyclerVi
             public void onResponse(Call<GetAllPetProfilesResponse> call, Response<GetAllPetProfilesResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.body().getResponse().getCode().equals("200")) {
-                    if(endlessScrollListener.getCurrentPage()==0){
+                    if (endlessScrollListener.getCurrentPage() == 0 && response.body().getResponse().getResult().length <= 0) {
+                        if (etNoDataFound.getVisibility() == View.GONE) {
+                            recyclerView.setVisibility(View.GONE);
+                            etNoDataFound.setVisibility(View.VISIBLE);
+                        }}
+                     else {
+                        if (etNoDataFound.getVisibility() == View.VISIBLE) {
+                            etNoDataFound.setVisibility(View.GONE);
+                        }
+
+                    if (endlessScrollListener.getCurrentPage() == 0) {
+                        recyclerView.setVisibility(View.VISIBLE);
                         adapter.setData(response.body().getResponse().getResult());
-                    }else{
+                    } else {
+                        recyclerView.setVisibility(View.VISIBLE);
                         adapter.addData(response.body().getResponse().getResult());
                     }
                     adapter.notifyDataSetChanged();
-                } else if (response.body().getResponse().getCode().equals("401")) {
+                }} else if (response.body().getResponse().getCode().equals("401")) {
                     Toast.makeText(getContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
                 }
             }

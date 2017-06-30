@@ -19,6 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,6 +60,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public ProgressDialog progressDialog;
     public boolean doubleBackToExitPressedOnce = false;
     public FragmentManager fragmentManager;
+    private ImageView btnToggle;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,17 +84,20 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         setToolbar.setToolbar(DashboardActivity.this, "DashBoard", false);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         ImageView ivSearch=(ImageView)toolbar.findViewById(R.id.ivSearch);
+        btnToggle=(ImageView)toolbar.findViewById(R.id.btnToggle);
         TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageButton backBtn = (ImageButton) toolbar.findViewById(R.id.backBtn);
         textView.setEnabled(true);
-        toolbar.setEnabled(true);
+        //toolbar.setEnabled(true);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Dashboard");
-        getSupportActionBar().setTitle("Dashboard");
+        //toolbar.collapseActionView();
+        //getSupportActionBar().setTitle("Dashboard");
+        //toolbar.setTitle("Dasboard");
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
         sharedPreferences = getApplication().getSharedPreferences("Options", MODE_PRIVATE);
         strLogoutFullName = sharedPreferences.getString("strUserFullName", strLogoutFullName);
         strLogoutEmail = sharedPreferences.getString("strUserEmail", strLogoutEmail);
@@ -106,7 +111,12 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         tvDrawerUserEmail = (TextView) header.findViewById(R.id.tvDrawerUserEmail);
         tvDrawerUserEmail.setText(strLogoutEmail);
         navigationView.setNavigationItemSelectedListener(this);
-
+        btnToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDrawer();
+            }
+        });
 
     }
 
@@ -203,6 +213,20 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+    /**
+     * open or close navigation drawer when click on toogle
+     */
+    public void openDrawer() {
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        } else {
+            drawerLayout.openDrawer(Gravity.LEFT);
+        }
+    }
+
+
+
+
 
     private void doLogout(LogoutRequest logoutRequest) {
         RetroUtils retroUtils = new RetroUtils(this);

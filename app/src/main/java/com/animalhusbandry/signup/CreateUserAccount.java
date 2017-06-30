@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -49,13 +50,13 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
     private int RC_SIGN_IN = 100;
     public ProgressDialog ringProgressDialog;
     public ProgressDialog googleProgressDialog;
-
+    private CardView cardView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_user_account);
+        /*getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);*/
         init();
         setIcons();
-
     }
 
     public void init() {

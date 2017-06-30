@@ -62,6 +62,7 @@
 
                         <android.support.design.widget.TextInputLayout
                             android:id="@+id/email_frame"
+                            android:textColor="@color/SecondaryText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
@@ -80,13 +81,14 @@
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:padding="10dp"
-                                android:textColor="@color/DarkGreen"
+                                android:textColor="@color/PrimaryText"
                                 android:textSize="20dp" />
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
                             android:id="@+id/password_frame"
                             android:layout_width="match_parent"
+                            android:textColor="@color/SecondaryText"
                             card_view:passwordToggleEnabled="true"
                             android:layout_height="wrap_content">
 
@@ -106,7 +108,7 @@
                                 android:inputType="textPassword"
                                 android:maxLines="1"
                                 android:padding="10dp"
-                                android:textColor="@color/DarkGreen"
+                                android:textColor="@color/PrimaryText"
                                 android:textSize="20dp" />
                         </android.support.design.widget.TextInputLayout>
 

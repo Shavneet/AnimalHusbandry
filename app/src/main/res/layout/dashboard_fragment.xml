@@ -3,8 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backcolor2"
     tools:context="com.animalhusbandry.dashboard.DashboardActivity">
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:gravity="center"
+    android:id="@+id/etNoDataFound"
+    android:visibility="gone"
+    android:text="Uhh hooo!!! No data found.Please add profiles "
+    android:textColor="@color/DarkGreen"
+    android:textSize="10dp"
+    />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_View"
