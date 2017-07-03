@@ -54,6 +54,10 @@ public class ShowFullPetProfile extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         ImageButton backBtn=(ImageButton)toolbar.findViewById(R.id.backBtn);
         TextView toolbar_title=(TextView)toolbar.findViewById(R.id.toolbar_title);
+        ImageView btnToggle=(ImageView)toolbar.findViewById(R.id.btnToggle);
+        ImageView ivSearch = (ImageView) toolbar.findViewById(R.id.ivSearch);
+        btnToggle.setVisibility(View.GONE);
+        ivSearch.setVisibility(View.GONE);
         toolbar_title.setText("Pet profile");
         setSupportActionBar(toolbar);
         Bundle bundle = new Bundle();

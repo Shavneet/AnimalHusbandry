@@ -6,10 +6,12 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +49,16 @@ public class ShowFullPetProfileAfterSearchActivity extends AppCompatActivity {
     }
 
     private void init() {
+
+        Toolbar   toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ImageButton backBtn=(ImageButton)toolbar.findViewById(R.id.backBtn);
+        TextView toolbar_title=(TextView)toolbar.findViewById(R.id.toolbar_title);
+        ImageView btnToggle=(ImageView)toolbar.findViewById(R.id.btnToggle);
+        ImageView ivSearch = (ImageView) toolbar.findViewById(R.id.ivSearch);
+        btnToggle.setVisibility(View.GONE);
+        ivSearch.setVisibility(View.GONE);
+        toolbar_title.setText("Pet profile");
+        setSupportActionBar(toolbar);
         Bundle bundle = new Bundle();
         bundle = getIntent().getExtras();
         userPetArrayList = (SearchPetUsingFiltersResponse.Result) bundle.getSerializable("petProfileUserClicked");

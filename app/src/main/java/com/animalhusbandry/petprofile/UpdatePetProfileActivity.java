@@ -116,6 +116,10 @@ public class UpdatePetProfileActivity extends AppCompatActivity {
         if (toolbar != null) {
             TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
             ImageButton backBtn = (ImageButton) toolbar.findViewById(R.id.backBtn);
+            ImageView btnToggle=(ImageView)toolbar.findViewById(R.id.btnToggle);
+            ImageView ivSearch = (ImageView) toolbar.findViewById(R.id.ivSearch);
+            btnToggle.setVisibility(View.GONE);
+            ivSearch.setVisibility(View.GONE);
             backBtn.setEnabled(true);
             textView.setEnabled(true);
             toolbar.setEnabled(true);

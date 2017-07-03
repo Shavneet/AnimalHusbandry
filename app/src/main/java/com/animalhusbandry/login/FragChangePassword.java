@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ import static android.content.Context.MODE_PRIVATE;
  * create an instance of this fragment.
  */
 public class FragChangePassword extends BaseFragment {
-    EditText etOldPassword, etSetPassword;
+    EditText etOldPassword, etSetPassword,etConfirmPassword;
     ImageButton btnSubmitPassword;
     public ProgressDialog ringProgressDialog;
     private static final String ARG_PARAM1 = "param1";
@@ -104,10 +105,13 @@ public class FragChangePassword extends BaseFragment {
         Toolbar  toolbar = (Toolbar)activity. findViewById(R.id.toolbar);
         TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
+        ImageView ivSearch = (ImageView) toolbar.findViewById(R.id.ivSearch);
+        ivSearch.setVisibility(View.GONE);
         backBtn.setEnabled(true);
         textView.setEnabled(true);
         toolbar.setEnabled(true);
         etOldPassword = (EditText) fragView.findViewById(R.id.etOldPassword);
+        etConfirmPassword= (EditText) fragView.findViewById(R.id.etConfirmPassword);
         etSetPassword = (EditText) fragView.findViewById(R.id.etSetPassword);
         btnSubmitPassword = (ImageButton) fragView.findViewById(R.id.btnSubmitPassword);
         btnSubmitPassword.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +134,10 @@ public class FragChangePassword extends BaseFragment {
                     etSetPassword.requestFocus();
                 } else if ((etOldPassword.getText().toString().equals(etSetPassword.getText().toString()))) {
                     Toast.makeText(getContext(), "Password is same, enter a new password ", Toast.LENGTH_SHORT).show();
-                } else if (!(etOldPassword.getText().toString().equals(etSetPassword.getText().toString()))) {
+                } else if (!(etConfirmPassword.getText().toString().equals(etSetPassword.getText().toString()))) {
+                    Toast.makeText(getContext(), "Confirm password ", Toast.LENGTH_SHORT).show();
+                } else if ((!(etOldPassword.getText().toString().equals(etSetPassword.getText().toString())))&&
+                        ((etConfirmPassword.getText().toString().equals(etSetPassword.getText().toString())))) {
                     ringProgressDialog = ProgressDialog.show(getContext(), "Please wait ...", "Changing password", true);
                     ringProgressDialog.setCancelable(true);
                     new Thread(new Runnable() {

@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/White"
     android:layout_height="match_parent"
 
     >
@@ -19,10 +20,9 @@
             android:id="@+id/relativelayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/view1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivCircularImageView"
@@ -99,7 +99,19 @@
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
-
+                                <EditText
+                                    android:id="@+id/etAge"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/card_view_border_orange"
+                                    android:hint=" Age"
+                                    android:inputType="number"
+                                    android:maxLength="11"
+                                    android:padding="8dp"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp" />
 
                                 <EditText
                                     android:id="@+id/etColor"
@@ -117,6 +129,20 @@
                                     android:textSize="20dp" />
 
 
+
+                                <EditText
+                                    android:id="@+id/etBloodline"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/card_view_border_orange"
+                                    android:hint="Bloodline"
+                                    android:inputType="textPersonName"
+                                    android:maxLines="1"
+                                    android:padding="8dp"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp" />
                                 <EditText
                                     android:id="@+id/etLocation"
                                     android:layout_width="match_parent"
@@ -133,19 +159,7 @@
                                     android:textSize="20dp" />
 
 
-                                <EditText
-                                    android:id="@+id/etBloodline"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_marginTop="10dp"
-                                    android:background="@drawable/card_view_border_orange"
-                                    android:hint="Bloodline"
-                                    android:inputType="textPersonName"
-                                    android:maxLines="1"
-                                    android:padding="8dp"
-                                    android:textColor="@color/PrimaryText"
-                                    android:textSize="20dp" />
+
 
 
                                 <EditText
@@ -177,19 +191,7 @@
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
 
-                                <EditText
-                                    android:id="@+id/etAge"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_marginTop="10dp"
-                                    android:background="@drawable/card_view_border_orange"
-                                    android:hint=" Age"
-                                    android:inputType="number"
-                                    android:maxLength="11"
-                                    android:padding="8dp"
-                                    android:textColor="@color/PrimaryText"
-                                    android:textSize="20dp" />
+
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -395,14 +397,14 @@
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="105dp"
             android:background="@drawable/edit_text_background"
             android:elevation="6dp"
             android:shadowColor="#FFFF"
             android:shadowDx="10"
             android:shadowDy="10"
             android:text="Create profile"
-            android:textColor="@color/DarkGreen" />
+            android:textColor="@color/White" />
 
     </RelativeLayout>
 

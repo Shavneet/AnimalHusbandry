@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/DarkGreen"
+    android:background="@color/backcolor2"
     android:orientation="vertical"
     tools:context="com.animalhusbandry.dashboard.DashboardActivity">
 
@@ -22,7 +22,7 @@
             android:elevation="6dp"
             android:background="@drawable/edit_text_background"
             android:text="Edit your profile details"
-            android:textColor="@color/DarkGreen" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/btnChangePassword"
@@ -32,7 +32,7 @@
             android:elevation="6dp"
             android:background="@drawable/edit_text_background"
             android:text="Change password"
-            android:textColor="@color/DarkGreen" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/btnDeleteAccount"
@@ -41,8 +41,8 @@
             android:layout_marginTop="15dp"
             android:elevation="6dp"
             android:background="@drawable/edit_text_background"
-            android:text="Change password"
-            android:textColor="@color/DarkGreen"
+            android:text="Delete Account"
+            android:textColor="@color/White"
             android:layout_marginBottom="10dp"
             />
 

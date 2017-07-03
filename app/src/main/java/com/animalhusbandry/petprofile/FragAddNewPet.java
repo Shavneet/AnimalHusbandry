@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -120,6 +121,8 @@ public class FragAddNewPet extends BaseFragment implements EndlessRecyclerViewSc
         TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
         backBtn.setEnabled(true);
+        ImageView ivSearch = (ImageView) toolbar.findViewById(R.id.ivSearch);
+        ivSearch.setVisibility(View.VISIBLE);
         textView.setEnabled(true);
         toolbar.setEnabled(true);
         etNoDataFound = (TextView) fragView.findViewById(R.id.etNoDataFound);

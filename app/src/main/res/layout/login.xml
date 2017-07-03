@@ -76,7 +76,7 @@
                                 android:backgroundTint="@color/Orange"
                                 android:drawablePadding="30dp"
                                 android:hint="Email"
-                                android:text="aaa@aaa.com"
+                                android:text="shavi@shavi.com"
                                 android:imeOptions="actionNext"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"

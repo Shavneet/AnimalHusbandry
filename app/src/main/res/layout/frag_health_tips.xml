@@ -2,13 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="animalhusbandry.android.com.animalhusbandry.Activities.Fragments.FragHealthTips">
+    android:background="@color/backcolor2"
+    tools:context="com.animalhusbandry.dashboard.FragHealthTips">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:id="@+id/textViewHealthTips"
         android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/PrimaryText"
         android:layout_height="match_parent"
         android:text="Health tips will be here soon" />
 

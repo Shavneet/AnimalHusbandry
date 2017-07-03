@@ -201,7 +201,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.body() == null) {
                     Toast.makeText(getBaseContext(), "Server error", Toast.LENGTH_SHORT).show();
                 } else if (response.body().getResponse().getCode().equals("200")) {
-                    Toast.makeText(LoginActivity.this, "LoginActivity Successfull", Toast.LENGTH_SHORT).show();
+/*
+                    Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+*/
                     String strUserFullName = response.body().getResponse().getResult().getUserFullName();
                     String strUserEmail = response.body().getResponse().getResult().getEmail();
                     String strSessionId = response.body().getResponse().getResult().getSessionId();

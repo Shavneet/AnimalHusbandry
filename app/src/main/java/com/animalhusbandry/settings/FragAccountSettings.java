@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -107,11 +108,13 @@ public class FragAccountSettings extends BaseFragment {
                              Bundle savedInstanceState) {
         final View fragView = inflater.inflate(R.layout.fragment_account_settings, container, false);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setToolbar.setToolbar( activity, "Account settings", false);
+            setToolbar.setToolbar(activity, "Account settings", false);
         }
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
         TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
+        ImageButton backBtn = (ImageButton) toolbar.findViewById(R.id.backBtn);
+        ImageView ivSearch = (ImageView) toolbar.findViewById(R.id.ivSearch);
+        ivSearch.setVisibility(View.GONE);
         backBtn.setEnabled(true);
         textView.setEnabled(true);
         toolbar.setEnabled(true);
@@ -188,7 +191,9 @@ public class FragAccountSettings extends BaseFragment {
                 fragmentTransaction.commit();
             }
         });
-        return fragView;}
+        return fragView;
+    }
+
     private void doDeleteUserProfile(DeleteUserProfileRequest deleteUserProfileRequest) {
         RetroUtils retroUtils = new RetroUtils(getContext());
         retroUtils.getApiClient().deleteUserProfile(deleteUserProfileRequest).enqueue(new Callback<DeleteUserProfileResponse>() {
@@ -203,6 +208,7 @@ public class FragAccountSettings extends BaseFragment {
                     Toast.makeText(getContext(), "Session expired, try again", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<DeleteUserProfileResponse> call, Throwable t) {
                 Toast.makeText(getContext(), "Something went wrong try again later ", Toast.LENGTH_SHORT).show();

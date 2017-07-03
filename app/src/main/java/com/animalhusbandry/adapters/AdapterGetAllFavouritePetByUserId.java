@@ -1,8 +1,6 @@
 package com.animalhusbandry.adapters;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,10 +10,8 @@ import android.widget.TextView;
 
 import com.animalhusbandry.R;
 import com.animalhusbandry.model.GetAllFavouritePetByUserIdResponse;
-import com.animalhusbandry.petprofile.ShowFavouritePetProfileActivity;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -76,15 +72,15 @@ public class AdapterGetAllFavouritePetByUserId extends RecyclerView.Adapter<Adap
                 public void onClick(View v) {
                    /* SharedPreferences prefs = activity.getBaseContext().getSharedPreferences("Options", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();*/
-                    int adapterPosotion = getAdapterPosition();
+                   /* int adapterPosotion = getAdapterPosition();
                     GetAllFavouritePetByUserIdResponse.Result result = userFavouritePetArrayList.get(adapterPosotion);
                     Intent intent = new Intent(activity.getBaseContext(), ShowFavouritePetProfileActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("petProfileUserClicked", (Serializable) result);
-                /*    String strPetId = result.getPetId();
-                    editor.putString("PetId", strPetId);*/
+                *//*    String strPetId = result.getPetId();
+                    editor.putString("PetId", strPetId);*//*
                     intent.putExtras(bundle);
-                    activity.startActivity(intent);
+                    activity.startActivity(intent);*/
                 }
             });
         }

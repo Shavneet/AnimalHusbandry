@@ -110,6 +110,7 @@ public class DashBoardFragment extends BaseFragment implements EndlessRecyclerVi
        // TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageButton backBtn = (ImageButton) activity.toolbar.findViewById(R.id.backBtn);
         backBtn.setEnabled(true);
+
         activity.toolbar.setTitle("All Pet Profiles");
         //textView.setEnabled(true);
         activity.toolbar.setEnabled(true);

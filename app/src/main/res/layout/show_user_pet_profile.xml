@@ -72,6 +72,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
+                            android:layout_weight="7"
                             android:orientation="vertical">
 
                             <LinearLayout
@@ -84,16 +85,15 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/card_view_border_orange"
-                                    android:orientation="horizontal"
-                                    android:weightSum="7">
+                                    android:orientation="horizontal">
 
 
                                     <TextView
                                         android:id="@+id/etPetName"
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_below="@+id/view1"
-                                        android:layout_weight="4"
+                                        android:layout_weight=".5"
                                         android:inputType="textPersonName"
                                         android:padding="8dp"
                                         android:text="Pet Name"
@@ -102,9 +102,9 @@
 
                                     <EditText
                                         android:id="@+id/tvPetName"
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="3"
+                                        android:layout_weight=".5"
                                         android:inputType="textPersonName"
                                         android:maxLines="1"
                                         android:padding="8dp"
@@ -119,16 +119,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:weightSum="7">
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/etBreed"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="2.1"
+                                    android:layout_weight=".5"
                                     android:padding="8dp"
                                     android:text="Breed"
                                     android:textColor="@color/SecondaryText"
@@ -136,11 +135,11 @@
 
                                 <EditText
                                     android:id="@+id/tvBreed"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="4.9"
+                                    android:layout_weight=".5"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
                                     android:padding="8dp"
@@ -153,16 +152,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:weightSum="7">
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tvColorq"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="2.2"
+                                    android:layout_weight=".5"
                                     android:padding="8dp"
                                     android:text="Color"
                                     android:textColor="@color/SecondaryText"
@@ -170,11 +168,11 @@
 
                                 <EditText
                                     android:id="@+id/tvColor"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="4.9"
+                                    android:layout_weight=".5"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
                                     android:padding="8dp"
@@ -182,35 +180,33 @@
                                     android:textSize="20dp" />
                             </LinearLayout>
 
-
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:weightSum="7">
+                                android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/tvvLocation"
-                                    android:layout_width="wrap_content"
+                                    android:id="@+id/tvvAge"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="1.5"
+                                    android:layout_weight=".5"
                                     android:padding="8dp"
-                                    android:text="Location"
+                                    android:text="Age"
                                     android:textColor="@color/SecondaryText"
                                     android:textSize="20dp" />
 
                                 <EditText
-                                    android:id="@+id/tvLocation"
-                                    android:layout_width="wrap_content"
+                                    android:id="@+id/tvAge"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="5.5"
-                                    android:inputType="textPersonName"
+                                    android:layout_weight=".5"
+                                    android:inputType="number"
                                     android:maxLines="1"
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
@@ -223,16 +219,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:weightSum="7">
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tvvBloodline"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="1.35"
+                                    android:layout_weight=".5"
                                     android:padding="8dp"
                                     android:text="Bloodline"
                                     android:textColor="@color/SecondaryText"
@@ -240,11 +235,44 @@
 
                                 <EditText
                                     android:id="@+id/tvBloodline"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="5.5"
+                                    android:layout_weight=".5"
+                                    android:inputType="textPersonName"
+                                    android:maxLines="1"
+                                    android:padding="8dp"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/card_view_border_orange"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvvLocation"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_below="@+id/etPetName"
+                                    android:layout_weight=".5"
+                                    android:padding="8dp"
+                                    android:text="Location"
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="20dp" />
+
+                                <EditText
+                                    android:id="@+id/tvLocation"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_below="@+id/etPetName"
+                                    android:layout_weight=".5"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
                                     android:padding="8dp"
@@ -257,29 +285,28 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:layout_weight="3"
                                 android:background="@drawable/card_view_border_orange"
                                 android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tvvRegistration"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="1"
+                                    android:layout_weight=".5"
                                     android:padding="8dp"
-                                    android:text="Registration"
+                                    android:text="Registration number"
                                     android:textColor="@color/SecondaryText"
                                     android:textSize="20dp" />
 
                                 <EditText
                                     android:id="@+id/tvRegistration"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="3"
+                                    android:layout_weight=".5"
                                     android:inputType="textPostalAddress"
                                     android:maxLines="1"
                                     android:padding="8dp"
@@ -292,28 +319,28 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:weightSum="7">
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tvvOwnerMobileNumber"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="1"
+                                    android:layout_weight=".5"
                                     android:padding="8dp"
                                     android:text="Owner Mobile "
                                     android:textColor="@color/SecondaryText"
-                                    android:textSize="20dp" />
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
 
                                 <EditText
                                     android:id="@+id/tvOwnerMobileNumber"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="6"
+                                    android:layout_weight=".5"
                                     android:inputType="number"
                                     android:maxLines="1"
                                     android:padding="8dp"
@@ -321,39 +348,6 @@
                                     android:textSize="20dp" />
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:weightSum="7">
-
-                                <TextView
-                                    android:id="@+id/tvvAge"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_below="@+id/etPetName"
-                                    android:layout_weight="2.5"
-                                    android:padding="8dp"
-                                    android:text="Age"
-                                    android:textColor="@color/SecondaryText"
-                                    android:textSize="20dp" />
-
-                                <EditText
-                                    android:id="@+id/tvAge"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_below="@+id/etPetName"
-                                    android:layout_weight="4.5"
-                                    android:inputType="number"
-                                    android:maxLines="1"
-                                    android:padding="8dp"
-                                    android:textColor="@color/PrimaryText"
-                                    android:textSize="20dp" />
-                            </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/linearLayoutEditTextGender"
@@ -361,16 +355,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:weightSum="7">
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tvvGender"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="1.9"
+                                    android:layout_weight=".5"
                                     android:padding="8dp"
                                     android:text="Gender"
                                     android:textColor="@color/SecondaryText"
@@ -378,67 +371,17 @@
 
                                 <EditText
                                     android:id="@+id/tvGender"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
-                                    android:layout_weight="5.1"
+                                    android:layout_weight=".5"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
                             </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/linearLayoutCheckBoxGender"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_weight="4"
-                                android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:padding="4dp">
-
-                                <TextView
-                                    android:id="@+id/tvMale"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_weight="1"
-                                    android:text="Male"
-                                    android:textColor="@color/SecondaryText"
-                                    android:textSize="15dp" />
-
-                                <CheckBox
-                                    android:id="@+id/checkboxMale"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="45dp"
-                                    android:layout_weight="1"
-                                    android:shadowColor="@color/White"
-                                    android:textColor="@color/PrimaryText" />
-
-                                <TextView
-                                    android:id="@+id/tvFemale"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_weight="1"
-                                    android:text="Female"
-                                    android:textColor="@color/SecondaryText"
-                                    android:textSize="15dp" />
-
-                                <CheckBox
-                                    android:id="@+id/checkboxFemale"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_weight="1"
-                                    android:shadowColor="@color/White"
-                                    android:textColor="@color/PrimaryText" />
-                            </LinearLayout>
-
 
                             <LinearLayout
                                 android:id="@+id/linearLayoutCheckBoxVaccination"
@@ -458,11 +401,11 @@
                                     android:layout_marginTop="10dp"
                                     android:text="Vaccination :"
                                     android:textColor="@color/SecondaryText"
-                                    android:textSize="15dp" />
+                                    android:textSize="20dp" />
 
                                 <View
                                     android:id="@+id/view0.12"
-                                    android:layout_width="90dp"
+                                    android:layout_width="120dp"
                                     android:layout_height="1dp"
                                     android:layout_alignParentRight="true"
                                     android:layout_marginLeft="15dp"
@@ -561,12 +504,13 @@
                                     android:layout_marginLeft="15dp"
                                     android:layout_marginTop="10dp"
                                     android:layout_weight="1"
+                                    android:textSize="20dp"
                                     android:text="Any other :"
                                     android:textColor="@color/SecondaryText" />
 
                                 <View
                                     android:id="@+id/view0.13"
-                                    android:layout_width="70dp"
+                                    android:layout_width="100dp"
                                     android:layout_height="1dp"
                                     android:layout_alignParentRight="true"
                                     android:layout_marginLeft="15dp"
@@ -590,6 +534,56 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/linearLayoutCheckBoxGender"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="4"
+                                android:background="@drawable/card_view_border_orange"
+                                android:orientation="horizontal"
+                                android:padding="4dp">
+
+                                <TextView
+                                    android:id="@+id/tvMale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_weight="1"
+                                    android:text="Male"
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="15dp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkboxMale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="45dp"
+                                    android:layout_weight="1"
+                                    android:shadowColor="@color/White"
+                                    android:textColor="@color/PrimaryText" />
+
+                                <TextView
+                                    android:id="@+id/tvFemale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="1"
+                                    android:text="Female"
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="15dp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkboxFemale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="0dp"
+                                    android:layout_weight="1"
+                                    android:shadowColor="@color/White"
+                                    android:textColor="@color/PrimaryText" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
                                 android:id="@+id/linearLayoutEditTextVaccination"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -607,11 +601,11 @@
                                     android:layout_marginTop="10dp"
                                     android:text="Vaccination :"
                                     android:textColor="@color/SecondaryText"
-                                    android:textSize="15dp" />
+                                    android:textSize="20dp" />
 
                                 <View
                                     android:id="@+id/view12"
-                                    android:layout_width="90dp"
+                                    android:layout_width="120dp"
                                     android:layout_height="1dp"
                                     android:layout_alignParentRight="true"
                                     android:layout_marginLeft="15dp"
@@ -716,11 +710,12 @@
                                     android:layout_marginTop="10dp"
                                     android:layout_weight="1"
                                     android:text="Any other :"
+                                    android:textSize="20dp"
                                     android:textColor="@color/SecondaryText" />
 
                                 <View
                                     android:id="@+id/view13"
-                                    android:layout_width="70dp"
+                                    android:layout_width="100dp"
                                     android:layout_height="1dp"
                                     android:layout_alignParentRight="true"
                                     android:layout_marginLeft="15dp"

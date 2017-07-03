@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -100,11 +101,15 @@ public class FragEditUserProfile extends BaseFragment {
             setToolbar.setToolbar( activity, "Edit your profile", false);
         }
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        ImageView ivSearch = (ImageView) toolbar.findViewById(R.id.ivSearch);
+
         TextView textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageButton backBtn= (ImageButton) toolbar.findViewById(R.id.backBtn);
         backBtn.setEnabled(true);
         textView.setEnabled(true);
         toolbar.setEnabled(true);
+        backBtn.setVisibility(View.GONE);
+        ivSearch.setVisibility(View.GONE);
         View fragView = inflater.inflate(R.layout.frag_edit_user_profile, container, false);
         etFName = (EditText) fragView.findViewById(R.id.etFName);
         etLName = (EditText) fragView.findViewById(R.id.etLName);
@@ -151,9 +156,9 @@ public class FragEditUserProfile extends BaseFragment {
     }
 
     private void setIconsEditUserDetails() {
-        Drawable FName = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_025_user_1);
-        Drawable LNmae = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_024_user_2);
-        Drawable contact = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_021_phone_call);
+        Drawable FName = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_person_add);
+        Drawable LNmae = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_group_add);
+        Drawable contact = VectorDrawableUtils.getDrawable(getContext(), R.drawable.ic_phone_iphone);
         etFName.setCompoundDrawablesWithIntrinsicBounds(null, null, FName, null);
         etLName.setCompoundDrawablesWithIntrinsicBounds(null, null, LNmae, null);
         etContact.setCompoundDrawablesWithIntrinsicBounds(null, null, contact, null);
