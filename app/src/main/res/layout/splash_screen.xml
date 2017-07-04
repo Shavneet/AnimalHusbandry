@@ -49,6 +49,6 @@
         android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:text="www.seasiainfotech.com"
-        android:textColor="@color/Orange"
+        android:textColor="@color/White"
         android:textSize="15dp" />
 </RelativeLayout>

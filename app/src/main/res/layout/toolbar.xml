@@ -20,6 +20,8 @@
             android:layout_alignParentLeft="true"
             android:foregroundGravity="center"
             android:layout_marginLeft="15dp"
+            android:padding="10dp"
+            android:clickable="true"
             android:layout_marginTop="5dp"
             android:background="@drawable/ic_back" />
         <ImageButton
@@ -28,7 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:foregroundGravity="center"
-            android:padding="15dp"
+           android:padding="18dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:clickable="true"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/ic_menu" />
@@ -49,6 +54,8 @@
             android:id="@+id/ivSearch"
             android:layout_marginTop="6dp"
             android:visibility="visible"
+            android:contextClickable="true"
+            android:padding="10dp"
             android:layout_marginRight="12dp"
             android:background="@drawable/ic_search"
             android:layout_alignParentRight="true"

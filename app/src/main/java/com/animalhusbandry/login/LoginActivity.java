@@ -186,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setIcons() {
-        Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_023_email);
+        Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_email_filled);
         /*Drawable password = VectorDrawableUtils.getDrawable(this, R.drawable.ic_017_security_2);*/
         etEmail.setCompoundDrawablesWithIntrinsicBounds(null, null, email, null);
         /*etPassword.setCompoundDrawablesWithIntrinsicBounds(password, null, null, null);*/

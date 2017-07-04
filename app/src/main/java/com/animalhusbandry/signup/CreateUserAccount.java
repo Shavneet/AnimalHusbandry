@@ -10,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -171,6 +174,33 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
         });
+        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        setupUI(viewGroup);
+
+    }
+
+    private void setupUI(View view) {
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard();
+                    return false;
+                }
+
+                private void hideSoftKeyboard() {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etFName.getWindowToken(), 0);
+                }
+            });
+        }
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
     }
 
     private void doSignUp(SignUpRequest signUpRequest) {
@@ -264,12 +294,12 @@ public class CreateUserAccount extends AppCompatActivity implements GoogleApiCli
     }
 
     private void setIcons() {
-        Drawable FName = VectorDrawableUtils.getDrawable(this, R.drawable.ic_025_user_1);
-        Drawable password = VectorDrawableUtils.getDrawable(this, R.drawable.ic_017_security_2);
-        Drawable Confirmpassword = VectorDrawableUtils.getDrawable(this, R.drawable.ic_019_security_1);
-        Drawable LName = VectorDrawableUtils.getDrawable(this, R.drawable.ic_024_user_2);
-        Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_023_email);
-        Drawable contact = VectorDrawableUtils.getDrawable(this, R.drawable.ic_021_phone_call);
+        Drawable FName = VectorDrawableUtils.getDrawable(this, R.drawable.ic_person_add);
+        Drawable password = VectorDrawableUtils.getDrawable(this, R.drawable.ic_vpn_key);
+        Drawable Confirmpassword = VectorDrawableUtils.getDrawable(this, R.drawable.ic_lock_filled);
+        Drawable LName = VectorDrawableUtils.getDrawable(this, R.drawable.ic_group_add);
+        Drawable email = VectorDrawableUtils.getDrawable(this, R.drawable.ic_email_filled);
+        Drawable contact = VectorDrawableUtils.getDrawable(this, R.drawable.ic_phone_iphone);
         etFName.setCompoundDrawablesWithIntrinsicBounds(null, null, FName, null);
         etPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, password, null);
         etLName.setCompoundDrawablesWithIntrinsicBounds(null, null, LName, null);

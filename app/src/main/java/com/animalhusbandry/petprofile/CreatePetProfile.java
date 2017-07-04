@@ -253,18 +253,23 @@ public class CreatePetProfile extends AppCompatActivity {
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                    ||(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED)
+                    ) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_PERMISSION);
-            } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                popUpmenu();
+           /* } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
             } else {
                 popUpmenu();
-            }
+            }*/
         } else {
             popUpmenu();
         }
-    }
+    }}
 
 
     public void takePicture() {

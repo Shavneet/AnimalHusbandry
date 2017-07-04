@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/DarkGreen"
+        android:background="@color/backcolor2"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
@@ -571,7 +571,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/edit_text_rectengal_background"
                                 android:clickable="true"
-                                android:maxLines="2"
+                                android:maxLines="5"
                                 android:inputType="textMultiLine"
                                 android:cursorVisible="true"
                                 android:padding="10dp"

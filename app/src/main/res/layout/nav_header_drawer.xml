@@ -44,8 +44,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/imageView"
                 android:text="kjksdjgjklsdfgjklfjkgj"
-                android:textColor="@color/Orange"
-                android:textSize="16sp" />
+                android:textColor="@color/White"
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvDrawerUserEmail"
@@ -53,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="kjksdjgjklsdfggfgfgfgfgfgjklfjkgj"
-                android:textColor="@color/Orange"
+                android:textColor="@color/White"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>

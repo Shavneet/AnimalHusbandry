@@ -44,7 +44,7 @@ public class AdapterGetAllFavouritePetByUserId extends RecyclerView.Adapter<Adap
         holder.petName.setText(userFavouritePetArrayList.get(position).getName());
         holder.petBreed.setText(userFavouritePetArrayList.get(position).getBreed());
         holder.petLocation.setText(userFavouritePetArrayList.get(position).getLocation());
-        Picasso.with(activity.getBaseContext()).load(userFavouritePetArrayList.get(position).getImageUrl()).error(ic_1496341871_instagram).fit().into(holder.petImage);
+        Picasso.with(activity.getBaseContext()).load(userFavouritePetArrayList.get(position).getImageUrl()).placeholder(ic_1496341871_instagram).error(ic_1496341871_instagram).fit().into(holder.petImage);
 
     }
 

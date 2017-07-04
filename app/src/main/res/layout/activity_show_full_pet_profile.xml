@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/DarkGreen"
+        android:background="@color/backcolor2"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical">

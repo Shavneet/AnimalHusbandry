@@ -49,10 +49,11 @@
                     android:layout_marginBottom="-35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:alpha="0.7"
                     android:backgroundTint="@color/White"
                     card_view:cardCornerRadius="6dp"
                     card_view:contentPadding="10dp">
+                   <!-- android:alpha="0.7"-->
+
 
                     <LinearLayout
                         android:id="@+id/containerCardViewElements"
@@ -81,7 +82,7 @@
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:padding="10dp"
-                                android:textColor="@color/PrimaryText"
+                                android:textColor="@color/SecondaryText"
                                 android:textSize="20dp" />
                         </android.support.design.widget.TextInputLayout>
 
@@ -90,6 +91,7 @@
                             android:layout_width="match_parent"
                             android:textColor="@color/SecondaryText"
                             card_view:passwordToggleEnabled="true"
+                            card_view:passwordToggleTint="@color/colorPrimaryDark"
                             android:layout_height="wrap_content">
 
                             <EditText
@@ -99,16 +101,15 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="10dp"
-                                android:backgroundTint="@color/Orange"
                                 android:drawablePadding="30dp"
                                 android:hint="Password"
                                 android:text="a@123456"
-
+                                android:shadowColor="@color/colorPrimaryDark"
                                 android:imeOptions="actionDone"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
                                 android:padding="10dp"
-                                android:textColor="@color/PrimaryText"
+                                android:textColor="@color/SecondaryText"
                                 android:textSize="20dp" />
                         </android.support.design.widget.TextInputLayout>
 
@@ -129,11 +130,7 @@
                                 android:textSize="12dp"
                                 android:textStyle="bold" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginBottom="10dp"
-                                android:background="#285" />
+
                         </LinearLayout>
                     </LinearLayout>
 

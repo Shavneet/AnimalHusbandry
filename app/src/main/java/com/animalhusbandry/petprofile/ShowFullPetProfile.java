@@ -68,7 +68,11 @@ public class ShowFullPetProfile extends AppCompatActivity {
         strPetIdofPetProfileOpened = userPetArrayList.getPetId();
         strPetName = userPetArrayList.getName().toString();
         strBloodline = userPetArrayList.getBloodLine();
-        strGender = userPetArrayList.getGender().toString();
+        if(userPetArrayList.getGender()==null){
+            strGender="";
+        }
+        else {
+        strGender = userPetArrayList.getGender().toString();}
         strOwnerMobileNumber = userPetArrayList.getOwnerMobileNumber();
         strRegistration = userPetArrayList.getMicrochipNumber();
         strAge = userPetArrayList.getAge();
@@ -118,6 +122,10 @@ public class ShowFullPetProfile extends AppCompatActivity {
             }
         });
         checkboxNone = (CheckBox) findViewById(R.id.checkboxNone);
+        if(strGender.equals("")){
+            checkboxMale.setChecked(false);
+            checkboxFemale.setChecked(false);
+        }
         if (strGender.equals("Male")) {
             checkboxMale.setChecked(true);
         } else if (strGender.equals("Female")) {

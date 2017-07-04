@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/DarkGreen"
+        android:background="@color/backcolor2"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
@@ -56,6 +56,7 @@
                     android:layout_below="@+id/ivCircularImageView"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginBottom="15dp"
                     android:backgroundTint="@color/White"
                     card_view:cardCornerRadius="25dp"
                     card_view:contentPadding="2dp">
@@ -107,6 +108,7 @@
                                         android:layout_weight=".5"
                                         android:inputType="textPersonName"
                                         android:maxLines="1"
+                                        android:maxLength="20"
                                         android:padding="8dp"
                                         android:textColor="@color/PrimaryText"
                                         android:textSize="20dp" />
@@ -142,6 +144,8 @@
                                     android:layout_weight=".5"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
+
+                                    android:maxLength="30"
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
@@ -175,6 +179,7 @@
                                     android:layout_weight=".5"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
+                                    android:maxLength="20"
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
@@ -208,6 +213,7 @@
                                     android:layout_weight=".5"
                                     android:inputType="number"
                                     android:maxLines="1"
+                                    android:maxLength="2"
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
@@ -242,6 +248,8 @@
                                     android:layout_weight=".5"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
+                                    android:maxLength="20"
+
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
@@ -275,6 +283,7 @@
                                     android:layout_weight=".5"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
+                                    android:maxLength="20"
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
@@ -307,6 +316,7 @@
                                     android:layout_alignParentRight="true"
                                     android:layout_below="@+id/etPetName"
                                     android:layout_weight=".5"
+                                    android:layout_gravity="center"
                                     android:inputType="textPostalAddress"
                                     android:maxLines="1"
                                     android:padding="8dp"
@@ -379,14 +389,64 @@
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
                                     android:padding="8dp"
+                                    android:maxLength="20"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/linearLayoutCheckBoxGender"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="4"
+                                android:background="@drawable/card_view_border_orange"
+                                android:orientation="horizontal"
+                                android:padding="4dp">
+
+                                <TextView
+                                    android:id="@+id/tvMale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_weight="1"
+                                    android:text="Male"
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="15dp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkboxMale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="45dp"
+                                    android:layout_weight="1"
+                                    android:shadowColor="@color/White"
+                                    android:textColor="@color/PrimaryText" />
+
+                                <TextView
+                                    android:id="@+id/tvFemale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="1"
+                                    android:text="Female"
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="15dp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkboxFemale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="0dp"
+                                    android:layout_weight="1"
+                                    android:shadowColor="@color/White"
+                                    android:textColor="@color/PrimaryText" />
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:id="@+id/linearLayoutCheckBoxVaccination"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/card_view_border_orange"
                                 android:orientation="vertical">
@@ -504,9 +564,9 @@
                                     android:layout_marginLeft="15dp"
                                     android:layout_marginTop="10dp"
                                     android:layout_weight="1"
-                                    android:textSize="20dp"
                                     android:text="Any other :"
-                                    android:textColor="@color/SecondaryText" />
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="20dp" />
 
                                 <View
                                     android:id="@+id/view0.13"
@@ -525,61 +585,13 @@
                                     android:layout_marginRight="5dp"
                                     android:layout_marginTop="5dp"
                                     android:layout_weight="2"
-                                    android:backgroundTint="@color/White"
+
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
+                                    android:maxLength="50"
                                     android:padding="8dp"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/linearLayoutCheckBoxGender"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_weight="4"
-                                android:background="@drawable/card_view_border_orange"
-                                android:orientation="horizontal"
-                                android:padding="4dp">
-
-                                <TextView
-                                    android:id="@+id/tvMale"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_weight="1"
-                                    android:text="Male"
-                                    android:textColor="@color/SecondaryText"
-                                    android:textSize="15dp" />
-
-                                <CheckBox
-                                    android:id="@+id/checkboxMale"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="45dp"
-                                    android:layout_weight="1"
-                                    android:shadowColor="@color/White"
-                                    android:textColor="@color/PrimaryText" />
-
-                                <TextView
-                                    android:id="@+id/tvFemale"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_weight="1"
-                                    android:text="Female"
-                                    android:textColor="@color/SecondaryText"
-                                    android:textSize="15dp" />
-
-                                <CheckBox
-                                    android:id="@+id/checkboxFemale"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_weight="1"
-                                    android:shadowColor="@color/White"
-                                    android:textColor="@color/PrimaryText" />
                             </LinearLayout>
 
 
@@ -587,7 +599,7 @@
                                 android:id="@+id/linearLayoutEditTextVaccination"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="12dp"
                                 android:background="@drawable/card_view_border_orange"
                                 android:orientation="vertical">
 
@@ -710,8 +722,8 @@
                                     android:layout_marginTop="10dp"
                                     android:layout_weight="1"
                                     android:text="Any other :"
-                                    android:textSize="20dp"
-                                    android:textColor="@color/SecondaryText" />
+                                    android:textColor="@color/SecondaryText"
+                                    android:textSize="20dp" />
 
                                 <View
                                     android:id="@+id/view13"
@@ -729,8 +741,8 @@
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginTop="5dp"
-
                                     android:layout_weight="2"
+                                    android:textAlignment="gravity"
                                     android:backgroundTint="@color/White"
                                     android:inputType="textPersonName"
                                     android:maxLines="1"
@@ -743,7 +755,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
+
                                 android:layout_marginTop="10dp"
                                 android:layout_weight="3"
                                 android:background="@drawable/card_view_border_orange"
@@ -778,7 +790,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativelayout1"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="25dp"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
             android:layout_marginTop="15dp"

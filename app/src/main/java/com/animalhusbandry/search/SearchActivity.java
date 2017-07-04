@@ -1,6 +1,7 @@
 package com.animalhusbandry.search;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -157,62 +159,72 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
     }
 
     private void searchByName(String pageNumber) {
-        progressBar.setVisibility(View.VISIBLE);
-        SearchPetUsingFiltersRequest searchPetUsingFiltersRequest = new SearchPetUsingFiltersRequest();
-        strSearchText = etSearch.getText().toString();
-        searchPetUsingFiltersRequest.setUserId(strUserId);
-        searchPetUsingFiltersRequest.setName(strSearchText);
-        searchPetUsingFiltersRequest.setLocation("");
-        searchPetUsingFiltersRequest.setBreed("");
-        searchPetUsingFiltersRequest.setPage(pageNumber);
-        searchPetUsingFiltersRequest.setSize("10");
-        initPaging();
-        retroUtils.getApiClient().SEARCH_PET_USING_FILTERS_RESPONSE_CALL(searchPetUsingFiltersRequest).enqueue(new Callback<SearchPetUsingFiltersResponse>() {
-            @Override
-            public void onResponse(Call<SearchPetUsingFiltersResponse> call, Response<SearchPetUsingFiltersResponse> response) {
-                progressBar.setVisibility(View.GONE);
-                if (response == null || response.body() == null) {
-                    Toast.makeText(getBaseContext(), "Server Error", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (response.body().getResponse().getCode().equals("200")) {
-                        SearchPetUsingFiltersResponse.Result[] searchPetUsingFiltersArrayList = response.body().getResponse().getResult();
-                        if (endlessScrollListener.getCurrentPage()==0 && searchPetUsingFiltersArrayList.length <= 0) {
-                            if (etNoDataFound.getVisibility() == View.GONE) {
-                                recyclerView.setVisibility(View.GONE);
-                                etNoDataFound.setVisibility(View.VISIBLE);
-                            }
-                        } else {
-                            if (etNoDataFound.getVisibility() == View.VISIBLE) {
-                                etNoDataFound.setVisibility(View.GONE);
-                            }
-                            if (endlessScrollListener.getCurrentPage() == 0) {
-                           /* adapter.setData(response.body().getResponse().getResult());*/
-                                recyclerView.setVisibility(View.VISIBLE);
-                                adapter.setData(searchPetUsingFiltersArrayList);
-                            } else {
-                                recyclerView.setVisibility(View.VISIBLE);
-                                adapter.addData(searchPetUsingFiltersArrayList);
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
-
+        if (etNoDataFound.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.VISIBLE);}
+            SearchPetUsingFiltersRequest searchPetUsingFiltersRequest = new SearchPetUsingFiltersRequest();
+            strSearchText = etSearch.getText().toString();
+            searchPetUsingFiltersRequest.setUserId(strUserId);
+            searchPetUsingFiltersRequest.setName(strSearchText);
+            searchPetUsingFiltersRequest.setLocation("");
+            searchPetUsingFiltersRequest.setBreed("");
+            searchPetUsingFiltersRequest.setPage(pageNumber);
+            searchPetUsingFiltersRequest.setSize("10");
+            initPaging();
+            retroUtils.getApiClient().SEARCH_PET_USING_FILTERS_RESPONSE_CALL(searchPetUsingFiltersRequest).enqueue(new Callback<SearchPetUsingFiltersResponse>() {
+                @Override
+                public void onResponse(Call<SearchPetUsingFiltersResponse> call, Response<SearchPetUsingFiltersResponse> response) {
+                    progressBar.setVisibility(View.GONE);
+                    if (response == null || response.body() == null) {
+                        Toast.makeText(getBaseContext(), "Server Error", Toast.LENGTH_SHORT).show();
                     } else {
-                        if (response.body().getResponse().getCode().equals("401")) {
-                            Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
+                        if (response.body().getResponse().getCode().equals("200")) {
+                            SearchPetUsingFiltersResponse.Result[] searchPetUsingFiltersArrayList = response.body().getResponse().getResult();
+                            if (endlessScrollListener.getCurrentPage() == 0 && searchPetUsingFiltersArrayList.length <= 0) {
+                                if (etNoDataFound.getVisibility() == View.GONE) {
+                                    recyclerView.setVisibility(View.GONE);
+                                    etNoDataFound.setVisibility(View.VISIBLE);
+                                }
+                            } else {
+                                if (etNoDataFound.getVisibility() == View.VISIBLE) {
+                                    etNoDataFound.setVisibility(View.GONE);
+                                }
+                                if (endlessScrollListener.getCurrentPage() == 0) {
+                           /* adapter.setData(response.body().getResponse().getResult());*/
+                                    recyclerView.setVisibility(View.VISIBLE);
+
+                                    adapter.setData(searchPetUsingFiltersArrayList);
+                                } else {
+                                    recyclerView.clearOnScrollListeners();
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                    adapter.addData(searchPetUsingFiltersArrayList);
+                                }
+                                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                inputManager.hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                                adapter.notifyDataSetChanged();
+                            }
+
+                        } else {
+                            if (response.body().getResponse().getCode().equals("401")) {
+                                Toast.makeText(getBaseContext(), "You are not authorized", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<SearchPetUsingFiltersResponse> call, Throwable t) {
-                Toast.makeText(getBaseContext(), "Service failure.Try again", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+                @Override
+                public void onFailure(Call<SearchPetUsingFiltersResponse> call, Throwable t) {
+                    Toast.makeText(getBaseContext(), "Service failure.Try again", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
     private void searchByBreed(String pageNumber) {
-        progressBar.setVisibility(View.VISIBLE);
+        if (etNoDataFound.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.VISIBLE);}
         SearchPetUsingFiltersRequest searchPetUsingFiltersRequest = new SearchPetUsingFiltersRequest();
         strSearchText = etSearch.getText().toString();
         searchPetUsingFiltersRequest.setUserId(strUserId);
@@ -231,7 +243,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                 } else {
                     if (response.body().getResponse().getCode().equals("200")) {
                         SearchPetUsingFiltersResponse.Result[] searchPetUsingFiltersArrayList = response.body().getResponse().getResult();
-                        if (endlessScrollListener.getCurrentPage()==0 && searchPetUsingFiltersArrayList.length <= 0) {
+                        if (endlessScrollListener.getCurrentPage() == 0 && searchPetUsingFiltersArrayList.length <= 0) {
                             if (etNoDataFound.getVisibility() == View.GONE) {
                                 recyclerView.setVisibility(View.GONE);
                                 etNoDataFound.setVisibility(View.VISIBLE);
@@ -248,6 +260,8 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                                 recyclerView.setVisibility(View.VISIBLE);
                                 adapter.addData(searchPetUsingFiltersArrayList);
                             }
+                            InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            inputManager.hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                             adapter.notifyDataSetChanged();
                         }
                     } else {
@@ -266,7 +280,10 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
     }
 
     private void searchByLocation(String pageNumber) {
-        progressBar.setVisibility(View.VISIBLE);
+        if (etNoDataFound.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.VISIBLE);}
         SearchPetUsingFiltersRequest searchPetUsingFiltersRequest = new SearchPetUsingFiltersRequest();
         String strSearchText = etSearch.getText().toString();
         searchPetUsingFiltersRequest.setUserId(strUserId);
@@ -286,7 +303,7 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                 } else {
                     if (response.body().getResponse().getCode().equals("200")) {
                         SearchPetUsingFiltersResponse.Result[] searchPetUsingFiltersArrayList = response.body().getResponse().getResult();
-                        if (endlessScrollListener.getCurrentPage()==0 && searchPetUsingFiltersArrayList.length <= 0) {
+                        if (endlessScrollListener.getCurrentPage() == 0 && searchPetUsingFiltersArrayList.length <= 0) {
                             if (etNoDataFound.getVisibility() == View.GONE) {
                                 recyclerView.setVisibility(View.GONE);
                                 etNoDataFound.setVisibility(View.VISIBLE);
@@ -303,6 +320,8 @@ public class SearchActivity extends AppCompatActivity implements EndlessRecycler
                                 recyclerView.setVisibility(View.VISIBLE);
                                 adapter.addData(searchPetUsingFiltersArrayList);
                             }
+                            InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            inputManager.hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                             adapter.notifyDataSetChanged();
                         }
 

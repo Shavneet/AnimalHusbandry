@@ -58,7 +58,7 @@ public class AdapterGetAllPetProfiles extends RecyclerView.Adapter<AdapterGetAll
         holder.petName.setText(allPetProfilesArrayList.get(position).getName());
         holder.petBreed.setText(allPetProfilesArrayList.get(position).getBreed());
         holder.petLocation.setText(allPetProfilesArrayList.get(position).getLocation());
-        Picasso.with(activity.getBaseContext()).load(allPetProfilesArrayList.get(position).getImageUrl()).error(ic_1496341871_instagram).fit().into(holder.petImage);
+        Picasso.with(activity.getBaseContext()).load(allPetProfilesArrayList.get(position).getImageUrl()).placeholder(ic_1496341871_instagram).error(ic_1496341871_instagram).fit().into(holder.petImage);
     }
 
 
@@ -87,6 +87,18 @@ public class AdapterGetAllPetProfiles extends RecyclerView.Adapter<AdapterGetAll
                     SharedPreferences.Editor editor = prefs.edit();*/
                     int adapterPosotion = getAdapterPosition();
                     GetAllPetProfilesResponse.Result result = allPetProfilesArrayList.get(adapterPosotion);
+             /*       if (result.getGender()==null){
+                        Toast.makeText(activity,"Sorry! This pet profile is incomplete", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(activity.getBaseContext(), ShowIncompleteFullPetProfile.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("petProfileUserClicked", result);
+                     *//*    String strPetId = result.getPetId();
+                           editor.putString("PetId", strPetId);*//*
+                        intent.putExtras(bundle);
+                        activity.startActivity(intent);
+
+                    }*/
+                   /* else {*/
                     Intent intent = new Intent(activity.getBaseContext(), ShowFullPetProfile.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("petProfileUserClicked", result);

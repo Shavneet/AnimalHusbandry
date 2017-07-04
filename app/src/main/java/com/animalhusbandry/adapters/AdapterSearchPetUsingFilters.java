@@ -60,7 +60,7 @@ public void onBindViewHolder(AdapterSearchPetUsingFilters.ViewHolder holder, int
         holder.petName.setText(searchPetUsingFiltersArrayList.get(position).getName());
         holder.petBreed.setText(searchPetUsingFiltersArrayList.get(position).getBreed());
         holder.petLocation.setText(searchPetUsingFiltersArrayList.get(position).getLocation());
-        Picasso.with(activity.getBaseContext()).load(searchPetUsingFiltersArrayList.get(position).getImageUrl()).error(ic_1496341871_instagram).fit().into(holder.petImage);
+        Picasso.with(activity.getBaseContext()).load(searchPetUsingFiltersArrayList.get(position).getImageUrl()).placeholder(ic_1496341871_instagram).error(ic_1496341871_instagram).fit().into(holder.petImage);
         }
 
 

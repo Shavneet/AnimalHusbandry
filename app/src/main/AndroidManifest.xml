@@ -39,8 +39,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".signup.CreateUserAccount"
-            android:configChanges="keyboardHidden"
-            android:windowSoftInputMode="adjustResize" />
+            android:configChanges="keyboardHidden" />
         <activity
             android:name=".petprofile.CreatePetProfile"
             android:configChanges="keyboardHidden" />
@@ -52,7 +51,8 @@
         <activity android:name=".petprofile.ShowFullPetProfile" />
         <activity android:name=".petprofile.ShowFavouritePetProfileActivity" />
         <activity android:name=".search.SearchActivity" />
-        <activity android:name=".search.ShowFullPetProfileAfterSearchActivity"></activity>
+        <activity android:name=".search.ShowFullPetProfileAfterSearchActivity" />
+        <activity android:name=".petprofile.ShowIncompleteFullPetProfileActivity"></activity>
     </application>
 
 </manifest>
