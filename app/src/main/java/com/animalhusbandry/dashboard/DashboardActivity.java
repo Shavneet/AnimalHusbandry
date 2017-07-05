@@ -60,7 +60,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public ProgressDialog progressDialog;
     public boolean doubleBackToExitPressedOnce = false;
     public FragmentManager fragmentManager;
-    private ImageView btnToggle;
+    private ImageView btnToggle,imageViewDrawerHeader;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,16 +105,29 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         strUserId = sharedPreferences.getString("strUserId", strUserId);
         Log.e("@@@@@@@", strLogoutFullName + "");
         navigationView = (NavigationView) findViewById(R.id.nvView);
-        View header = navigationView.getHeaderView(0);
+        final View header = navigationView.getHeaderView(0);
         tvDrawerUserName = (TextView) header.findViewById(R.id.tvDrawerUserName);
         tvDrawerUserName.setText(strLogoutFullName);
         tvDrawerUserEmail = (TextView) header.findViewById(R.id.tvDrawerUserEmail);
         tvDrawerUserEmail.setText(strLogoutEmail);
+        imageViewDrawerHeader=(ImageView)header.findViewById(R.id.imageViewDrawerHeader);
         navigationView.setNavigationItemSelectedListener(this);
         btnToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDrawer();
+            }
+        });
+        imageViewDrawerHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragEditUserProfile fragmentEditUserProfile = new FragEditUserProfile();
+                fragmentTransaction.replace(R.id.xmlFragment, fragmentEditUserProfile, "fragmentEditUserProfileTag");
+                fragmentTransaction.addToBackStack("fragmentEditUserProfile");
+                fragmentTransaction.commit();
+                drawerLayout.closeDrawer(Gravity.LEFT);
             }
         });
 

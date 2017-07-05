@@ -25,12 +25,14 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.splash_screen);
        /* splashImageView = (ImageView) findViewById(R.id.splashImageView);
         Glide.with(this).load(R.drawable.giphy).into(splashImageView);*/
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 checkLoginCredentials();
             }
         }, SPLASH_TIME_OUT);
+
 }
 
     private void checkLoginCredentials() {

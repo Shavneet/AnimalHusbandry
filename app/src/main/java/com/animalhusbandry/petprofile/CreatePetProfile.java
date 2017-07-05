@@ -259,7 +259,7 @@ public class CreatePetProfile extends AppCompatActivity {
                     ) {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_PERMISSION);
-                popUpmenu();
+
            /* } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
@@ -288,7 +288,7 @@ public class CreatePetProfile extends AppCompatActivity {
         LayoutInflater layoutInflater = CreatePetProfile.this.getLayoutInflater();
         final View dialogView = layoutInflater.inflate(R.layout.camera_dialog, null, false);
         cameraDialog.setView(dialogView);
-        cameraDialog.setTitle("Choose One");
+
         cameraDialog.setCancelable(true);
         LinearLayout mCamerabtn = (LinearLayout) dialogView.findViewById(R.id.cameradialogbtn);
         LinearLayout mGallerybtn = (LinearLayout) dialogView.findViewById(R.id.gallerydialogbtn);
