@@ -14,7 +14,18 @@ buildscript {
          // NOTE: Do not place your application dependencies here; they belong
                   // NOTE: Do not place your application dependencies here; they belong
                    // NOTE: Do not place your application dependencies here; they belong
+<<<<<<< HEAD
  
+=======
+     */
+            //1 master
+            //3 master
+            //2
+            //3
+            //4
+
+     */
+>>>>>>> 77d051c3794e41d088c1b680986eef8f2362fc02
      */
         // in the individual module build.gradle files
   
